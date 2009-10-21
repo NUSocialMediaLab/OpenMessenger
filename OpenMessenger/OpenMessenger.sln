@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{6DAC9359-F9AB-4121-B8E6-AB4A9805F0CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{A4B9B4D6-8ED7-48E3-89B7-7D44BF87B450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{78A867C7-1D51-49ED-B9CC-2EE031012820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph", "Graph\Graph.csproj", "{05958466-5709-415C-96EF-DA62B5F3C85D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphTestApp", "GraphTestApp\GraphTestApp.csproj", "{B3396FC5-690D-445E-B32A-2174FE1A23AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{06DF06A5-AC3E-4EE8-959A-82E7DED128F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1039A270-12FE-48F7-ACC6-5A79021D5D34}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		OpenMessenger.vsmdi = OpenMessenger.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorTests", "SensorTests\SensorTests.csproj", "{9B20566D-875E-48F0-9AF4-F632EB2FB802}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = OpenMessenger.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DAC9359-F9AB-4121-B8E6-AB4A9805F0CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DAC9359-F9AB-4121-B8E6-AB4A9805F0CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DAC9359-F9AB-4121-B8E6-AB4A9805F0CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DAC9359-F9AB-4121-B8E6-AB4A9805F0CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B9B4D6-8ED7-48E3-89B7-7D44BF87B450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B9B4D6-8ED7-48E3-89B7-7D44BF87B450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B9B4D6-8ED7-48E3-89B7-7D44BF87B450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B9B4D6-8ED7-48E3-89B7-7D44BF87B450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A867C7-1D51-49ED-B9CC-2EE031012820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A867C7-1D51-49ED-B9CC-2EE031012820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A867C7-1D51-49ED-B9CC-2EE031012820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A867C7-1D51-49ED-B9CC-2EE031012820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05958466-5709-415C-96EF-DA62B5F3C85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05958466-5709-415C-96EF-DA62B5F3C85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05958466-5709-415C-96EF-DA62B5F3C85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05958466-5709-415C-96EF-DA62B5F3C85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3396FC5-690D-445E-B32A-2174FE1A23AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3396FC5-690D-445E-B32A-2174FE1A23AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3396FC5-690D-445E-B32A-2174FE1A23AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3396FC5-690D-445E-B32A-2174FE1A23AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06DF06A5-AC3E-4EE8-959A-82E7DED128F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06DF06A5-AC3E-4EE8-959A-82E7DED128F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06DF06A5-AC3E-4EE8-959A-82E7DED128F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06DF06A5-AC3E-4EE8-959A-82E7DED128F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B20566D-875E-48F0-9AF4-F632EB2FB802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B20566D-875E-48F0-9AF4-F632EB2FB802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B20566D-875E-48F0-9AF4-F632EB2FB802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B20566D-875E-48F0-9AF4-F632EB2FB802}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
