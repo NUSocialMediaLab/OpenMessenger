@@ -49,40 +49,32 @@ namespace Graph
         #region Events
 
         /// <summary>
-        /// Delegate for the NodeClicked event
-        /// </summary>
-        /// <param name="node">Node clicked</param>
-        /// <param name="UInode">Graphical representation of node clicked</param>
-        public delegate void NodeClickedHandler(Graph.Node node, ContentControl UInode);
-
-        /// <summary>
-        /// Delegate for the NodeMouseEnter event
+        /// Delegate for the NodeMouse event
         /// </summary>
         /// <param name="node">Node entered</param>
         /// <param name="UInode">Graphical representation of node entered</param>
-        public delegate void NodeMouseEnterHandler(Graph.Node node, ContentControl UInode);
+        public delegate void NodeMouseHandler(Graph.Node node, ContentControl UInode);
 
-        /// <summary>
-        /// Delegate for the NodeMouseLeave event
-        /// </summary>
-        /// <param name="node">Node left</param>
-        /// <param name="UInode">Graphical representation of node left</param>
-        public delegate void NodeMouseLeaveHandler(Graph.Node node, ContentControl UInode);
 
         /// <summary>
         /// Triggered when a node is clicked
         /// </summary>
-        public event NodeClickedHandler NodeClicked;
+        public event NodeMouseHandler NodeClicked;
+
+        /// <summary>
+        /// Triggered when a node is double-clicked
+        /// </summary>
+        public event NodeMouseHandler NodeDoubleClicked;
 
         /// <summary>
         /// Triggered when the mouse enters over a node
         /// </summary>
-        public event NodeMouseEnterHandler NodeMouseEnter;
+        public event NodeMouseHandler NodeMouseEnter;
 
         /// <summary>
         /// Triggered when the mouse leaves a node
         /// </summary>
-        public event NodeMouseLeaveHandler NodeMouseLeave;
+        public event NodeMouseHandler NodeMouseLeave;
 
         #endregion
 
@@ -167,7 +159,7 @@ namespace Graph
        
         void OnNodeRemoved(Graph.Node node)
         {
-            Console.WriteLine("OnNodeRemoved");
+            //ConsoleWriteLine("OnNodeRemoved");
             if (NodeLocked(node))
                 UnlockNodeLocation(node);
             Children.Remove(_UInodes[node]);
@@ -181,7 +173,7 @@ namespace Graph
 
         void OnNodesDisconnected(Graph.Edge edge)
         {
-            Console.WriteLine("OnNodesDisconnected");
+            //ConsoleWriteLine("OnNodesDisconnected");
             Children.Remove(_UIedges[edge]);
             _UIedges.Remove(edge);
             
@@ -227,7 +219,7 @@ namespace Graph
             }
             else
             {
-                Console.WriteLine("##EdgeUpdate with Null Edge!");
+                //ConsoleWriteLine("##EdgeUpdate with Null Edge!");
             }
         }
 
@@ -247,9 +239,10 @@ namespace Graph
                 UInode.Tag = node;
                 
                 UInode.MouseUp += new MouseButtonEventHandler(UInode_MouseUp);
+                UInode.MouseDoubleClick += new MouseButtonEventHandler(UInode_MouseDoubleClick);
                 UInode.MouseEnter += new MouseEventHandler(UInode_MouseEnter);
                 UInode.MouseLeave += new MouseEventHandler(UInode_MouseLeave);
-
+                
                 _UInodes.Add(node, UInode);
                 
                 Point location = GetRandomLocation();
@@ -286,11 +279,21 @@ namespace Graph
         {
             if (NodeClicked != null)
             {
-                Console.WriteLine("Calling NodeClicked...");
                 ContentControl UInode = (ContentControl)sender;
                 Graph.Node node = (Graph.Node)UInode.Tag;
 
                 NodeClicked(node, UInode);
+            }
+        }
+
+        void UInode_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (NodeDoubleClicked != null)
+            {
+                ContentControl UInode = (ContentControl)sender;
+                Graph.Node node = (Graph.Node)UInode.Tag;
+
+                NodeDoubleClicked(node, UInode);
             }
         }
 
@@ -516,7 +519,7 @@ namespace Graph
                 {
                     if (_model.GetEdge(c, node)==null)
                     {
-                        Console.WriteLine("#### No edge between nodes?");
+                        //ConsoleWriteLine("#### No edge between nodes?");
                     }
                     else
                     {
@@ -683,7 +686,7 @@ namespace Graph
             int total = center.Degree;
             Point centerPoint = GetNodeLocation(center);
             RedefineVectors(center);
-            Console.WriteLine("UpdateArc Called");
+            //ConsoleWriteLine("UpdateArc Called");
             foreach(Graph.Edge edge in center.IncidentEdges)
             {
                 if (edge.To == center)
@@ -694,7 +697,7 @@ namespace Graph
                 
             }
             UpdateNodes();
-            Console.WriteLine("UpdateArc Closing");
+            //ConsoleWriteLine("UpdateArc Closing");
         }
 
         /// <summary>
@@ -832,7 +835,7 @@ namespace Graph
             ////    else
             ////        edge.Weight = (edge.Weight - 20 < 50) ? 50 : edge.Weight - 20;
             ////}
-            ////Console.WriteLine("Exiting ShfitFocus");
+            //////ConsoleWriteLine("Exiting ShfitFocus");
             // -----ALL STUFF FOR FAKE FOCUS, FUNCTIONAL ----------
             //if (!target.Equals(c))
             //{
@@ -842,7 +845,7 @@ namespace Graph
 
             //    tempFocus.Remove(target);
             //    tempFocus.Add(target, newF);
-            //    Console.WriteLine("focus shift....");
+            //    //ConsoleWriteLine("focus shift....");
             //    foreach (Graph.Node node in _model.Nodes)
             //    {
             //        int old2 = tempFocus[node];

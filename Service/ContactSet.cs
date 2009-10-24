@@ -39,11 +39,11 @@ namespace OpenMessenger
                 if (_contacts.ContainsKey(contact.Id))
                 {
                     _contacts[contact.Id] = contact;
-                    Console.WriteLine("ContactSet.cs.Update(Contact) says: Contact already in");
+                    //ConsoleWriteLine("ContactSet.cs.Update(Contact) says: Contact already in");
                 }
                 else
                 {
-                    Console.WriteLine("About to add new contact");
+                    //ConsoleWriteLine("About to add new contact");
                     foreach (Guid id in _contacts.Keys)
                     {
                         _focusMatrix.Add(new Pair<Guid,Guid>(contact.Id, id),0);
@@ -113,7 +113,7 @@ namespace OpenMessenger
         /// <returns>True if successful (both contacts exists, and updated)</returns>
         public bool UpdateFocus(Guid from, Guid to, double level)
         {
-            //Console.WriteLine("Service: UpdateFocus called from "+from+" to "+to);
+            ////ConsoleWriteLine("Service: UpdateFocus called from "+from+" to "+to);
             lock (this)
             {
                 Pair<Guid, Guid> key = null;
@@ -123,21 +123,21 @@ namespace OpenMessenger
                         key = p;
                         
                 }
-                //Console.WriteLine("         Key is " + key.First + " to " + key.Second);
+                ////ConsoleWriteLine("         Key is " + key.First + " to " + key.Second);
                 if (_focusMatrix.ContainsKey(key))
                 {
-                    //Console.WriteLine("        Focus level found... changing to "+level);
+                    ////ConsoleWriteLine("        Focus level found... changing to "+level);
                     _focusMatrix[key] = level;
-                    //Console.WriteLine("        Focus changed to " + _focusMatrix[key]);
+                    ////ConsoleWriteLine("        Focus changed to " + _focusMatrix[key]);
                     
                 //_contacts[to].Client.UpdateContact(_contacts[from]);
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("        No Focus level Found!!!!!! NumFoci = "+_focusMatrix.Count);
-                    Console.WriteLine("  0: "+_focusMatrix.Keys.ElementAt(0).First+"   "+_focusMatrix.Keys.ElementAt(0).Second);
-                    Console.WriteLine("  1: "+_focusMatrix.Keys.ElementAt(1).First + "   " + _focusMatrix.Keys.ElementAt(1).Second);
+                    //ConsoleWriteLine("        No Focus level Found!!!!!! NumFoci = "+_focusMatrix.Count);
+                    //ConsoleWriteLine("  0: "+_focusMatrix.Keys.ElementAt(0).First+"   "+_focusMatrix.Keys.ElementAt(0).Second);
+                    //ConsoleWriteLine("  1: "+_focusMatrix.Keys.ElementAt(1).First + "   " + _focusMatrix.Keys.ElementAt(1).Second);
                     return false;
                 }
             }
@@ -153,23 +153,23 @@ namespace OpenMessenger
         {
             //Pair<Guid, Guid> key = new Pair<Guid, Guid>(from, to);
             Pair<Guid, Guid> key = null;
-            //Console.WriteLine("Server: GetFocus CALLED");
+            ////ConsoleWriteLine("Server: GetFocus CALLED");
             foreach (Pair<Guid, Guid> p in _focusMatrix.Keys)
             {
                 if (p.First == from && p.Second == to)
                 {
-                    //Console.WriteLine("        KEY FOUND IN GETFOCUS");
+                    ////ConsoleWriteLine("        KEY FOUND IN GETFOCUS");
                     key = p;
                 }
             }
             if (key != null && _focusMatrix.ContainsKey(key))
             {
-                //Console.WriteLine("        Focus was found: " + key.Equals(null));
+                ////ConsoleWriteLine("        Focus was found: " + key.Equals(null));
                 return _focusMatrix[key];
             }
             else
             {
-                //Console.WriteLine("        Focus not found");
+                ////ConsoleWriteLine("        Focus not found");
                 return 1f;
             }
         }

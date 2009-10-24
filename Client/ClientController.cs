@@ -152,7 +152,7 @@ namespace OpenMessenger.Client
         /// <returns>True if successfully signed in</returns>
         public bool Connect()
         {
-            Console.WriteLine("ClientController: Attempting connect.");
+            //ConsoleWriteLine("ClientController: Attempting connect.");
             if (Connected)
                 throw new ApplicationException("Attempted to connect while already connected.");
 
@@ -225,12 +225,12 @@ namespace OpenMessenger.Client
         {
             if (e is AmplitudeEvent)
             {
-                Console.WriteLine("ClientController: AmplitudeEvent Recieved from Sensor!");
+                //ConsoleWriteLine("ClientController: AmplitudeEvent Recieved from Sensor!");
             }
             if (Connected)
             {
                 _service.BroadcastEvent(e);
-                Console.WriteLine("             Sent to Service.....");
+                //ConsoleWriteLine("             Sent to Service.....");
                 if (OutgoingEventBroadcast != null)
                     OutgoingEventBroadcast(e);
             }
@@ -258,12 +258,12 @@ namespace OpenMessenger.Client
         /// <param name="e">Event received</param>
         public void DeliverEvent(Event e)
         {
-            Console.WriteLine("DELIVEREVENT");
+            //ConsoleWriteLine("DELIVEREVENT");
             if (e is MessageEvent)
                 ShowConversationDialog(e.Sender);
             if (e is AmplitudeEvent)
             {
-                Console.WriteLine("OTHERSIDE ClientController: AmplitudeEvent Recieved!");
+                //ConsoleWriteLine("OTHERSIDE ClientController: AmplitudeEvent Recieved!");
             }
             if (Event != null)
                 Event(e);
@@ -298,10 +298,10 @@ namespace OpenMessenger.Client
         public void SetFocus(Guid contact, double level)
         {
             double newLev = (level > 5) ? 5 : (level < 0) ? 0 : level;
-//            Console.WriteLine("ClientController: FocusSet called from "+Me.Id+ " to " +contact);
+//            //ConsoleWriteLine("ClientController: FocusSet called from "+Me.Id+ " to " +contact);
             if (Connected)
             {
-//                Console.WriteLine("ClientController: Calling Service.SetFocus...");
+//                //ConsoleWriteLine("ClientController: Calling Service.SetFocus...");
                 _service.SetFocus(Me.Id, contact, newLev);
                 _contacts.UpdateFocus(Me.Id, contact, newLev);
             }

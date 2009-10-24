@@ -289,8 +289,8 @@ namespace Graph
 
                 if (NodeRemoved != null)
                     NodeRemoved(node);
-                else
-                    Console.WriteLine("Graph.NodeRemoved is null");
+                //else
+                    //ConsoleWriteLine("Graph.NodeRemoved is null");
             }
         }
 

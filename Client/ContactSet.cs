@@ -145,13 +145,13 @@ namespace OpenMessenger.Client
                 else
                 {
                     // new
-                    Console.WriteLine("Client.ContactSet adding new node ID: "+contact.Id+" to count: "+ _contacts.Count);
+                    //ConsoleWriteLine("Client.ContactSet adding new node ID: "+contact.Id+" to count: "+ _contacts.Count);
                     _contacts.Add(contact.Id, contact);
                     _contactGraph.AddNode(contact.Id);
-                    Console.WriteLine("Client.ContactSet about to connect "+((Guid)MyNode.Content)+" to " +contact.Id);
+                    //ConsoleWriteLine("Client.ContactSet about to connect "+((Guid)MyNode.Content)+" to " +contact.Id);
                     _contactGraph.Connect(MyNode, GetNode(contact));
                     _contactGraph.Connect(GetNode(contact), MyNode);
-                    Console.WriteLine("Client.ContactSet Nodes Connected");
+                    //ConsoleWriteLine("Client.ContactSet Nodes Connected");
                 }
 
                 if (ContactUpdated != null)
@@ -193,8 +193,8 @@ namespace OpenMessenger.Client
         /// <param name="level">Level of focus</param>
         public void UpdateFocus(Guid contactA, Guid contactB, double level)
         {
-            Console.WriteLine("Client.ContactSet: UpdateFocus called from "+contactA+" to "+contactB);
-            Console.WriteLine("                   MyNode = " + (Guid)MyNode.Content);
+            //ConsoleWriteLine("Client.ContactSet: UpdateFocus called from "+contactA+" to "+contactB);
+            //ConsoleWriteLine("                   MyNode = " + (Guid)MyNode.Content);
 
             lock (this)
             {
@@ -219,8 +219,8 @@ namespace OpenMessenger.Client
         {
             lock (this)
             {
-                Console.WriteLine("Client.ContactSet: GetFocus from " + contactA + " to " + contactB);
-                Console.WriteLine("                   "+Contains(contactA) + "    " + Contains(contactB));
+                //ConsoleWriteLine("Client.ContactSet: GetFocus from " + contactA + " to " + contactB);
+                //ConsoleWriteLine("                   "+Contains(contactA) + "    " + Contains(contactB));
                 Graph.Graph.Node nodeA = GetNode(contactA);
                 Graph.Graph.Node nodeB = GetNode(contactB);
 
@@ -228,12 +228,12 @@ namespace OpenMessenger.Client
 
                 if (edge != null)
                 {
-                    Console.WriteLine("                   Client.GetFocus success: "+edge.Weight);
+                    //ConsoleWriteLine("                   Client.GetFocus success: "+edge.Weight);
                     return edge.Weight;
                 }
                 else
                 {
-                    Console.WriteLine("                   Client.GetFocus failure, returning 1f");
+                    //ConsoleWriteLine("                   Client.GetFocus failure, returning 1f");
                     return 1f;
                 }
             }

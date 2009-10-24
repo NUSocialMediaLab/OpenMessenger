@@ -49,12 +49,12 @@ namespace OpenMessenger.Client.Monitors
                 ClientController client = ClientController.GetInstance();
                 AmplitudeEvent e = new AmplitudeEvent(client.Me.Id, avgAmplitude);
                 client.BroadcastEvent(e);
-                Console.WriteLine("Microphone threshold exceeded: " + avgAmplitude);
+                //ConsoleWriteLine("Microphone threshold exceeded: " + avgAmplitude);
                 ClientController.GetInstance().BroadcastEvent(e);
             }
             else
             {
-                Console.WriteLine("No Sound: " + avgAmplitude);
+                //ConsoleWriteLine("No Sound: " + avgAmplitude);
             }
         }
 

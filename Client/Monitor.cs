@@ -60,13 +60,13 @@ namespace OpenMessenger.Client
             string line = "";
             while ((line = tr.ReadLine()) != null)
             {
-                Console.WriteLine(line);
+                //ConsoleWriteLine(line);
                 Match ValidConstant = Regex.Match(line, RegexString);
                 if (ValidConstant.Success)
                 {
                     if (dict.ContainsKey(ValidConstant.Groups[1].Value))
                     {
-                        Console.WriteLine(ValidConstant.Groups[1].Value + " " + ValidConstant.Groups[2].Value + " " + ValidConstant.Groups[3].Value);
+                        //ConsoleWriteLine(ValidConstant.Groups[1].Value + " " + ValidConstant.Groups[2].Value + " " + ValidConstant.Groups[3].Value);
                         dict[ValidConstant.Groups[1].Value].Add(ValidConstant.Groups[2].Value, ValidConstant.Groups[3].Value);
                     }
                     else

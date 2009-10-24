@@ -131,18 +131,18 @@ namespace OpenMessenger.Client
             ClientController client = ClientController.GetInstance();
 
 
+            focusTimer = new System.Timers.Timer(focusIncreaseInterval);
+            focusTimer.Elapsed += new System.Timers.ElapsedEventHandler(focusTimer_Elapsed);
+
             canvas.NodeCreator = CreateContactNode;
             canvas.EdgeCreator = CreateEdge;
             canvas.Model = client.Contacts.FocusGraph;
             canvas.NodeUpdate = UpdateContactNode;
 
-            focusTimer = new System.Timers.Timer(focusIncreaseInterval);
-            focusTimer.Elapsed += new System.Timers.ElapsedEventHandler(focusTimer_Elapsed);
-            focusTimer.Start();
-
-            canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseEnterHandler(NodeMouseEnter);
-            canvas.NodeMouseLeave += new Graph.GraphCanvas.NodeMouseLeaveHandler(NodeMouseLeave);
-            canvas.NodeClicked += new Graph.GraphCanvas.NodeClickedHandler(NodeClicked);
+            canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseEnter);
+            canvas.NodeMouseLeave += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseLeave);
+            canvas.NodeClicked += new Graph.GraphCanvas.NodeMouseHandler(NodeClicked);
+            canvas.NodeDoubleClicked += new Graph.GraphCanvas.NodeMouseHandler(NodeDoubleClicked);
 
             client.Contacts.ContactUpdated += new ContactSet.ContactUpdatedHandler(OnGraphChanged);
             client.Contacts.ContactRemoved += new ContactSet.ContactRemovedHandler(OnGraphChanged);
@@ -150,6 +150,16 @@ namespace OpenMessenger.Client
             canvas.ArcLayout(client.Contacts.MyNode, new Func<Graph.Graph.Edge, double>(EdgeRadius),
               new Func<Graph.Graph.Edge, System.Windows.Media.Brush>(EdgeBrush));
 
+        }
+
+        public void StartTimer()
+        {
+            focusTimer.Start();
+        }
+
+        public void StopTimer()
+        {
+            focusTimer.Stop();
         }
 
         private void GetScreenResolution()
@@ -248,8 +258,9 @@ namespace OpenMessenger.Client
 
         void ShiftFocus(Contact target, double change)
         {
-            Guid i = ClientController.GetInstance().Me.Id;
             ClientController client = ClientController.GetInstance();
+            Guid i = client.Me.Id;
+
             foreach (Graph.Graph.Node n in client.Contacts.MyNode.Neighbors)
             {
                 Guid cur = (Guid)n.Content;
@@ -287,14 +298,25 @@ namespace OpenMessenger.Client
 
         void NodeClicked(Graph.Graph.Node node, ContentControl UInode)
         {
+            /* doesn't really do anything meaningful...
             if ((Guid)node.Content == ClientController.GetInstance().Me.Id)
             {
                 ShiftFocus(null, 1);
             }
             Guid i = ClientController.GetInstance().Me.Id;
             Update();
+             */
         }
 
+        void NodeDoubleClicked(Graph.Graph.Node node, ContentControl UInode)
+        {
+            
+            ClientController client = ClientController.GetInstance();
+            Guid i = client.Me.Id;
+
+            if ((Guid)node.Content!= i)
+                client.ShowConversationDialog((Guid)node.Content);
+        }
 
         void OnGraphChanged(Contact contact)
         {
@@ -398,6 +420,7 @@ namespace OpenMessenger.Client
         {
             // hide the omni window instead of disposing it
             _clientWindow.SetOmniVisible(false);
+            this.StopTimer();
             e.Cancel = true;
         }
 

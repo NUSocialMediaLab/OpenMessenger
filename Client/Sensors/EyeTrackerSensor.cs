@@ -161,7 +161,7 @@ namespace OpenMessenger.Client.Sensors
                 string errorMsg;
                 reader.GetLastError(out errorMsg);
                 //FIXME: Should we be writing this to some log file?
-                Console.WriteLine("Could not connect to eye tracker: " + errorMsg);
+                //ConsoleWriteLine("Could not connect to eye tracker: " + errorMsg);
                 eyePosReadTimer.Stop();
             }
             
@@ -200,7 +200,7 @@ namespace OpenMessenger.Client.Sensors
                     string errorMsg;
                     reader.GetLastError(out errorMsg);
                     //FIXME: This should go to the event log instead.
-                    Console.WriteLine("Error reading data from eye tracker: " + errorMsg);
+                    //ConsoleWriteLine("Error reading data from eye tracker: " + errorMsg);
                 }
 
                 if (available)

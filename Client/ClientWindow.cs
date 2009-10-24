@@ -175,9 +175,15 @@ namespace OpenMessenger.Client
             mnuOmniShow.Checked = visible;
 
             if (visible)
+            {
+                _omni.StartTimer();
                 _omni.Show();
+            }
             else
+            {
+                _omni.StopTimer();
                 _omni.Hide();
+            }
         }
 
         private void mnuSensorWebCam_CheckedChanged(object sender, EventArgs e)

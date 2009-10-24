@@ -119,7 +119,7 @@ namespace OpenMessenger
         public void UpdateContact(Contact contact)
         {
             _contacts.Update(contact);
-            Console.WriteLine(" server _contacts.update called....");
+            //ConsoleWriteLine(" server _contacts.update called....");
             foreach (Contact existingContact in Contacts)
             {
                 
@@ -138,7 +138,7 @@ namespace OpenMessenger
         public void RemoveContact(Guid contactId)
         {
             Contact contact = null;
-            Console.WriteLine("{{RemoveContact called}}");
+            //ConsoleWriteLine("{{RemoveContact called}}");
             if ((contact = _contacts.Remove(contactId)) != null)
             {
                 if (ContactRemove != null)
@@ -277,7 +277,8 @@ namespace OpenMessenger
 
         void SendEvent(Contact recipient, Event e)
         {
-            if (_contacts.GetFocus(recipient.Id, e.Sender) >= e.Level)
+            if (_contacts.GetFocus(recipient.Id, e.Sender) >= e.Level || e is MessageEvent)
+                // XXX i'm delivering it anyway if it's a chat msg.
                 recipient.Client.DeliverEvent(e);
             else
             {

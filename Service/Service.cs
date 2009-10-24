@@ -24,7 +24,7 @@ namespace OpenMessenger
         /// <param name="contact">Contact information about the client signing in</param>
         public void SignIn(Contact contact)
         {
-            Console.WriteLine("signIn called");
+            //ConsoleWriteLine("signIn called");
             Controller.SendContacts(contact);
             Controller.UpdateContact(contact);
         }
@@ -76,8 +76,8 @@ namespace OpenMessenger
         /// <param name="level">New level of focus</param>
         public void SetFocus(Guid me, Guid contact, double level)
         {
-            Console.WriteLine("Service: SetFocus called from "+me+" to " + contact);
-            Console.WriteLine("           Now passing on to ServiceController");
+            //ConsoleWriteLine("Service: SetFocus called from "+me+" to " + contact);
+            //ConsoleWriteLine("           Now passing on to ServiceController");
             Controller.SetFocus(me, contact, level);
         }
     }
