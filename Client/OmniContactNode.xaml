@@ -4,12 +4,8 @@
     Height="150" Width="150">
     <Grid>
         <Ellipse Name="halo" Stroke="Black" StrokeThickness="0" />
-        <Rectangle Name="info1Box" Stroke="Gray" StrokeThickness="0" HorizontalAlignment="Right" Margin="0,0,-110,0" Width="127" Height="29" VerticalAlignment="Top" />
-        <Label Name="info1" FontSize="15" HorizontalAlignment="Right" Margin="0,0,-110,0" Width="127" Height="29" VerticalAlignment="Top">Info</Label>
-        <Rectangle Name="info2Box" Stroke="Gray" StrokeThickness="0" HorizontalAlignment="Right" Margin="0,47,-141,74" Width="127" />
-        <Label Name="info2" FontSize="15" HorizontalAlignment="Right" Margin="0,47,-141,74" Width="127">Info</Label>
-        <Rectangle Name="info0Box" Stroke="Gray" StrokeThickness="0" HorizontalAlignment="Right" Margin="0,0,-110,23" Width="127" Height="29" VerticalAlignment="Bottom" />
-        <Label Name="info0" FontSize="15" HorizontalAlignment="Right" Margin="0,0,-110,23" Width="127" Height="29" VerticalAlignment="Bottom">Info</Label>
+        <Rectangle Name="infoBox" Stroke="Gray" StrokeThickness="0" HorizontalAlignment="Right" Margin="0,47,-141,56.7" Width="127" />
+        <Label Name="info" FontSize="15" HorizontalAlignment="Right" Margin="0,47,-141,55" Width="127">Info</Label>
         <Label Name="label" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Center">Contact Name</Label>
     </Grid>
 </UserControl>

@@ -82,7 +82,7 @@ namespace Graph
         /// <summary>
         /// Triggered when the mouse leaves a node
         /// </summary>
-        public event NodeMouseEnterHandler NodeMouseLeave;
+        public event NodeMouseLeaveHandler NodeMouseLeave;
 
         #endregion
 

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 using OpenMessenger.Events;
 
@@ -24,8 +25,7 @@ namespace OpenMessenger.Client
 
         System.Timers.Timer focusTimer;
         int focusIncreaseInterval = 1 * 1000;
-        Contact currentFocusContact;
-        OmniContactNode currentFocusNode;
+        Contact currentFocusContact = null;
 
         private int xRes;
         /// <summary>
@@ -130,13 +130,18 @@ namespace OpenMessenger.Client
 
             ClientController client = ClientController.GetInstance();
 
+
             canvas.NodeCreator = CreateContactNode;
             canvas.EdgeCreator = CreateEdge;
             canvas.Model = client.Contacts.FocusGraph;
             canvas.NodeUpdate = UpdateContactNode;
 
+            focusTimer = new System.Timers.Timer(focusIncreaseInterval);
+            focusTimer.Elapsed += new System.Timers.ElapsedEventHandler(focusTimer_Elapsed);
+            focusTimer.Start();
+
             canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseEnterHandler(NodeMouseEnter);
-            canvas.NodeMouseLeave += new Graph.GraphCanvas.NodeMouseEnterHandler(NodeMouseLeave);
+            canvas.NodeMouseLeave += new Graph.GraphCanvas.NodeMouseLeaveHandler(NodeMouseLeave);
             canvas.NodeClicked += new Graph.GraphCanvas.NodeClickedHandler(NodeClicked);
 
             client.Contacts.ContactUpdated += new ContactSet.ContactUpdatedHandler(OnGraphChanged);
@@ -144,6 +149,7 @@ namespace OpenMessenger.Client
             client.Contacts.FocusUpdated += new ContactSet.FocusUpdatedHandler(FocusUpdate);
             canvas.ArcLayout(client.Contacts.MyNode, new Func<Graph.Graph.Edge, double>(EdgeRadius),
               new Func<Graph.Graph.Edge, System.Windows.Media.Brush>(EdgeBrush));
+
         }
 
         private void GetScreenResolution()
@@ -181,6 +187,7 @@ namespace OpenMessenger.Client
         /// does not contain any avatars</returns>
         /// 
         private delegate void InputHitTestD(System.Windows.Point pt);
+
         public Contact DetectAvatar(OmniWindowPos owPos)
         {
             System.Windows.Point pt = new System.Windows.Point(owPos.XPx, owPos.YPx);
@@ -238,51 +245,44 @@ namespace OpenMessenger.Client
             // UPDATE: Ok now parts of this are used, but it still doesn't do all it was suppoesed to originally...
         }
 
+
         void ShiftFocus(Contact target, double change)
         {
             Guid i = ClientController.GetInstance().Me.Id;
-            foreach (Graph.Graph.Node n in ClientController.GetInstance().Contacts.MyNode.Neighbors)
+            ClientController client = ClientController.GetInstance();
+            foreach (Graph.Graph.Node n in client.Contacts.MyNode.Neighbors)
             {
-                double oldFoc = ClientController.GetInstance().Contacts.GetFocus(i, ((Guid)n.Content));
-                if (target!=null && (Guid)n.Content == target.Id) //checked if null so that ShiftFocus (null, 1) will reduce all foci
+                Guid cur = (Guid)n.Content;
+                double oldFoc = client.Contacts.GetFocus(i, cur);
+
+                if (target!=null && cur == target.Id)
                 {
-                    ClientController.GetInstance().SetFocus((currentFocusContact.Id), oldFoc + change);
+                    client.SetFocus(cur, oldFoc+change);
                 }
                 else
-                    ClientController.GetInstance().SetFocus(((Guid)n.Content), oldFoc - change);
+                    client.SetFocus(cur, oldFoc-change);
+
             }
         }
 
         void NodeMouseEnter(Graph.Graph.Node node, ContentControl UInode)
         {
-            OmniContactNode c =(OmniContactNode)UInode;
             ClientController client = ClientController.GetInstance();
-            
             currentFocusContact = client.Contacts[(Guid)node.Content];
-            currentFocusNode = (OmniContactNode)UInode;
-            if (currentFocusContact != client.Me)
-            {
-                focusTimer = new System.Timers.Timer(focusIncreaseInterval);
-                focusTimer.Elapsed += new System.Timers.ElapsedEventHandler(focusTimer_Elapsed);
-                
-                focusTimer.Start();
-            }
-            Console.WriteLine("TIMER STARTED");
+
+            if (currentFocusContact == client.Me)
+                currentFocusContact = null;
         }
 
         void focusTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("TimerElapsed");
             Guid i = ClientController.GetInstance().Me.Id;
             ShiftFocus(currentFocusContact, 1);
         }
 
         void NodeMouseLeave(Graph.Graph.Node node, ContentControl UInode)
         {
-            if (focusTimer != null)
-                focusTimer.Stop();
             currentFocusContact = null;
-            Console.WriteLine("TIMER STOPPED");
         }
 
         void NodeClicked(Graph.Graph.Node node, ContentControl UInode)
@@ -329,7 +329,7 @@ namespace OpenMessenger.Client
         /// <summary>
         /// Update/Redraw the Omni window, called in response to changes
         /// </summary>
-        private void Update()
+        new private void Update()
         {
             if (canvas.Model != null)
             {
@@ -387,8 +387,10 @@ namespace OpenMessenger.Client
             OmniContactNode temp = (OmniContactNode)UInode;
             
             double focusLevel = ClientController.GetInstance().Contacts.GetFocus(myId, ((Guid)node.Content));
-            if(focusLevel>=3)
+            if (focusLevel >= 3)
                 ((OmniContactNode)UInode).ShowInfo("Text");
+            else ((OmniContactNode)UInode).HideInfo();
+
             return (OmniContactNode)UInode;
         }
 
@@ -547,6 +549,11 @@ namespace OpenMessenger.Client
 
             }
 
+
+        }
+
+        private void elementHost_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
 
         }
 

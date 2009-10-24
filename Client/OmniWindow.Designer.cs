@@ -39,6 +39,7 @@
             this.elementHost.Name = "elementHost";
             this.elementHost.Size = new System.Drawing.Size(760, 528);
             this.elementHost.TabIndex = 0;
+            this.elementHost.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.elementHost_ChildChanged);
             this.elementHost.Child = this.canvas;
             // 
             // OmniWindow
@@ -51,10 +52,6 @@
             this.Text = "Omni";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OmniWindow_FormClosing);
             this.ResumeLayout(false);
-            //
-            // canvas
-            //
-            this.canvas.Background = System.Windows.Media.Brushes.Black;
 
         }
 
