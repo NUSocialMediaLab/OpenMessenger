@@ -182,7 +182,7 @@ namespace Graph
 
         void OnNodesConnected(Graph.Edge edge)
         {
-            // TODO: this code was keep throwing targetInvocationException at random...
+            // XXX this code was keep throwing targetInvocationException at random...
             // i took out the below line out for now to debug.
 
             OnNodesConnectedDispatched(edge);
@@ -239,7 +239,7 @@ namespace Graph
 
         void OnNodeAdded(Graph.Node node)
         {
-            // TODO: this code was keep throwing targetInvocationException at random...
+            // XXX this code was keep throwing targetInvocationException at random...
             // i took out the below line out for now to debug.
 
             OnNodeAddedDispatched(node);
@@ -804,7 +804,7 @@ namespace Graph
 
             foreach (Graph.Edge edge in center.IncidentEdges)
             {
-               
+           
                 if (edge.To == center && edge.From != center)
                 {
                     Point p = new Point((Width / 2) - (_UInodes[edge.From].ActualWidth / 2),
@@ -834,7 +834,7 @@ namespace Graph
                     Graph.Node neighbor = edge.From;
                     Vector targVect = GetNodeLocation(neighbor) - targetDict[neighbor];
                     if (!_lockedNodes.Contains(neighbor))
-                        SetNodeLocation(neighbor, (targVect / (-10)) + GetNodeLocation(neighbor));
+                        SetNodeLocation(neighbor, (targVect / (-20)) + GetNodeLocation(neighbor));
                     UpdateEdgeLocation(edge);  
                 }
             }

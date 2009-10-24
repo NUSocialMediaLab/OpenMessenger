@@ -371,10 +371,11 @@ namespace OpenMessenger.Client
 
         Brush EdgeBrush(Graph.Graph.Edge edge)
         {
+          
             Graph.Graph.Node myNode = ClientController.GetInstance().Contacts.MyNode;
             Graph.Graph.Node neighbor = (edge.To == myNode) ? edge.From : edge.To;
             if (currentFocusContact != null && currentFocusContact.Id == (Guid)neighbor.Content)
-                return Brushes.Red;
+                return new SolidColorBrush(currentFocusContact.Color);
             else
                 return Brushes.DarkGray;
         }

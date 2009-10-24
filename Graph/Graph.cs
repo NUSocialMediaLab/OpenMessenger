@@ -165,7 +165,7 @@ namespace Graph
         public class Edge
         {
             Graph _graph;
-            double _weight = 1.0f;
+            double _weight = 0.0f;
 
             /// <summary>
             /// Source node
@@ -186,8 +186,15 @@ namespace Graph
                 set
                 {
                     _weight = value;
-                    if (_graph.EdgeUpdated != null)
-                        _graph.EdgeUpdated(this);
+
+                    // XXX the code below is totally unnecessary
+                    // whoever is using the getter of this variable 
+                    // would be updating the edge accordingly. 
+                    // besides, the code below caused the consistent blinking 
+                    // of all the edges because this causes a complete redraw
+                    // of the edge and forgets about the last stroke color it was set to.
+                    //if (_graph.EdgeUpdated != null) 
+                       // _graph.EdgeUpdated(this);
                 }
 
             }

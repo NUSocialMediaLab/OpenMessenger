@@ -40,7 +40,7 @@ namespace OpenMessenger.Client
             fx.Color = contact.Color;
 
             DropShadowEffect fxInfo = new DropShadowEffect();
-            fxInfo.BlurRadius = 5;
+            fxInfo.BlurRadius = 15;
             fxInfo.ShadowDepth = 0;
             fxInfo.Color = contact.Color;
 

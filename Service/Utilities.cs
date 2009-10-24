@@ -126,7 +126,7 @@ namespace OpenMessenger
                     c = Colors.Sienna;
                     break;
                 case 2:
-                    c = Colors.SkyBlue;
+                    c = Colors.DarkSeaGreen;
                     break;
                 case 3:
                     c = Colors.Red;
@@ -135,7 +135,7 @@ namespace OpenMessenger
                     c = Colors.PowderBlue;
                     break;
                 case 5:
-                    c = Colors.AliceBlue;
+                    c = Colors.DarkOrange;
                     break;
                 case 6:
                     c = Colors.Cyan;
@@ -144,7 +144,7 @@ namespace OpenMessenger
                     c = Colors.LightPink;
                     break;
                 case 8:
-                    c = Colors.LightSeaGreen;
+                    c = Colors.DarkRed;
                     break;
                 default:
                     c = Colors.MintCream;
