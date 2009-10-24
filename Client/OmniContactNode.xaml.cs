@@ -21,7 +21,6 @@ namespace OpenMessenger.Client
     /// </summary>
     public partial class OmniContactNode : UserControl
     {
-        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -94,5 +93,6 @@ namespace OpenMessenger.Client
             info.Visibility = Visibility.Collapsed;
             infoBox.Visibility = Visibility.Collapsed;
         }
+
     }
 }

@@ -371,13 +371,21 @@ namespace OpenMessenger.Client
 
         Brush EdgeBrush(Graph.Graph.Edge edge)
         {
-          
-            Graph.Graph.Node myNode = ClientController.GetInstance().Contacts.MyNode;
-            Graph.Graph.Node neighbor = (edge.To == myNode) ? edge.From : edge.To;
-            if (currentFocusContact != null && currentFocusContact.Id == (Guid)neighbor.Content)
-                return new SolidColorBrush(currentFocusContact.Color);
+            ClientController client = ClientController.GetInstance();
+            
+            Graph.Graph.Node me = client.Contacts.MyNode;
+            Guid i = (Guid)me.Content;
+
+            Graph.Graph.Node curNode = ((edge.To == me) ? edge.From : edge.To);
+            Guid curId = (Guid)curNode.Content;
+            Contact cur = client.Contacts[curId];
+
+            double focusLevel = client.Contacts.GetFocus(i, curId);
+            
+            if ((currentFocusContact != null && currentFocusContact.Id == curId) || focusLevel > 3)
+                return new SolidColorBrush(cur.Color);
             else
-                return Brushes.DarkGray;
+                return Brushes.Black;
         }
 
         ContentControl CreateContactNode(Graph.Graph.Node node)
@@ -392,7 +400,7 @@ namespace OpenMessenger.Client
         Line CreateEdge(Graph.Graph.Edge edge)
         {
             Line line = new Line();
-            line.Stroke = Brushes.DimGray;
+            line.Stroke = Brushes.Black;
             Canvas.SetZIndex(line, 0);
             return line;
         }
