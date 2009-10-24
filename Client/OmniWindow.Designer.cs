@@ -34,6 +34,7 @@
             // 
             // elementHost
             // 
+            this.elementHost.BackColor = System.Drawing.Color.Black;
             this.elementHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementHost.Location = new System.Drawing.Point(0, 0);
             this.elementHost.Name = "elementHost";

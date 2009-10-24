@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Effects;
+
 
 namespace OpenMessenger.Client
 {
@@ -28,15 +30,40 @@ namespace OpenMessenger.Client
         {
             this.Content = contact.Id;
             InitializeComponent();
-            halo.Fill = new SolidColorBrush(contact.Color);
-            halo.Opacity = 1.0f;
-            label.Content = contact.Name;
 
-            infoBox.Opacity = 1.0f;
-            infoBox.Fill = new SolidColorBrush(contact.Color);
+            ClientController client = ClientController.GetInstance();
+            Guid i = client.Me.Id;
+
+            DropShadowEffect fx = new DropShadowEffect();
+            fx.BlurRadius = 35;
+            fx.ShadowDepth = 0;
+            fx.Color = contact.Color;
+
+            DropShadowEffect fxInfo = new DropShadowEffect();
+            fxInfo.BlurRadius = 5;
+            fxInfo.ShadowDepth = 0;
+            fxInfo.Color = contact.Color;
+
+            halo.Effect = fx;
+
+            infoBox.Effect = fxInfo;
             infoBox.Visibility = Visibility.Collapsed;
             info.Visibility = Visibility.Collapsed;
             info.Content = "";
+
+            if (contact.Id == i)
+            {
+                this.Height = 150;
+                this.Width = 200;
+                label.VerticalAlignment = VerticalAlignment.Stretch;
+                label.Margin = new Thickness(0, 20, 0, 0);
+                label.Content = "Me";
+                label.FontSize = 35;
+            }
+            else
+            {
+                label.Content = contact.Name;
+            }
         }
 
         /// <summary>

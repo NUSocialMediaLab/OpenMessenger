@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Input;
+using System.Reflection;
 
 namespace Graph
 {
@@ -181,25 +182,38 @@ namespace Graph
 
         void OnNodesConnected(Graph.Edge edge)
         {
-            Dispatcher.Invoke(new Action(delegate
+            // TODO: this code was keep throwing targetInvocationException at random...
+            // i took out the below line out for now to debug.
+
+            OnNodesConnectedDispatched(edge);
+            try
             {
-                OnNodesConnectedDispatched(edge);
-            }), System.Windows.Threading.DispatcherPriority.Normal, null);
+               // Dispatcher.Invoke(new Action(delegate
+                //{
+                //    OnNodesConnectedDispatched(edge);
+                //}), System.Windows.Threading.DispatcherPriority.Normal, null);
+            }
+            catch (TargetInvocationException ex)
+            {
+                throw ex.InnerException;
+            }
+                
         }
 
         void OnNodesConnectedDispatched(Graph.Edge edge)
         {
-            if (!_UIedges.ContainsKey(edge))
-            {
-                OnNodeAdded(edge.From);
-                OnNodeAdded(edge.To);
-                Line UIedge = EdgeCreator(edge);
-                if (edge.To!= c)
-                    UIedge.Width = 0;
-                _UIedges.Add(edge, UIedge);
-                UpdateEdgeLocation(edge);
-                Children.Add(UIedge);
-            }
+                if (!_UIedges.ContainsKey(edge))
+                {
+                    OnNodeAdded(edge.From);
+                    OnNodeAdded(edge.To);
+                    Line UIedge = EdgeCreator(edge);
+                    if (edge.To != c)
+                        UIedge.Width = 0;
+                    _UIedges.Add(edge, UIedge);
+                    UpdateEdgeLocation(edge);
+                    Children.Add(UIedge);
+                }
+            
         }
 
         void UpdateEdgeLocation(Graph.Edge edge)
@@ -225,10 +239,15 @@ namespace Graph
 
         void OnNodeAdded(Graph.Node node)
         {
-            Dispatcher.Invoke(new Action(delegate
-            {
-                OnNodeAddedDispatched(node);
-            }), null);
+            // TODO: this code was keep throwing targetInvocationException at random...
+            // i took out the below line out for now to debug.
+
+            OnNodeAddedDispatched(node);
+
+            //Dispatcher.Invoke(new Action(delegate
+            //{
+             //   OnNodeAddedDispatched(node);
+            //}), null);
         }
 
         void OnNodeAddedDispatched(Graph.Node node)
@@ -683,6 +702,7 @@ namespace Graph
         /// <param name="EdgeColor"></param>
         public void UpdateArc(Graph.Node center, Func<Graph.Edge, double> EdgeRadius, Func<Graph.Edge, Brush> EdgeColor)
         {
+            BottomCenter(center);
             int total = center.Degree;
             Point centerPoint = GetNodeLocation(center);
             RedefineVectors(center);
@@ -780,15 +800,18 @@ namespace Graph
         {
             RedefineVectors(center);
             targetDict.Clear();
-            
+            //Point p = GetNodeLocation(center);
+
             foreach (Graph.Edge edge in center.IncidentEdges)
             {
                
                 if (edge.To == center && edge.From != center)
                 {
-                    targetDict.Add(edge.From, GetNodeLocation(center) 
-                        + (vectDict[edge] * (500 - (50*(edge.Weight)))));
+                    Point p = new Point((Width / 2) - (_UInodes[edge.From].ActualWidth / 2),
+                                     (Height) - (_UInodes[edge.From].ActualHeight / 2));
+                    targetDict.Add(edge.From, p + (vectDict[edge] * (450 - (50*(edge.Weight)))));
                 }
+                
             }
         }
 

@@ -15,7 +15,7 @@ namespace OpenMessenger.Client.Monitors
     /// Monitor that listens to raw data gathered by the EyeTrackingSensor and uses that information
     /// to determine if a user is gazing at another avatar on the OmniWindow in order to try to initiate
     /// conversation
-    /// </summary>
+    /// </summary> 
     public class EyeActivityMonitor : Monitor
     {
         private const int numReadsToStore = 10;

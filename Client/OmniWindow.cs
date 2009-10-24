@@ -268,10 +268,10 @@ namespace OpenMessenger.Client
 
                 if (target!=null && cur == target.Id)
                 {
-                    client.SetFocus(cur, oldFoc+change);
+                    client.SetFocus(cur, oldFoc+change*0.8);
                 }
                 else
-                    client.SetFocus(cur, oldFoc-change);
+                    client.SetFocus(cur, oldFoc-change*0.2);
 
             }
         }
@@ -410,10 +410,9 @@ namespace OpenMessenger.Client
             
             double focusLevel = ClientController.GetInstance().Contacts.GetFocus(myId, ((Guid)node.Content));
             if (focusLevel >= 3)
-                ((OmniContactNode)UInode).ShowInfo("Text");
-            else ((OmniContactNode)UInode).HideInfo();
-
-            return (OmniContactNode)UInode;
+                temp.ShowInfo("");
+            else temp.HideInfo();
+            return temp;
         }
 
         private void OmniWindow_FormClosing(object sender, FormClosingEventArgs e)

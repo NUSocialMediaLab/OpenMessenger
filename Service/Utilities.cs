@@ -65,7 +65,7 @@ namespace OpenMessenger
         public static EndpointAddress GetLocalEndpoint(bool randomizePort)
         {
             string hostName = Dns.GetHostName();
-            IPHostEntry local = Dns.GetHostByName(hostName);    
+            IPHostEntry local = Dns.GetHostByName(hostName);
 
             int port = 8000;
 
@@ -75,9 +75,9 @@ namespace OpenMessenger
                 port = rand.Next(8001, 16000);
             }
 
-            return new EndpointAddress("http://" + 
-                local.AddressList[0]+ 
-                ":" + port.ToString()  + "/");
+            return new EndpointAddress("http://" +
+                local.AddressList[0] +
+                ":" + port.ToString() + "/");
         }
 
         /// <summary>
@@ -118,7 +118,39 @@ namespace OpenMessenger
         /// <returns>A random color</returns>
         public static Color GetRandomColor()
         {
-            return Color.FromRgb((byte)random.Next(128), (byte)random.Next(128), (byte)random.Next(128));
+            int i = random.Next(10);
+            Color c = new Color();
+            switch (i)
+            {
+                case 1:
+                    c = Colors.Sienna;
+                    break;
+                case 2:
+                    c = Colors.SkyBlue;
+                    break;
+                case 3:
+                    c = Colors.Red;
+                    break;
+                case 4:
+                    c = Colors.PowderBlue;
+                    break;
+                case 5:
+                    c = Colors.AliceBlue;
+                    break;
+                case 6:
+                    c = Colors.Cyan;
+                    break;
+                case 7:
+                    c = Colors.LightPink;
+                    break;
+                case 8:
+                    c = Colors.LightSeaGreen;
+                    break;
+                default:
+                    c = Colors.MintCream;
+                    break;
+            }
+            return c;
         }
     }
 }

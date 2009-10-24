@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9B20566D-875E-48F0-9AF4-F632EB2FB802}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -69,6 +69,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SensorTestForm.resx">
       <DependentUpon>SensorTestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

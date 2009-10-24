@@ -50,7 +50,6 @@ namespace OpenMessenger.Client.Dialogs
 
         void OnEvent(Event e)
         {
-            Console.WriteLine("msg received.");
             if (e.Sender == this.contact.Id &&
                 e is MessageEvent)
             {
