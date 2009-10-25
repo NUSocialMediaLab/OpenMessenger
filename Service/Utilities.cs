@@ -123,10 +123,10 @@ namespace OpenMessenger
             switch (i)
             {
                 case 1:
-                    c = Colors.Sienna;
+                    c = Colors.LemonChiffon;
                     break;
                 case 2:
-                    c = Colors.DarkSeaGreen;
+                    c = Colors.Green;
                     break;
                 case 3:
                     c = Colors.Red;
@@ -135,7 +135,7 @@ namespace OpenMessenger
                     c = Colors.PowderBlue;
                     break;
                 case 5:
-                    c = Colors.DarkOrange;
+                    c = Colors.SteelBlue;
                     break;
                 case 6:
                     c = Colors.Cyan;
@@ -144,7 +144,7 @@ namespace OpenMessenger
                     c = Colors.LightPink;
                     break;
                 case 8:
-                    c = Colors.DarkRed;
+                    c = Colors.YellowGreen;
                     break;
                 default:
                     c = Colors.MintCream;

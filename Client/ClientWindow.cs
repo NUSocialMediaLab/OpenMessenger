@@ -60,6 +60,14 @@ namespace OpenMessenger.Client
                 Sensor.GetInstance<MicrophoneSensor>().Stop();
         }
 
+        private void mnuSensorKeyboard_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuSensorKeyboard.Checked)
+                Sensor.GetInstance<KeyboardSensor>().Start();
+            else
+                Sensor.GetInstance<KeyboardSensor>().Stop();
+        }
+
         private void mnuMonitorMicrophoneAmplitude_CheckedChanged(object sender, EventArgs e)
         {
             if (mnuMonitorMicrophoneAmplitude.Checked)
@@ -91,6 +99,15 @@ namespace OpenMessenger.Client
             else
                 Monitor.GetInstance<ActivityMonitor>().Stop();
         }
+
+        private void mnuMonitorKeyboardAcitivity_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuMonitorKeyboardActivity.Checked)
+                Monitor.GetInstance<KeyboardMonitor>().Start();
+            else
+                Monitor.GetInstance<KeyboardMonitor>().Stop();
+        }
+
 
         private void mnuMonitorEyeActivity_CheckedChanged(object sender, EventArgs e)
         {
@@ -176,12 +193,10 @@ namespace OpenMessenger.Client
 
             if (visible)
             {
-                _omni.StartTimer();
                 _omni.Show();
             }
             else
             {
-                _omni.StopTimer();
                 _omni.Hide();
             }
         }

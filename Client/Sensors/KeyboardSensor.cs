@@ -15,7 +15,7 @@ namespace OpenMessenger.Client.Sensors
 
         public event KeyboardUpdateHandler KeyboardUpdate;
 
-        private const int updateFrequency = 5000;
+        private const int updateFrequency = 1000;
         private System.Timers.Timer captureTimer;
 
         private Device keyboard;
@@ -84,6 +84,7 @@ namespace OpenMessenger.Client.Sensors
                 if (KeyboardUpdate != null)
                 {
                     KeyboardUpdate(state.ToArray());
+                    state.Clear();
                 }
             }
         }

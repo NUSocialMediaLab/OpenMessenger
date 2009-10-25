@@ -17,7 +17,7 @@ namespace OpenMessenger.Client
 
         static Dictionary<string, Dictionary<string, string>> ConfigurationDictionary = LoadConstants();
 
-        const string ConfigFileLocation = "C:\\OpenMessenger\\config.txt";
+        const string ConfigFileLocation = "../../config.txt";
         
         const string RegexString = "^([^#]+)\\.(.+)\\s*=\\s*(.+)$";
 

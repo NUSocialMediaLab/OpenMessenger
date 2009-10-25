@@ -7,7 +7,6 @@ using System.Timers;
 using System.Collections;
 using System.Runtime.InteropServices;
 using Microsoft.DirectX.DirectSound;
-using System.Runtime.InteropServices;
 using NAudio;
 using NAudio.Wave;
 

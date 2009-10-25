@@ -133,6 +133,7 @@ namespace OpenMessenger.Client
 
             focusTimer = new System.Timers.Timer(focusIncreaseInterval);
             focusTimer.Elapsed += new System.Timers.ElapsedEventHandler(focusTimer_Elapsed);
+            focusTimer.Start();
 
             canvas.NodeCreator = CreateContactNode;
             canvas.EdgeCreator = CreateEdge;
@@ -152,15 +153,6 @@ namespace OpenMessenger.Client
 
         }
 
-        public void StartTimer()
-        {
-            focusTimer.Start();
-        }
-
-        public void StopTimer()
-        {
-            focusTimer.Stop();
-        }
 
         private void GetScreenResolution()
         {
@@ -390,9 +382,7 @@ namespace OpenMessenger.Client
 
         ContentControl CreateContactNode(Graph.Graph.Node node)
         {
-            Contact contact = ClientController.GetInstance().Contacts[(Guid)node.Content];
-
-            OmniContactNode UInode = new OmniContactNode(contact);
+            OmniContactNode UInode = ClientController.GetInstance().CreateContactNode(node);
             Canvas.SetZIndex(UInode, 1);
             return UInode;
         }
@@ -419,7 +409,7 @@ namespace OpenMessenger.Client
             
             double focusLevel = ClientController.GetInstance().Contacts.GetFocus(myId, ((Guid)node.Content));
             if (focusLevel >= 3)
-                temp.ShowInfo("");
+                temp.ShowInfo();
             else temp.HideInfo();
             return temp;
         }
@@ -428,7 +418,6 @@ namespace OpenMessenger.Client
         {
             // hide the omni window instead of disposing it
             _clientWindow.SetOmniVisible(false);
-            this.StopTimer();
             e.Cancel = true;
         }
 

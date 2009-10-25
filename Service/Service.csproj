@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{78A867C7-1D51-49ED-B9CC-2EE031012820}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -66,6 +66,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="Events\AmplitudeEvent.cs" />
     <Compile Include="Events\EyeActivityEvent.cs" />
+    <Compile Include="Events\KeyboardEvent.cs" />
     <Compile Include="Events\MessageEvent.cs" />
     <Compile Include="Events\ActivityEvent.cs" />
     <Compile Include="IClient.cs" />
@@ -98,11 +99,6 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
-        <WcfProjectProperties>
-          <AutoStart>False</AutoStart>
-        </WcfProjectProperties>
-      </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
 </Project>

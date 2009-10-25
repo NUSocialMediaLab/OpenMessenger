@@ -17,6 +17,7 @@ namespace OpenMessenger
     [KnownType(typeof(ActivityEvent))]
     [KnownType(typeof(EyeActivityEvent))]
     [KnownType(typeof(AmplitudeEvent))]
+    [KnownType(typeof(KeyboardEvent))]
     public abstract class Event
     {
         static Guid _serverGuid = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

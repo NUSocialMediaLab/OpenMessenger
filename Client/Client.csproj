@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Monitor.cs" />
     <Compile Include="Monitors\EyeActivityMonitor.cs" />
+    <Compile Include="Monitors\KeyboardMonitor.cs" />
     <Compile Include="Monitors\MicrophoneAmplitudeMonitor.cs" />
     <Compile Include="Monitors\ActivityMonitor.cs" />
     <Compile Include="Dialogs\ProfileDialog.cs">

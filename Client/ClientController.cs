@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using OpenMessenger.Events;
 using OpenMessenger.Client.Dialogs;
+using Graph;
 
 namespace OpenMessenger.Client
 {
@@ -90,6 +91,7 @@ namespace OpenMessenger.Client
 
 
         ContactSet _contacts;
+        Dictionary<Guid, OmniContactNode> _omniNodes = new Dictionary<Guid, OmniContactNode>();
         Dictionary<Guid, ConversationDialog> _conversations = new Dictionary<Guid, ConversationDialog>();
 
         Graph.Graph _contactGraph = new Graph.Graph();
@@ -109,6 +111,11 @@ namespace OpenMessenger.Client
         {
             
             get { return _contacts; }
+        }
+
+        public Dictionary<Guid, OmniContactNode> OmniNodes
+        {
+            get { return _omniNodes; }
         }
 
         /// <summary>
@@ -265,10 +272,27 @@ namespace OpenMessenger.Client
             {
                 //ConsoleWriteLine("OTHERSIDE ClientController: AmplitudeEvent Recieved!");
             }
+            if (e is KeyboardEvent)
+            {
+                if (_omniNodes.ContainsKey(e.Sender))
+                {
+                    OmniContactNode UInode = _omniNodes[e.Sender];
+                    UInode.UpdateInfo(e.ToString());
+                }
+            }
+
             if (Event != null)
                 Event(e);
         }
 
+        public OmniContactNode CreateContactNode(Graph.Graph.Node node)
+        {
+            Contact contact = ClientController.GetInstance().Contacts[(Guid)node.Content];
+            
+            OmniContactNode UInode = new OmniContactNode(contact);
+            _omniNodes.Add(contact.Id, UInode);
+            return UInode;
+        }
         /// <summary>
         /// Displays the conversation dialog with a given contact
         /// </summary>

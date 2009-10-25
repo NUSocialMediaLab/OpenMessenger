@@ -30,6 +30,20 @@ namespace OpenMessenger.Client
             this.Content = contact.Id;
             InitializeComponent();
 
+            BitmapImage keyboardBmp = new BitmapImage();
+            keyboardBmp.BeginInit();
+            keyboardBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\keyboard.png", UriKind.RelativeOrAbsolute);
+            keyboardBmp.DecodePixelWidth = 25;
+            keyboardBmp.EndInit();
+            keyboardImg.Source = keyboardBmp;
+
+            BitmapImage micBmp = new BitmapImage();
+            micBmp.BeginInit();
+            micBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\mic.png", UriKind.RelativeOrAbsolute);
+            micBmp.DecodePixelWidth = 25;
+            micBmp.EndInit();
+            micImg.Source = micBmp;
+
             ClientController client = ClientController.GetInstance();
             Guid i = client.Me.Id;
 
@@ -46,10 +60,8 @@ namespace OpenMessenger.Client
             halo.Effect = fx;
 
             infoBox.Effect = fxInfo;
-            infoBox.Visibility = Visibility.Collapsed;
-            info.Visibility = Visibility.Collapsed;
-            info.Content = "";
-
+            HideInfo();
+            
             if (contact.Id == i)
             {
                 this.Height = 150;
@@ -66,14 +78,14 @@ namespace OpenMessenger.Client
         }
 
         /// <summary>
-        /// Makes the info box visible with the specified content.
+        /// Makes the info box visible;
         /// </summary>
-        /// <param name="inf"></param>
-        public void ShowInfo(String inf)
+        public void ShowInfo()
         {
             infoBox.Visibility = Visibility.Visible;
             info.Visibility = Visibility.Visible;
-            info.Content = inf;
+            keyboardImg.Visibility = Visibility.Visible;
+            micImg.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -92,7 +104,10 @@ namespace OpenMessenger.Client
         {
             info.Visibility = Visibility.Collapsed;
             infoBox.Visibility = Visibility.Collapsed;
+            keyboardImg.Visibility = Visibility.Collapsed;
+            micImg.Visibility = Visibility.Collapsed;
         }
+
 
     }
 }
