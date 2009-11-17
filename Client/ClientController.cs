@@ -270,6 +270,11 @@ namespace OpenMessenger.Client
                 ShowConversationDialog(e.Sender);
             if (e is AmplitudeEvent)
             {
+                if (_omniNodes.ContainsKey(e.Sender))
+                {
+                    OmniContactNode UInode = _omniNodes[e.Sender];
+                    UInode.UpdateMicInfo(e.ToString());
+                }
                 //ConsoleWriteLine("OTHERSIDE ClientController: AmplitudeEvent Recieved!");
             }
             if (e is KeyboardEvent)
@@ -277,7 +282,7 @@ namespace OpenMessenger.Client
                 if (_omniNodes.ContainsKey(e.Sender))
                 {
                     OmniContactNode UInode = _omniNodes[e.Sender];
-                    UInode.UpdateInfo(e.ToString());
+                    UInode.UpdateKeyInfo(e.ToString());
                 }
             }
 

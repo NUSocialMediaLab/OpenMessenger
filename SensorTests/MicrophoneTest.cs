@@ -31,9 +31,10 @@ namespace OpenMessenger.Tests.Sensors
             writer = new WaveFileWriter(_file, new WaveFormat(8000, 16, 1));
         }
 
-        private void WriteData(byte[] data)
+        private void WriteData(WaveInEventArgs args)
         {
-            writer.WriteData(data, 0, data.Length);
+
+            writer.WriteData(args.Buffer, 0, args.BytesRecorded);
         }
 
         public void StartRecording()

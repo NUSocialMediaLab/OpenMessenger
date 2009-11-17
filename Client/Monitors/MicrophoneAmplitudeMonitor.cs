@@ -16,8 +16,6 @@ namespace OpenMessenger.Client.Monitors
     /// </summary>
     public class MicrophoneAmplitudeMonitor : Monitor
     {
-        private short HIGH_THRESHOLD = 15;
-        private short LOW_THRESHOLD = -15;
 
         /// <summary>
         /// Name of this monitor
@@ -32,30 +30,27 @@ namespace OpenMessenger.Client.Monitors
         /// </summary>
         public override void Start()
         {
-            Sensor.GetInstance<MicrophoneSensor>().SoundQuantum += 
+            Sensor.GetInstance<MicrophoneSensor>().SoundQuantum +=
                 new MicrophoneSensor.SoundQuantumEventHandler(OnSoundQuantumHandler);
         }
 
-        private void OnSoundQuantumHandler(byte[] wavSound)
+        private void OnSoundQuantumHandler(WaveInEventArgs args)
         {
+            byte[] wavSound = args.Buffer;
             double avgAmplitude = 0;
             for (int i = 0; i < wavSound.Length; i += 2)
             {
                 avgAmplitude += ComplementToSigned(ref wavSound, i);
             }
             avgAmplitude = avgAmplitude / (wavSound.Length / 2) * 10;
-            if (avgAmplitude >= HIGH_THRESHOLD || avgAmplitude <= LOW_THRESHOLD)
-            {
-                ClientController client = ClientController.GetInstance();
-                AmplitudeEvent e = new AmplitudeEvent(client.Me.Id, avgAmplitude);
-                client.BroadcastEvent(e);
-                //ConsoleWriteLine("Microphone threshold exceeded: " + avgAmplitude);
-                ClientController.GetInstance().BroadcastEvent(e);
-            }
-            else
-            {
-                //ConsoleWriteLine("No Sound: " + avgAmplitude);
-            }
+
+            ClientController client = ClientController.GetInstance();
+            AmplitudeEvent e = new AmplitudeEvent(client.Me.Id, avgAmplitude);
+            client.BroadcastEvent(e);
+            //ConsoleWriteLine("Microphone threshold exceeded: " + avgAmplitude);
+            ClientController.GetInstance().BroadcastEvent(e);
+
+
         }
 
         private short ComplementToSigned(ref byte[] bytArr, int intPos)

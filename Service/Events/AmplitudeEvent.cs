@@ -42,7 +42,20 @@ namespace OpenMessenger.Events
         /// <returns>Amplitude as text</returns>
         public override string ToString()
         {
-            return "Amplitude: " + _amplitude.ToString();
+            double HIGH_THRESHOLD = 50;
+            double LOW_THRESHOLD = -50;
+
+            string level = _amplitude.ToString();
+            if (_amplitude < HIGH_THRESHOLD && _amplitude > LOW_THRESHOLD)
+                level = "no activity";
+            else
+            {
+                Console.WriteLine(_amplitude + " " + HIGH_THRESHOLD + " " + LOW_THRESHOLD);
+                Console.WriteLine(_amplitude < HIGH_THRESHOLD);
+                Console.WriteLine(_amplitude > LOW_THRESHOLD);
+            }
+
+            return level;
         }
     }
 }

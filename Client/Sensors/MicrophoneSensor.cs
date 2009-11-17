@@ -24,7 +24,7 @@ namespace OpenMessenger.Client.Sensors
         /// Delegate for the SoundQuantum event
         /// </summary>
         /// <param name="soundData">Sound data captured</param>
-        public delegate void SoundQuantumEventHandler(byte[] soundData);
+        public delegate void SoundQuantumEventHandler(WaveInEventArgs args);
 
         /// <summary>
         /// Triggered when new sound data has been sampled from the microphone
@@ -39,7 +39,6 @@ namespace OpenMessenger.Client.Sensors
         //Timer _readTimer;
 
         NAudio.Wave.WaveInStream waveIn;
-
         /// <summary>
         /// Name of this sensor
         /// </summary>
@@ -59,7 +58,7 @@ namespace OpenMessenger.Client.Sensors
         /// </summary>
         public MicrophoneSensor()
         {
-            WaveFormat = new NAudio.Wave.WaveFormat(4000, 16, 1);
+            WaveFormat = new NAudio.Wave.WaveFormat(8000, 16, 1);
             waveIn = new WaveInStream(0, WaveFormat, null);
             waveIn.DataAvailable += new EventHandler<WaveInEventArgs>(WaveIn_DataAvailable);
         }
@@ -67,7 +66,8 @@ namespace OpenMessenger.Client.Sensors
         private void WaveIn_DataAvailable(object sender, WaveInEventArgs args)
         {
             if (SoundQuantum != null)
-                SoundQuantum(args.Buffer);
+                SoundQuantum(args);
+            
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace OpenMessenger.Client
             keyboardBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\keyboard.png", UriKind.RelativeOrAbsolute);
             keyboardBmp.DecodePixelWidth = 25;
             keyboardBmp.EndInit();
-            keyboardImg.Source = keyboardBmp;
+            keyImg.Source = keyboardBmp;
 
             BitmapImage micBmp = new BitmapImage();
             micBmp.BeginInit();
@@ -83,18 +83,28 @@ namespace OpenMessenger.Client
         public void ShowInfo()
         {
             infoBox.Visibility = Visibility.Visible;
-            info.Visibility = Visibility.Visible;
-            keyboardImg.Visibility = Visibility.Visible;
+            keyInfo.Visibility = Visibility.Visible;
+            micInfo.Visibility = Visibility.Visible;
+            keyImg.Visibility = Visibility.Visible;
             micImg.Visibility = Visibility.Visible;
         }
 
         /// <summary>
-        /// Updates the info box with the specified content
+        /// Updates the keyboard info with the specified content
         /// </summary>
         /// <param name="inf"></param>
-        public void UpdateInfo(String inf)
+        public void UpdateKeyInfo(String inf)
         {
-            info.Content = inf;
+            keyInfo.Content = inf;
+        }
+
+        /// <summary>
+        /// Updates the mic info with the specified content
+        /// </summary>
+        /// <param name="inf"></param>
+        public void UpdateMicInfo(String inf)
+        {
+            micInfo.Content = inf;
         }
 
         /// <summary>
@@ -102,12 +112,12 @@ namespace OpenMessenger.Client
         /// </summary>
         public void HideInfo()
         {
-            info.Visibility = Visibility.Collapsed;
             infoBox.Visibility = Visibility.Collapsed;
-            keyboardImg.Visibility = Visibility.Collapsed;
+            keyInfo.Visibility = Visibility.Collapsed;
+            micInfo.Visibility = Visibility.Collapsed;
+            keyImg.Visibility = Visibility.Collapsed;
             micImg.Visibility = Visibility.Collapsed;
         }
-
 
     }
 }
