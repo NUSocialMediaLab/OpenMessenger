@@ -21,13 +21,22 @@ namespace OpenMessenger.Client
     /// </summary>
     public partial class OmniContactNode : UserControl
     {
+
+        public Contact Contact
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="contact">Contact to represent for the control</param>
         public OmniContactNode(Contact contact)
         {
-            this.Content = contact.Id;
+            this.Content = contact.Id; // jeesung: i don't think this is usable
+            this.Contact = contact;
+
             InitializeComponent();
 
             BitmapImage keyboardBmp = new BitmapImage();
@@ -58,7 +67,6 @@ namespace OpenMessenger.Client
             fxInfo.Color = contact.Color;
 
             halo.Effect = fx;
-
             infoBox.Effect = fxInfo;
             HideInfo();
             
@@ -76,6 +84,7 @@ namespace OpenMessenger.Client
                 label.Content = contact.Name;
             }
         }
+
 
         /// <summary>
         /// Makes the info box visible;

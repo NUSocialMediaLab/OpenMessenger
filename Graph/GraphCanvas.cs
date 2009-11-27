@@ -264,6 +264,7 @@ namespace Graph
                 
                 _UInodes.Add(node, UInode);
                 
+                
                 Point location = GetRandomLocation();
                 SetLeft(UInode, location.X);
                 SetTop(UInode, location.Y);
@@ -281,10 +282,12 @@ namespace Graph
 
                 NodeMouseLeave(node, UInode);
             }
+            
         }
 
         void UInode_MouseEnter(object sender, MouseEventArgs e)
         {
+            
             if (NodeMouseEnter != null)
             {
                 ContentControl UInode = (ContentControl)sender;
@@ -292,6 +295,7 @@ namespace Graph
                 
                 NodeMouseEnter(node, UInode);
             }
+            
         }
 
         void UInode_MouseUp(object sender, MouseButtonEventArgs e)
@@ -807,9 +811,10 @@ namespace Graph
            
                 if (edge.To == center && edge.From != center)
                 {
-                    Point p = new Point((Width / 2) - (_UInodes[edge.From].ActualWidth / 2),
-                                     (Height) - (_UInodes[edge.From].ActualHeight / 2));
-                    targetDict.Add(edge.From, p + (vectDict[edge] * (450 - (50*(edge.Weight)))));
+                    double nodeWidth = _UInodes[edge.From].ActualWidth;
+                    double nodeHeight = _UInodes[edge.From].ActualHeight;
+                    Point p = new Point((Width / 2) - (nodeWidth / 2),(Height) - (nodeHeight / 2));
+                    targetDict.Add(edge.From, p + (vectDict[edge] * ((Height-nodeHeight) - (50*(edge.Weight)))));
                 }
                 
             }

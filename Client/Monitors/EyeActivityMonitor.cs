@@ -97,10 +97,12 @@ namespace OpenMessenger.Client.Monitors
             eyeReadings.Enqueue(owPos);
 
             ClientController client = ClientController.GetInstance();
+                
             //client.BroadcastEvent(
             //    new EyeActivityEvent(ClientController.GetInstance().Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit));
+            
             client.BroadcastEvent(
-                new EyeActivityEvent(ClientController.GetInstance().Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit==null ? "None" : owPos.AvatarHit.Name));
+               new EyeActivityEvent(ClientController.GetInstance().Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit==null ? "None" : owPos.AvatarHit.Name));
 
         }
 

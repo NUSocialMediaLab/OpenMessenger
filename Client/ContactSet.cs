@@ -53,6 +53,7 @@ namespace OpenMessenger.Client
         #endregion
 
         Dictionary<Guid, Contact> _contacts = new Dictionary<Guid, Contact>();
+
         Graph.Graph _contactGraph = new Graph.Graph();
         Graph.Graph.Node _myNode;
 
@@ -148,6 +149,7 @@ namespace OpenMessenger.Client
                     //ConsoleWriteLine("Client.ContactSet adding new node ID: "+contact.Id+" to count: "+ _contacts.Count);
                     _contacts.Add(contact.Id, contact);
                     _contactGraph.AddNode(contact.Id);
+
                     //ConsoleWriteLine("Client.ContactSet about to connect "+((Guid)MyNode.Content)+" to " +contact.Id);
                     _contactGraph.Connect(MyNode, GetNode(contact));
                     _contactGraph.Connect(GetNode(contact), MyNode);
@@ -258,13 +260,14 @@ namespace OpenMessenger.Client
         {
             return _contacts.ContainsKey(contact.Id);
         }
+
         
-        Graph.Graph.Node GetNode(Contact contact)
+        public Graph.Graph.Node GetNode(Contact contact)
         {
             return _contactGraph.FindNode(contact.Id);
         }
 
-        Graph.Graph.Node GetNode(Guid contactId)
+        public Graph.Graph.Node GetNode(Guid contactId)
         {
             return _contactGraph.FindNode(contactId);
         }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -12,6 +13,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 
 using OpenMessenger.Events;
+using System.Threading;
 
 namespace OpenMessenger.Client
 {
@@ -140,7 +142,7 @@ namespace OpenMessenger.Client
             canvas.Model = client.Contacts.FocusGraph;
             canvas.NodeUpdate = UpdateContactNode;
 
-            canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseEnter);
+            //canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseEnter);
             canvas.NodeMouseLeave += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseLeave);
             canvas.NodeClicked += new Graph.GraphCanvas.NodeMouseHandler(NodeClicked);
             canvas.NodeDoubleClicked += new Graph.GraphCanvas.NodeMouseHandler(NodeDoubleClicked);
@@ -183,6 +185,8 @@ namespace OpenMessenger.Client
 
         /// <summary>
         /// Detect which avatar is being looked at on the screen
+        /// Also, increase the focus level of whatever avatar is being looked at
+        /// 
         /// </summary>
         /// <param name="owPos">The position object that is generated from the eye tracker data</param>
         /// <returns>A contact object that represents the avatar being looked at, or null if the location
@@ -192,49 +196,61 @@ namespace OpenMessenger.Client
 
         public Contact DetectAvatar(OmniWindowPos owPos)
         {
-            System.Windows.Point pt = new System.Windows.Point(owPos.XPx, owPos.YPx);
-            System.Windows.IInputElement elem = null;
+            // TODO uncomment this line.
+            System.Drawing.Point pt = new System.Drawing.Point(owPos.XPx, owPos.YPx);
+
+            //TODO USE THE ONE ABOVE...this was only for testing
+            //System.Drawing.Point pt = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y);
+
+            IInputElement elem = null;
+            Contact c = null;
 
             canvas.Dispatcher.Invoke(
-            System.Windows.Threading.DispatcherPriority.Normal,
-            new Action(
-                delegate()
+                System.Windows.Threading.DispatcherPriority.Normal,
+                new Action(delegate()
                 {
-                    elem = canvas.InputHitTest(pt);
+                    pt = elementHost.PointToClient(pt);
+                    elem = canvas.InputHitTest(new Point(pt.X, pt.Y));
+                    if (elem != null)
+                    {
+                        OmniContactNode obj = GetParent((DependencyObject)elem);
+                        c = obj.Contact;
+                        if (c == null)
+                        {
+                            Console.WriteLine("debug detectAvatar()");
+                        }
+                    }
                 }
             ));
-
-            //System.Windows.IInputElement elem = canvas.InputHitTest(pt);
-
-            if (elem != null)
-            {
-                //System.Windows.IInputElement elem = canvas.InputHitTest(new System.Windows.Point(owPos.XPx, owPos.YPx));
-                if (elem is ContentControl)
-                {
-                    ContentControl ctrl = (ContentControl)elem;
-
-                    if (ctrl.Tag is Graph.Graph.Node)
-                    {
-                        Graph.Graph.Node node = (Graph.Graph.Node)ctrl.Tag;
-                        ClientController client = ClientController.GetInstance();
-                        return client.Contacts[(Guid)node.Content];
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-
             
+            ShiftFocus(c, 1);
+            return c;
+        }
+
+
+        /// <summary>
+        /// This is used primarily for DetectAvatar method. Given a control object such as border or textblock,
+        /// this recursively looks up the parent until we get OmniContactNode.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private OmniContactNode GetParent(DependencyObject obj)
+        {
+            DependencyObject obj2 = VisualTreeHelper.GetParent(obj);
+
+            if (obj2 == null)
+            {
+               return null;
+            }
+
+            else if (!(obj2 is OmniContactNode))
+            {
+                return GetParent(obj2);
+            }
+
+            OmniContactNode n = (OmniContactNode)obj2;
+            return n;
         }
 
         void FocusUpdate(Guid contactA, Guid contactB, double level)
@@ -258,12 +274,12 @@ namespace OpenMessenger.Client
                 Guid cur = (Guid)n.Content;
                 double oldFoc = client.Contacts.GetFocus(i, cur);
 
-                if (target!=null && cur == target.Id)
+                if (target != null && cur == target.Id)
                 {
-                    client.SetFocus(cur, oldFoc+change*0.8);
+                    client.SetFocus(cur, oldFoc + change * 0.8);
                 }
                 else
-                    client.SetFocus(cur, oldFoc-change*0.2);
+                    client.SetFocus(cur, oldFoc - change * 0.2);
 
             }
         }
@@ -281,6 +297,8 @@ namespace OpenMessenger.Client
         {
             Guid i = ClientController.GetInstance().Me.Id;
             ShiftFocus(currentFocusContact, 1);
+            //Console.Write("Mouse x: " + System.Windows.Forms.Control.MousePosition.X);
+            //Console.WriteLine("  Mouse y: " + System.Windows.Forms.Control.MousePosition.Y);
         }
 
         void NodeMouseLeave(Graph.Graph.Node node, ContentControl UInode)
@@ -302,11 +320,11 @@ namespace OpenMessenger.Client
 
         void NodeDoubleClicked(Graph.Graph.Node node, ContentControl UInode)
         {
-            
+
             ClientController client = ClientController.GetInstance();
             Guid i = client.Me.Id;
 
-            if ((Guid)node.Content!= i)
+            if ((Guid)node.Content != i)
                 client.ShowConversationDialog((Guid)node.Content);
         }
 
@@ -356,7 +374,7 @@ namespace OpenMessenger.Client
         double EdgeRadius(Graph.Graph.Edge edge)
         {
             Guid i = ClientController.GetInstance().Me.Id;
-            Guid neighborID = (Guid) ((((Guid)edge.To.Content) == i) ? edge.From.Content : edge.To.Content);
+            Guid neighborID = (Guid)((((Guid)edge.To.Content) == i) ? edge.From.Content : edge.To.Content);
             Graph.Graph.Node other = (edge.To.Content.Equals(i)) ? edge.From : edge.To;
             return ClientController.GetInstance().Contacts.GetFocus((Guid)edge.From.Content, i);
         }
@@ -364,7 +382,7 @@ namespace OpenMessenger.Client
         Brush EdgeBrush(Graph.Graph.Edge edge)
         {
             ClientController client = ClientController.GetInstance();
-            
+
             Graph.Graph.Node me = client.Contacts.MyNode;
             Guid i = (Guid)me.Content;
 
@@ -373,7 +391,7 @@ namespace OpenMessenger.Client
             Contact cur = client.Contacts[curId];
 
             double focusLevel = client.Contacts.GetFocus(i, curId);
-            
+
             if ((currentFocusContact != null && currentFocusContact.Id == curId) || focusLevel > 3)
                 return new SolidColorBrush(cur.Color);
             else
@@ -394,7 +412,7 @@ namespace OpenMessenger.Client
             Canvas.SetZIndex(line, 0);
             return line;
         }
-        
+
         /// <summary>
         /// This method gets set to the delegate NodeUpdater of GraphCanvas. All it does is check to see that
         /// the correct optional data is displayed on the node.
@@ -406,7 +424,7 @@ namespace OpenMessenger.Client
         {
             Guid myId = ClientController.GetInstance().Me.Id;
             OmniContactNode temp = (OmniContactNode)UInode;
-            
+
             double focusLevel = ClientController.GetInstance().Contacts.GetFocus(myId, ((Guid)node.Content));
             if (focusLevel >= 3)
                 temp.ShowInfo();
@@ -565,11 +583,8 @@ namespace OpenMessenger.Client
                 //Calculate pixel equivalent
                 xPx = Convert.ToInt32(xIn / (ow.BoundBottomRightX - ow.BoundTopLeftX) * ow.XRes);
                 yPx = Convert.ToInt32(yIn / (ow.BoundBottomRightY - ow.BoundTopLeftY) * ow.YRes);
-                
 
             }
-
-
         }
 
         private void elementHost_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
