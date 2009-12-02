@@ -29,27 +29,28 @@ namespace OpenMessenger.Client
         int focusIncreaseInterval = 1 * 1000;
         Contact currentFocusContact = null;
 
-        private int xRes;
+        private int[] xRes;
         /// <summary>
         /// Horizontal resolution of the display that hosts the OmniWindow
+        /// This is an array to account for multiple monitors.
         /// </summary>
-        public int XRes
+        public int[] XRes
         {
             get { return xRes; }
             set { xRes = value; }
         }
 
-        private int yRes;
+        private int[] yRes;
         /// <summary>
         /// Vertical resolution of the display that hosts the OmniWindow
         /// </summary>
-        public int YRes
+        public int[] YRes
         {
             get { return yRes; }
             set { yRes = value; }
         }
 
-        private float boundTopLeftX = -26.5f;
+        private float[] boundTopLeftX;
         /// <summary>
         /// Horizontal value of the top left corner of the screen used to display the OmniWindow,
         /// in eye tracker units
@@ -57,13 +58,13 @@ namespace OpenMessenger.Client
         /// The values are taken from from the EyeTrac6000Net application settings and should be
         /// updated if the room setup changes
         /// </summary>
-        public float BoundTopLeftX
+        public float[] BoundTopLeftX
         {
             get { return boundTopLeftX; }
             set { boundTopLeftX = value; }
         }
 
-        private float boundTopLeftY = -19.5f;
+        private float[] boundTopLeftY;
         /// <summary>
         /// Vertical value of the top left corner of the screen used to display the OmniWindow,
         /// in eye tracker units
@@ -71,13 +72,13 @@ namespace OpenMessenger.Client
         /// The values are taken from from the EyeTrac6000Net application settings and should be
         /// updated if the room setup changes
         /// </summary>
-        public float BoundTopLeftY
+        public float[] BoundTopLeftY
         {
             get { return boundTopLeftY; }
             set { boundTopLeftY = value; }
         }
 
-        private float boundBottomRightX = 26.5f;
+        private float[] boundBottomRightX;
         /// <summary>
         /// Horizontal value of the bottom right corner of the screen used to display the OmniWindow,
         /// in eye tracker units
@@ -85,13 +86,13 @@ namespace OpenMessenger.Client
         /// The values are taken from from the EyeTrac6000Net application settings and should be
         /// updated if the room setup changes
         /// </summary>
-        public float BoundBottomRightX
+        public float[] BoundBottomRightX
         {
             get { return boundBottomRightX; }
             set { boundBottomRightX = value; }
         }
 
-        private float boundBottomRightY = 19.5f;
+        private float[] boundBottomRightY;
         /// <summary>
         /// Vertical value of the bottom right corner of the screen used to display the OmniWindow,
         /// in eye tracker units
@@ -99,7 +100,7 @@ namespace OpenMessenger.Client
         /// The values are taken from from the EyeTrac6000Net application settings and should be
         /// updated if the room setup changes
         /// </summary>
-        public float BoundBottomRightY
+        public float[] BoundBottomRightY
         {
             get { return boundBottomRightY; }
             set { boundBottomRightY = value; }
@@ -142,7 +143,7 @@ namespace OpenMessenger.Client
             canvas.Model = client.Contacts.FocusGraph;
             canvas.NodeUpdate = UpdateContactNode;
 
-            //canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseEnter);
+            canvas.NodeMouseEnter += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseEnter);
             canvas.NodeMouseLeave += new Graph.GraphCanvas.NodeMouseHandler(NodeMouseLeave);
             canvas.NodeClicked += new Graph.GraphCanvas.NodeMouseHandler(NodeClicked);
             canvas.NodeDoubleClicked += new Graph.GraphCanvas.NodeMouseHandler(NodeDoubleClicked);
@@ -158,29 +159,31 @@ namespace OpenMessenger.Client
 
         private void GetScreenResolution()
         {
-            //Two screens
-            if (System.Windows.Forms.Screen.AllScreens.Count() == 2)
+            int numMonitors = System.Windows.Forms.Screen.AllScreens.Count();
+            
+            xRes = new int[numMonitors];
+            yRes = new int[numMonitors];
+            boundBottomRightX = new float[numMonitors];
+            boundBottomRightY = new float[numMonitors]; 
+            boundTopLeftX = new float[numMonitors];
+            boundTopLeftY = new float[numMonitors]; 
+
+            for (int i = 0; i<numMonitors; i++)
             {
-                //Note: this assumes that the projector is set up as the secondary screen
-                XRes = System.Windows.Forms.Screen.AllScreens[1].Bounds.Width;
-                YRes = System.Windows.Forms.Screen.AllScreens[1].Bounds.Height;
-                owSceneNum = 2;
-                boundTopLeftX = -26.5f;
-                boundTopLeftY = -19.5f;
-                boundBottomRightX = 26.5f;
-                boundBottomRightY = 19.5f;
+                XRes[i] = System.Windows.Forms.Screen.AllScreens[i].Bounds.Width;
+                YRes[i] = System.Windows.Forms.Screen.AllScreens[i].Bounds.Height;
             }
-            //One screen
-            else
-            {
-                XRes = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-                YRes = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
-                owSceneNum = 1;
-                boundTopLeftX = -8.5f;
-                boundTopLeftY = -7f;
-                boundBottomRightX = 8.5f;
-                boundBottomRightY = 7f;
-            }
+
+            //Note: this assumes that the projector is set up as the secondary screen
+            boundTopLeftX[0] = -8.5f;
+            boundTopLeftY[0] = -7f;
+            boundBottomRightX[0] = 8.5f;
+            boundBottomRightY[0] = 7f;
+
+            boundTopLeftX[1] = -26.5f;
+            boundTopLeftY[1] = -19.5f;
+            boundBottomRightX[1] = 26.5f;
+            boundBottomRightY[1] = 19.5f;
         }
 
         /// <summary>
@@ -192,7 +195,6 @@ namespace OpenMessenger.Client
         /// <returns>A contact object that represents the avatar being looked at, or null if the location
         /// does not contain any avatars</returns>
         /// 
-        private delegate void InputHitTestD(System.Windows.Point pt);
 
         public Contact DetectAvatar(OmniWindowPos owPos)
         {
@@ -297,8 +299,7 @@ namespace OpenMessenger.Client
         {
             Guid i = ClientController.GetInstance().Me.Id;
             ShiftFocus(currentFocusContact, 1);
-            //Console.Write("Mouse x: " + System.Windows.Forms.Control.MousePosition.X);
-            //Console.WriteLine("  Mouse y: " + System.Windows.Forms.Control.MousePosition.Y);
+            //Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
         }
 
         void NodeMouseLeave(Graph.Graph.Node node, ContentControl UInode)
@@ -573,16 +574,37 @@ namespace OpenMessenger.Client
                 this.ow = ow;
                 this.sceneNum = sceneNum;
 
+                
                 this.xIn = xIn;
                 this.yIn = yIn;
 
-                //Shift by minimum bound values to remove negative values
-                xIn -= ow.BoundTopLeftX;
-                yIn -= ow.BoundTopLeftY;
+                if (sceneNum != 0)
+                {
+                    //Shift by minimum bound values to remove negative values
+                    xIn -= ow.BoundTopLeftX[sceneNum - 1];
+                    yIn -= ow.BoundTopLeftY[sceneNum - 1];
 
-                //Calculate pixel equivalent
-                xPx = Convert.ToInt32(xIn / (ow.BoundBottomRightX - ow.BoundTopLeftX) * ow.XRes);
-                yPx = Convert.ToInt32(yIn / (ow.BoundBottomRightY - ow.BoundTopLeftY) * ow.YRes);
+                    //Calculate pixel equivalent
+                    xPx = Convert.ToInt32(xIn / (ow.BoundBottomRightX[sceneNum - 1] - ow.BoundTopLeftX[sceneNum - 1]) * ow.XRes[sceneNum - 1]);
+                    yPx = Convert.ToInt32(yIn / (ow.BoundBottomRightY[sceneNum - 1] - ow.BoundTopLeftY[sceneNum - 1]) * ow.YRes[sceneNum - 1]);
+
+                    //If looking at the projector screen, then its y-pixel value range is -yRes(top)~0(bottom))
+                    if (sceneNum == 2)
+                    {
+                        yPx *= -1; // invert
+                    }
+
+                }
+                else
+                {
+                    //dummy values
+                    xPx = -1;
+                    yPx = -1;
+                }
+                //Console.WriteLine("xPx: " + xPx + " yPx: " + yPx);
+                //Determine if the current reading matches a location of an avatar on the screen
+                AvatarHit = ow.DetectAvatar(this);
+                IsAvatarHitSet = true;
 
             }
         }

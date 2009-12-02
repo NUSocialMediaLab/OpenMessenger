@@ -85,10 +85,6 @@ namespace OpenMessenger.Client.Monitors
             //Create an OmniWindowPos object from the raw readings (this converts inches into pixels)
             OmniWindow.OmniWindowPos owPos = new OmniWindow.OmniWindowPos(ow, sceneNum, xIn, yIn);
 
-            //Determine if the current reading matches a location of an avatar on the screen
-            owPos.AvatarHit = ow.DetectAvatar(owPos);
-            owPos.IsAvatarHitSet = true;
-
             if (eyeReadings.Count == numReadsToStore)
             {
                 eyeReadings.Dequeue();
@@ -102,7 +98,7 @@ namespace OpenMessenger.Client.Monitors
             //    new EyeActivityEvent(ClientController.GetInstance().Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit));
             
             client.BroadcastEvent(
-               new EyeActivityEvent(ClientController.GetInstance().Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit==null ? "None" : owPos.AvatarHit.Name));
+               new EyeActivityEvent(client.Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit==null ? "None" : owPos.AvatarHit.Name));
 
         }
 

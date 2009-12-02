@@ -38,7 +38,7 @@ namespace OpenMessenger.Client.Monitors
         {
             byte[] wavSound = args.Buffer;
             double avgAmplitude = 0;
-            for (int i = 0; i < wavSound.Length; i += 2)
+            for (int i = 0; i < args.BytesRecorded; i += 2)
             {
                 avgAmplitude += ComplementToSigned(ref wavSound, i);
             }
