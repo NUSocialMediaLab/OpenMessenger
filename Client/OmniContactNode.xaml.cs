@@ -37,6 +37,11 @@ namespace OpenMessenger.Client
             this.Content = contact.Id; // jeesung: i don't think this is usable
             this.Contact = contact;
 
+            InitializeComponent(contact);
+        }
+
+        private void InitializeComponent(Contact contact)
+        {
             InitializeComponent();
 
             BitmapImage keyboardBmp = new BitmapImage();
@@ -52,6 +57,13 @@ namespace OpenMessenger.Client
             micBmp.DecodePixelWidth = 25;
             micBmp.EndInit();
             micImg.Source = micBmp;
+
+            BitmapImage eyeBmp = new BitmapImage();
+            eyeBmp.BeginInit();
+            eyeBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\eye.png", UriKind.RelativeOrAbsolute);
+            eyeBmp.DecodePixelWidth = 25;
+            eyeBmp.EndInit();
+            eyeImg.Source = eyeBmp;
 
             ClientController client = ClientController.GetInstance();
             Guid i = client.Me.Id;
@@ -69,7 +81,8 @@ namespace OpenMessenger.Client
             halo.Effect = fx;
             infoBox.Effect = fxInfo;
             HideInfo();
-            
+
+
             if (contact.Id == i)
             {
                 this.Height = 150;
@@ -85,7 +98,6 @@ namespace OpenMessenger.Client
             }
         }
 
-
         /// <summary>
         /// Makes the info box visible;
         /// </summary>
@@ -96,6 +108,8 @@ namespace OpenMessenger.Client
             micInfo.Visibility = Visibility.Visible;
             keyImg.Visibility = Visibility.Visible;
             micImg.Visibility = Visibility.Visible;
+            eyeImg.Visibility = Visibility.Visible;
+            eyeInfo.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -117,6 +131,15 @@ namespace OpenMessenger.Client
         }
 
         /// <summary>
+        /// Updates the eye info with the specified content
+        /// </summary>
+        /// <param name="inf"></param>
+        public void UpdateEyeInfo(String inf)
+        {
+            eyeInfo.Content = inf;
+        }
+
+        /// <summary>
         /// Hides the info box
         /// </summary>
         public void HideInfo()
@@ -126,6 +149,8 @@ namespace OpenMessenger.Client
             micInfo.Visibility = Visibility.Collapsed;
             keyImg.Visibility = Visibility.Collapsed;
             micImg.Visibility = Visibility.Collapsed;
+            eyeImg.Visibility = Visibility.Collapsed;
+            eyeInfo.Visibility = Visibility.Collapsed;
         }
 
     }

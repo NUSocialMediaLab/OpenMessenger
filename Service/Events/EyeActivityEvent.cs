@@ -97,8 +97,10 @@ namespace OpenMessenger.Events
         /// </summary>
         public override string ToString()
         {
+            return avatarHitName;
+
             //return "Eye Activity. Scene number: " + sceneNum + "  X: " + xPx + " px  Y: " + yPx + " px  Avatar Hit: " + avatarHit==null ? "None" : avatarHit.Name;
-            return "Eye Activity. Scene number: " + sceneNum + "  X: " + xPx + " px  Y: " + yPx + " px  Avatar Hit: " + avatarHitName;
+            //return "Eye Activity. Scene number: " + sceneNum + "  X: " + xPx + " px  Y: " + yPx + " px  Avatar Hit: " + avatarHitName;
         }
     }
 }

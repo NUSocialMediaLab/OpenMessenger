@@ -180,10 +180,13 @@ namespace OpenMessenger.Client
             boundBottomRightX[0] = 8.5f;
             boundBottomRightY[0] = 7f;
 
-            boundTopLeftX[1] = -26.5f;
-            boundTopLeftY[1] = -19.5f;
-            boundBottomRightX[1] = 26.5f;
-            boundBottomRightY[1] = 19.5f;
+            if (numMonitors > 1)
+            {
+                boundTopLeftX[1] = -26.5f;
+                boundTopLeftY[1] = -19.5f;
+                boundBottomRightX[1] = 26.5f;
+                boundBottomRightY[1] = 19.5f;
+            }
         }
 
         /// <summary>

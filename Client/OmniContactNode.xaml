@@ -4,13 +4,15 @@
     Height="100" Width="100" Opacity="1">
     <Grid>
         <Ellipse Name="halo" StrokeThickness="0" Opacity="1" Fill="White" OpacityMask="White" Stroke="White"></Ellipse>
-        <Border  Name="infoBox" HorizontalAlignment="Right" Margin="0,-9.65,-110,0" Width="102" BorderThickness="0" CornerRadius="10,10,10,10" Background="White" Height="50" VerticalAlignment="Top"></Border>
+        <Border  Name="infoBox" HorizontalAlignment="Right" Margin="0,-9.65,-110,0" Width="102" BorderThickness="0" CornerRadius="10,10,10,10" Background="White" Height="75" VerticalAlignment="Top"></Border>
         <Label Name="label" FontSize="20" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0">Contact Name</Label>
-        <Grid Height="50" HorizontalAlignment="Right" Margin="0,-9.65,-108,0" VerticalAlignment="Top" Width="100">
+        <Grid Height="75" HorizontalAlignment="Right" Margin="0,-9.65,-108,0" VerticalAlignment="Top" Width="100">
             <Label Name="keyInfo" FontSize="12" Margin="35,0,0,0" VerticalAlignment="Top" Height="25" />
-            <Label Name="micInfo" FontSize="12" Margin="35,0,0,0"  VerticalAlignment="Bottom" Height="25" />
+            <Label Name="micInfo" FontSize="12" Margin="35,25,0,25" />
             <Image Margin="8,0,0,0" Name="keyImg" Stretch="Fill" HorizontalAlignment="Left" Width="25" ClipToBounds="False" Opacity="1" Height="25" VerticalAlignment="Top"></Image>
-            <Image ClipToBounds="False" HorizontalAlignment="Left" Margin="8,0,0,0" Name="micImg" Opacity="1" Stretch="Fill" Width="25" Height="25" VerticalAlignment="Bottom" />
+            <Image ClipToBounds="False" HorizontalAlignment="Left" Margin="8,25,0,25" Name="micImg" Opacity="1" Stretch="Fill" Width="25" />
+            <Image ClipToBounds="False" Height="25" HorizontalAlignment="Left" Margin="8,0,0,0" Name="eyeImg" Opacity="1" Stretch="Fill" VerticalAlignment="Bottom" Width="25" />
+            <Label FontSize="12" Margin="35,0,0,0" Name="eyeInfo" Height="25" VerticalAlignment="Bottom" />
         </Grid>
     </Grid>
 </UserControl>

@@ -277,6 +277,14 @@ namespace OpenMessenger.Client
                 }
                 //ConsoleWriteLine("OTHERSIDE ClientController: AmplitudeEvent Recieved!");
             }
+            if (e is EyeActivityEvent)
+            {
+                if (_omniNodes.ContainsKey(e.Sender))
+                {
+                    OmniContactNode UInode = _omniNodes[e.Sender];
+                    UInode.UpdateEyeInfo(e.ToString());
+                }
+            }
             if (e is KeyboardEvent)
             {
                 if (_omniNodes.ContainsKey(e.Sender))
