@@ -430,9 +430,12 @@ namespace OpenMessenger.Client
             OmniContactNode temp = (OmniContactNode)UInode;
 
             double focusLevel = ClientController.GetInstance().Contacts.GetFocus(myId, ((Guid)node.Content));
+            /*
             if (focusLevel >= 3)
                 temp.ShowInfo();
             else temp.HideInfo();
+             */
+            temp.ShowInfo(Convert.ToInt32(focusLevel));
             return temp;
         }
 

@@ -113,6 +113,38 @@ namespace OpenMessenger.Client
         }
 
         /// <summary>
+        /// Makes the info box visible coressponding to a focus level;
+        /// </summary>
+        public void ShowInfo(int i)
+        {
+            HideInfo();
+            infoBox.Height = 0;
+            switch (i)
+            {
+                case 5:
+                    eyeImg.Visibility = Visibility.Visible;
+                    eyeInfo.Visibility = Visibility.Visible;
+                    infoBox.Height += 25;
+                    goto case 4;
+                case 4:
+                    micInfo.Visibility = Visibility.Visible;
+                    micImg.Visibility = Visibility.Visible;
+                    infoBox.Height += 25;
+                    goto case 3;
+                case 3:
+                    infoBox.Visibility = Visibility.Visible;
+                    keyInfo.Visibility = Visibility.Visible;
+                    keyImg.Visibility = Visibility.Visible;
+                    infoBox.Height += 25;
+                    break;
+                default:
+                    HideInfo();
+                    break;
+            }
+
+        }
+
+        /// <summary>
         /// Updates the keyboard info with the specified content
         /// </summary>
         /// <param name="inf"></param>
