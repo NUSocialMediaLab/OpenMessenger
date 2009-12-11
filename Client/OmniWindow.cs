@@ -182,10 +182,10 @@ namespace OpenMessenger.Client
 
             if (numMonitors > 1)
             {
-                boundTopLeftX[1] = -26.5f;
-                boundTopLeftY[1] = -19.5f;
-                boundBottomRightX[1] = 26.5f;
-                boundBottomRightY[1] = 19.5f;
+                boundTopLeftX[1] = -26f;
+                boundTopLeftY[1] = -15.5f;
+                boundBottomRightX[1] = 26f;
+                boundBottomRightY[1] = 15.5f;
             }
         }
 
@@ -302,7 +302,7 @@ namespace OpenMessenger.Client
         {
             Guid i = ClientController.GetInstance().Me.Id;
             ShiftFocus(currentFocusContact, 1);
-            //Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
+            Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
         }
 
         void NodeMouseLeave(Graph.Graph.Node node, ContentControl UInode)
@@ -597,7 +597,7 @@ namespace OpenMessenger.Client
                     //If looking at the projector screen, then its y-pixel value range is -yRes(top)~0(bottom))
                     if (sceneNum == 2)
                     {
-                        yPx *= -1; // invert
+                        yPx -= ow.YRes[0]; // shift by y-resolution of the monitor (not projector)
                     }
 
                 }
