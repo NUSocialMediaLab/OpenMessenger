@@ -584,7 +584,7 @@ namespace OpenMessenger.Client
                 this.xIn = xIn;
                 this.yIn = yIn;
 
-                if (sceneNum != 0)
+                if (sceneNum  == 1)
                 {
                     //Shift by minimum bound values to remove negative values
                     xIn -= ow.BoundTopLeftX[sceneNum - 1];
@@ -611,8 +611,9 @@ namespace OpenMessenger.Client
                 //Determine if the current reading matches a location of an avatar on the screen
                 AvatarHit = ow.DetectAvatar(this);
                 IsAvatarHitSet = true;
-
+                Console.WriteLine("xPx " + xPx + "  yPx: " + yPx);
             }
+             
         }
 
         private void elementHost_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
