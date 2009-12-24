@@ -34,82 +34,67 @@ namespace OpenMessenger.Client
         /// <param name="contact">Contact to represent for the control</param>
         public OmniContactNode(Contact contact)
         {
-            this.Content = contact.Id; // jeesung: i don't think this is usable
             this.Contact = contact;
-
-            InitializeComponent(contact);
+            InitializeComponent();
+            InitializeInfoBox();
+            InitializeAvatar();
         }
 
-        private void InitializeComponent(Contact contact)
+        private void InitializeAvatar()
         {
-            InitializeComponent();
+            label.Content = Contact.Name;
+            SetBitmapImage(avatarImg, "..\\..\\..\\..\\images\\av1.png", 70);
+        }
 
-            BitmapImage keyboardBmp = new BitmapImage();
-            keyboardBmp.BeginInit();
-            keyboardBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\keyboard.png", UriKind.RelativeOrAbsolute);
-            keyboardBmp.DecodePixelWidth = 25;
-            keyboardBmp.EndInit();
-            keyImg.Source = keyboardBmp;
-
-            BitmapImage micBmp = new BitmapImage();
-            micBmp.BeginInit();
-            micBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\mic.png", UriKind.RelativeOrAbsolute);
-            micBmp.DecodePixelWidth = 25;
-            micBmp.EndInit();
-            micImg.Source = micBmp;
-
-            BitmapImage eyeBmp = new BitmapImage();
-            eyeBmp.BeginInit();
-            eyeBmp.UriSource = new Uri((System.Environment.CurrentDirectory) + "..\\..\\..\\..\\images\\eye.png", UriKind.RelativeOrAbsolute);
-            eyeBmp.DecodePixelWidth = 25;
-            eyeBmp.EndInit();
-            eyeImg.Source = eyeBmp;
-
-            ClientController client = ClientController.GetInstance();
-            Guid i = client.Me.Id;
-
-            DropShadowEffect fx = new DropShadowEffect();
-            fx.BlurRadius = 35;
-            fx.ShadowDepth = 0;
-            fx.Color = contact.Color;
+        private void InitializeInfoBox()
+        {
+            SetBitmapImage(keyImg, "..\\..\\..\\..\\images\\keyboard.png", 25);
+            SetBitmapImage(micImg, "..\\..\\..\\..\\images\\mic.png", 25);
+            SetBitmapImage(eyeImg, "..\\..\\..\\..\\images\\eye.png", 25);
 
             DropShadowEffect fxInfo = new DropShadowEffect();
             fxInfo.BlurRadius = 15;
             fxInfo.ShadowDepth = 0;
-            fxInfo.Color = contact.Color;
-
-            halo.Effect = fx;
+            fxInfo.Color = Contact.Color;
             infoBox.Effect = fxInfo;
             HideInfo();
-
-
-            if (contact.Id == i)
-            {
-                this.Height = 150;
-                this.Width = 200;
-                label.VerticalAlignment = VerticalAlignment.Stretch;
-                label.Margin = new Thickness(0, 20, 0, 0);
-                label.Content = "Me";
-                label.FontSize = 35;
-            }
-            else
-            {
-                label.Content = contact.Name;
-            }
         }
 
         /// <summary>
-        /// Makes the info box visible;
+        /// Sets the image object with given bitmap image source
         /// </summary>
-        public void ShowInfo()
+        /// <param name="img"></param>
+        /// <param name="imgSrc"></param>
+        /// <param name="size"></param>
+        private void SetBitmapImage(Image img, String imgSrc, int size)
         {
-            infoBox.Visibility = Visibility.Visible;
-            keyInfo.Visibility = Visibility.Visible;
-            micInfo.Visibility = Visibility.Visible;
-            keyImg.Visibility = Visibility.Visible;
-            micImg.Visibility = Visibility.Visible;
-            eyeImg.Visibility = Visibility.Visible;
-            eyeInfo.Visibility = Visibility.Visible;
+            BitmapImage bitImg = new BitmapImage();
+            bitImg.BeginInit();
+            bitImg.UriSource = new Uri((System.Environment.CurrentDirectory) + imgSrc, UriKind.RelativeOrAbsolute);
+            bitImg.DecodePixelWidth = size;
+            bitImg.EndInit();
+            img.Source = bitImg;
+
+        }
+
+        /// <summary>
+        /// Enables/disables halo effect based on boolean argument
+        /// </summary>
+        /// <param name="b"></param>
+        public void HaloEffect(Boolean b)
+        {
+            if (b)
+            {
+                DropShadowEffect fx = new DropShadowEffect();
+                fx.BlurRadius = 35;
+                fx.ShadowDepth = 0;
+                fx.Color = Contact.Color;
+                halo.Effect = fx;
+            }
+            else
+            {
+                halo.Effect = null;
+            }
         }
 
         /// <summary>

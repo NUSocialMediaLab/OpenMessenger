@@ -27,6 +27,7 @@ namespace OpenMessenger.Client
 
         System.Timers.Timer focusTimer;
         int focusIncreaseInterval = 1 * 1000;
+        int focusThreshold = 3; //threshold for focus level
         Contact currentFocusContact = null;
 
         private int[] xRes;
@@ -302,7 +303,6 @@ namespace OpenMessenger.Client
         {
             Guid i = ClientController.GetInstance().Me.Id;
             ShiftFocus(currentFocusContact, 1);
-            Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
         }
 
         void NodeMouseLeave(Graph.Graph.Node node, ContentControl UInode)
@@ -396,7 +396,7 @@ namespace OpenMessenger.Client
 
             double focusLevel = client.Contacts.GetFocus(i, curId);
 
-            if ((currentFocusContact != null && currentFocusContact.Id == curId) || focusLevel > 3)
+            if ((currentFocusContact != null && currentFocusContact.Id == curId) || focusLevel >= focusThreshold)
                 return new SolidColorBrush(cur.Color);
             else
                 return Brushes.Black;
@@ -427,7 +427,8 @@ namespace OpenMessenger.Client
         ContentControl UpdateContactNode(Graph.Graph.Node node, ContentControl UInode)
         {
             Guid myId = ClientController.GetInstance().Me.Id;
-            OmniContactNode temp = (OmniContactNode)UInode;
+            Guid curId = (Guid)node.Content;
+            OmniContactNode omNode = (OmniContactNode)UInode;
 
             double focusLevel = ClientController.GetInstance().Contacts.GetFocus(myId, ((Guid)node.Content));
             /*
@@ -435,8 +436,9 @@ namespace OpenMessenger.Client
                 temp.ShowInfo();
             else temp.HideInfo();
              */
-            temp.ShowInfo(Convert.ToInt32(focusLevel));
-            return temp;
+            omNode.ShowInfo(Convert.ToInt32(Math.Floor(focusLevel)));
+            omNode.HaloEffect((currentFocusContact != null && currentFocusContact.Id == curId) || focusLevel >= focusThreshold);
+            return omNode;
         }
 
         private void OmniWindow_FormClosing(object sender, FormClosingEventArgs e)

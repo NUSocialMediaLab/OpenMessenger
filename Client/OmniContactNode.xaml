@@ -3,9 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Height="100" Width="100" Opacity="1">
     <Grid>
-        <Ellipse Name="halo" StrokeThickness="0" Opacity="1" Fill="White" OpacityMask="White" Stroke="White"></Ellipse>
+        <Ellipse Name="halo" StrokeThickness="0" Opacity="1" Fill="Black" OpacityMask="Black" Stroke="White"></Ellipse>
         <Border  Name="infoBox" HorizontalAlignment="Right" Margin="0,-9.65,-110,0" Width="102" BorderThickness="0" CornerRadius="10,10,10,10" Background="White" Height="75" VerticalAlignment="Top"></Border>
-        <Label Name="label" FontSize="20" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0">Contact Name</Label>
         <Grid Height="75" HorizontalAlignment="Right" Margin="0,-9.65,-108,0" VerticalAlignment="Top" Width="100">
             <Label Name="keyInfo" FontSize="12" Margin="35,0,0,0" VerticalAlignment="Top" Height="25" />
             <Label Name="micInfo" FontSize="12" Margin="35,25,0,25" />
@@ -14,5 +13,7 @@
             <Image ClipToBounds="False" Height="25" HorizontalAlignment="Left" Margin="8,0,0,0" Name="eyeImg" Opacity="1" Stretch="Fill" VerticalAlignment="Bottom" Width="25" />
             <Label FontSize="12" Margin="35,0,0,0" Name="eyeInfo" Height="25" VerticalAlignment="Bottom" />
         </Grid>
+        <Image Name="avatarImg" Stretch="Fill" Width="70" Height="70" />
+        <Label Name="label" FontSize="12" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" Foreground="White" Height="25" VerticalContentAlignment="Bottom">Contact Name</Label>
     </Grid>
 </UserControl>

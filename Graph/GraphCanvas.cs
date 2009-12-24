@@ -652,10 +652,9 @@ namespace Graph
         public void BottomCenter(Graph.Node node)
         {
             Point bottom = new Point((Width / 2) - (_UInodes[node].ActualWidth / 2),
-                                     (Height) - (_UInodes[node].ActualHeight / 2));
+                                     (Height) - _UInodes[node].ActualHeight);
 
             UnlockNodeLocation(node);
-            
             LockNodeLocation(node, bottom);
         }
 
@@ -813,9 +812,12 @@ namespace Graph
                 {
                     double nodeWidth = _UInodes[edge.From].ActualWidth;
                     double nodeHeight = _UInodes[edge.From].ActualHeight;
-                    Point p = new Point((Width / 2) - (nodeWidth / 2),(Height) - (nodeHeight / 2));
-                    targetDict.Add(edge.From, p + (vectDict[edge] * ((Height-nodeHeight) - (50*(edge.Weight)))));
+                    Point p = new Point((Width / 2) - (nodeWidth / 2), Height-nodeHeight*2);
+                    double yTop = Height - nodeHeight * 2 - System.Windows.Forms.SystemInformation.CaptionHeight;
+                    targetDict.Add(edge.From, p + (vectDict[edge] * (yTop - (edge.Weight/5*yTop))));
+                    //targetDict.Add(edge.From, p+vectDict[edge]*(Height-nodeHeight*1.5));
                 }
+                
                 
             }
         }
