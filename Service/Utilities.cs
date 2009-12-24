@@ -95,10 +95,10 @@ namespace OpenMessenger
         /// <returns>Filename from the avatars directory</returns>
         public static string GetRandomAvatar()
         {
-            string[] avatars = Directory.GetFiles("Avatars", "*.png");
-            string avatar = avatars[random.Next(avatars.Length)];
-
-            return avatar.Substring(8, avatar.Length - 8);
+            string[] avatars = Directory.GetFiles(System.Environment.CurrentDirectory+"..\\..\\..\\..\\Images\\Avatars\\", "*.png");
+            string ret = avatars[random.Next(avatars.Length)];
+            Console.WriteLine("ret: " + ret);
+            return ret;
         }
 
         /// <summary>

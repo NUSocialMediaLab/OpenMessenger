@@ -815,7 +815,6 @@ namespace Graph
                     Point p = new Point((Width / 2) - (nodeWidth / 2), Height-nodeHeight*2);
                     double yTop = Height - nodeHeight * 2 - System.Windows.Forms.SystemInformation.CaptionHeight;
                     targetDict.Add(edge.From, p + (vectDict[edge] * (yTop - (edge.Weight/5*yTop))));
-                    //targetDict.Add(edge.From, p+vectDict[edge]*(Height-nodeHeight*1.5));
                 }
                 
                 

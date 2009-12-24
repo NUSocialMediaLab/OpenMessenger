@@ -43,14 +43,14 @@ namespace OpenMessenger.Client
         private void InitializeAvatar()
         {
             label.Content = Contact.Name;
-            SetBitmapImage(avatarImg, "..\\..\\..\\..\\images\\av1.png", 70);
+            SetBitmapImage(avatarImg, Contact.Avatar, 70);
         }
 
         private void InitializeInfoBox()
         {
-            SetBitmapImage(keyImg, "..\\..\\..\\..\\images\\keyboard.png", 25);
-            SetBitmapImage(micImg, "..\\..\\..\\..\\images\\mic.png", 25);
-            SetBitmapImage(eyeImg, "..\\..\\..\\..\\images\\eye.png", 25);
+            SetBitmapImage(keyImg, (System.Environment.CurrentDirectory)+"..\\..\\..\\..\\images\\keyboard.png", 25);
+            SetBitmapImage(micImg, (System.Environment.CurrentDirectory)+"..\\..\\..\\..\\images\\mic.png", 25);
+            SetBitmapImage(eyeImg, (System.Environment.CurrentDirectory)+"..\\..\\..\\..\\images\\eye.png", 25);
 
             DropShadowEffect fxInfo = new DropShadowEffect();
             fxInfo.BlurRadius = 15;
@@ -68,9 +68,10 @@ namespace OpenMessenger.Client
         /// <param name="size"></param>
         private void SetBitmapImage(Image img, String imgSrc, int size)
         {
+            Console.WriteLine(imgSrc);
             BitmapImage bitImg = new BitmapImage();
             bitImg.BeginInit();
-            bitImg.UriSource = new Uri((System.Environment.CurrentDirectory) + imgSrc, UriKind.RelativeOrAbsolute);
+            bitImg.UriSource = new Uri(imgSrc, UriKind.RelativeOrAbsolute);
             bitImg.DecodePixelWidth = size;
             bitImg.EndInit();
             img.Source = bitImg;

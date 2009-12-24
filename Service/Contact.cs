@@ -41,6 +41,12 @@ namespace OpenMessenger
         public string Name { get; set; }
 
         /// <summary>
+        /// System path to avatar
+        /// </summary>
+        [DataMember]
+        public string Avatar { get; set; }
+
+        /// <summary>
         /// Color representation for the client
         /// </summary>
         [DataMember]
@@ -71,6 +77,7 @@ namespace OpenMessenger
             Name = Utilities.GetReallyRandomName();
             Address = Utilities.GetLocalEndpoint(true).Uri.ToString() + Name;
             Color = Utilities.GetRandomColor();
+            Avatar = Utilities.GetRandomAvatar();
         }
 
         /// <summary>
