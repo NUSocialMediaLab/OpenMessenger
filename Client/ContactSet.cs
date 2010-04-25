@@ -146,14 +146,14 @@ namespace OpenMessenger.Client
                 else
                 {
                     // new
-                    //ConsoleWriteLine("Client.ContactSet adding new node ID: "+contact.Id+" to count: "+ _contacts.Count);
+                    Console.WriteLine("Client.ContactSet adding new node ID: "+contact.Id+" to count: "+ _contacts.Count);
                     _contacts.Add(contact.Id, contact);
                     _contactGraph.AddNode(contact.Id);
 
-                    //ConsoleWriteLine("Client.ContactSet about to connect "+((Guid)MyNode.Content)+" to " +contact.Id);
+                    Console.WriteLine("Client.ContactSet about to connect "+((Guid)MyNode.Content)+" to " +contact.Id);
                     _contactGraph.Connect(MyNode, GetNode(contact));
                     _contactGraph.Connect(GetNode(contact), MyNode);
-                    //ConsoleWriteLine("Client.ContactSet Nodes Connected");
+                    Console.WriteLine("Client.ContactSet Nodes Connected");
                 }
 
                 if (ContactUpdated != null)

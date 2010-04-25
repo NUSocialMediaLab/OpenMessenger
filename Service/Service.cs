@@ -24,7 +24,7 @@ namespace OpenMessenger
         /// <param name="contact">Contact information about the client signing in</param>
         public void SignIn(Contact contact)
         {
-            //ConsoleWriteLine("signIn called");
+            Console.WriteLine("signIn called");
             Controller.SendContacts(contact);
             Controller.UpdateContact(contact);
         }

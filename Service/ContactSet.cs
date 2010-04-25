@@ -39,11 +39,11 @@ namespace OpenMessenger
                 if (_contacts.ContainsKey(contact.Id))
                 {
                     _contacts[contact.Id] = contact;
-                    //ConsoleWriteLine("ContactSet.cs.Update(Contact) says: Contact already in");
+                    Console.WriteLine("ContactSet.cs.Update(Contact) says: Contact already in");
                 }
                 else
                 {
-                    //ConsoleWriteLine("About to add new contact");
+                    Console.WriteLine("About to add new contact");
                     foreach (Guid id in _contacts.Keys)
                     {
                         _focusMatrix.Add(new Pair<Guid,Guid>(contact.Id, id),0);
@@ -113,7 +113,7 @@ namespace OpenMessenger
         /// <returns>True if successful (both contacts exists, and updated)</returns>
         public bool UpdateFocus(Guid from, Guid to, double level)
         {
-            ////ConsoleWriteLine("Service: UpdateFocus called from "+from+" to "+to);
+            Console.WriteLine("Service: UpdateFocus called from "+from+" to "+to);
             lock (this)
             {
                 Pair<Guid, Guid> key = null;
@@ -123,19 +123,19 @@ namespace OpenMessenger
                         key = p;
                         
                 }
-                ////ConsoleWriteLine("         Key is " + key.First + " to " + key.Second);
+                Console.WriteLine("         Key is " + key.First + " to " + key.Second);
                 if (_focusMatrix.ContainsKey(key))
                 {
-                    ////ConsoleWriteLine("        Focus level found... changing to "+level);
+                    Console.WriteLine("        Focus level found... changing to "+level);
                     _focusMatrix[key] = level;
-                    ////ConsoleWriteLine("        Focus changed to " + _focusMatrix[key]);
+                    Console.WriteLine("        Focus changed to " + _focusMatrix[key]);
                     
                 //_contacts[to].Client.UpdateContact(_contacts[from]);
                     return true;
                 }
                 else
                 {
-                    //ConsoleWriteLine("        No Focus level Found!!!!!! NumFoci = "+_focusMatrix.Count);
+                    Console.WriteLine("        No Focus level Found!!!!!! NumFoci = "+_focusMatrix.Count);
                     //ConsoleWriteLine("  0: "+_focusMatrix.Keys.ElementAt(0).First+"   "+_focusMatrix.Keys.ElementAt(0).Second);
                     //ConsoleWriteLine("  1: "+_focusMatrix.Keys.ElementAt(1).First + "   " + _focusMatrix.Keys.ElementAt(1).Second);
                     return false;
@@ -153,7 +153,7 @@ namespace OpenMessenger
         {
             //Pair<Guid, Guid> key = new Pair<Guid, Guid>(from, to);
             Pair<Guid, Guid> key = null;
-            ////ConsoleWriteLine("Server: GetFocus CALLED");
+           Console.WriteLine("Server: GetFocus CALLED");
             foreach (Pair<Guid, Guid> p in _focusMatrix.Keys)
             {
                 if (p.First == from && p.Second == to)

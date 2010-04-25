@@ -119,12 +119,12 @@ namespace OpenMessenger
         public void UpdateContact(Contact contact)
         {
             _contacts.Update(contact);
-            //ConsoleWriteLine(" server _contacts.update called....");
+            Console.WriteLine(" server _contacts.update called....");
             foreach (Contact existingContact in Contacts)
             {
                 
                 existingContact.Client.UpdateContact(contact);
-                //Console.Write("   ++   ");
+                Console.Write("   ++   ");
             }
 
             if (ContactUpdate != null)
@@ -138,7 +138,7 @@ namespace OpenMessenger
         public void RemoveContact(Guid contactId)
         {
             Contact contact = null;
-            //ConsoleWriteLine("{{RemoveContact called}}");
+            Console.WriteLine("{{RemoveContact called}}");
             if ((contact = _contacts.Remove(contactId)) != null)
             {
                 if (ContactRemove != null)
@@ -155,6 +155,7 @@ namespace OpenMessenger
         /// <param name="contact">Client to receive list</param>
         public void SendContacts(Contact contact)
         {
+            Console.WriteLine("_server Sending contacts to: " + contact);
             foreach (Contact existingContact in Contacts)
             {
                 if (existingContact != contact)
@@ -251,8 +252,10 @@ namespace OpenMessenger
         /// <param name="level">Requested focus level</param>
         public void SetFocus(Guid me, Guid contact, double level)
         {
+            Console.Write(me + " is focusing on " + contact+ "...");
             if (_contacts.UpdateFocus(me, contact, level))
             {
+                Console.WriteLine("and update contacts is being called");
                 _contacts[contact].Client.UpdateFocus(me, contact, level);
                 UpdateContact(_contacts[contact]);
             }

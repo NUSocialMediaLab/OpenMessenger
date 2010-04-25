@@ -37,7 +37,7 @@ namespace OpenMessenger.Client
         /// <param name="contact">Contact to update</param>
         public void UpdateContact(Contact contact)
         {
-            //ConsoleWriteLine("Client is calling ContactSet.Update, called from "+Controller.Me.Id+" on " +contact.Id);
+            Console.WriteLine("Client is calling ContactSet.Update, called from "+Controller.Me.Id+" on " +contact.Id);
             Controller.Contacts.Update(contact);
         }
 

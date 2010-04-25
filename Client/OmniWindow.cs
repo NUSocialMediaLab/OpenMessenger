@@ -137,7 +137,7 @@ namespace OpenMessenger.Client
 
             focusTimer = new System.Timers.Timer(focusIncreaseInterval);
             focusTimer.Elapsed += new System.Timers.ElapsedEventHandler(focusTimer_Elapsed);
-            focusTimer.Start();
+            //focusTimer.Start();
 
             canvas.NodeCreator = CreateContactNode;
             canvas.EdgeCreator = CreateEdge;
@@ -202,6 +202,7 @@ namespace OpenMessenger.Client
 
         public Contact DetectAvatar(OmniWindowPos owPos)
         {
+            Console.WriteLine("Updating focus through eyetracker");
             // TODO uncomment this line.
             System.Drawing.Point pt = new System.Drawing.Point(owPos.XPx, owPos.YPx);
 
