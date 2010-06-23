@@ -47,10 +47,7 @@ namespace OpenMessenger.Client.Monitors
             ClientController client = ClientController.GetInstance();
             AmplitudeEvent e = new AmplitudeEvent(client.Me.Id, avgAmplitude);
             client.BroadcastEvent(e);
-            //ConsoleWriteLine("Microphone threshold exceeded: " + avgAmplitude);
-            ClientController.GetInstance().BroadcastEvent(e);
-
-
+            Console.WriteLine("Microphone threshold exceeded: " + avgAmplitude);
         }
 
         private short ComplementToSigned(ref byte[] bytArr, int intPos)

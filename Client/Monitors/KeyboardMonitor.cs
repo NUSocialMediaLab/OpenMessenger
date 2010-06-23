@@ -36,10 +36,16 @@ namespace OpenMessenger.Client.Monitors
 
         private void OnKeyboardUpdateHandler(Key[] keys)
         {
-
             ClientController client = ClientController.GetInstance();
-            client.BroadcastEvent(new KeyboardEvent(client.Me.Id, keys.Length));
-
+            if (keys.Length > 0)
+            {
+                for (int i = 0; i < keys.Length; i++)
+                {
+                    Console.Write(keys[i]);
+                }
+                Console.WriteLine();
+                client.BroadcastEvent(new KeyboardEvent(client.Me.Id, keys.Length));
+            }
         }
 
         /// <summary>
