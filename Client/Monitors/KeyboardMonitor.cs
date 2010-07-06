@@ -10,6 +10,10 @@ namespace OpenMessenger.Client.Monitors
     /// </summary> 
     public class KeyboardMonitor : Monitor
     {
+
+        private System.DateTime lastEventTime;
+        private int eventInterval = 15; //Minutes inbetween firing off events
+        private bool wasActive = false;
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -37,8 +41,10 @@ namespace OpenMessenger.Client.Monitors
         private void OnKeyboardUpdateHandler(Key[] keys)
         {
             ClientController client = ClientController.GetInstance();
-            if (keys.Length > 0)
+            bool isActive = (keys.Length > 0) ? true : false;
+            if(wasActive != isActive)
             {
+                Console.Write(System.DateTime.Now + " : " + wasActive + " | " + isActive + " ");
                 for (int i = 0; i < keys.Length; i++)
                 {
                     Console.Write(keys[i]);
@@ -46,6 +52,7 @@ namespace OpenMessenger.Client.Monitors
                 Console.WriteLine();
                 client.BroadcastEvent(new KeyboardEvent(client.Me.Id, keys.Length));
             }
+            wasActive = isActive;
         }
 
         /// <summary>

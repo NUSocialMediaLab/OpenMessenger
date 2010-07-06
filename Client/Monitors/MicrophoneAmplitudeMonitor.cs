@@ -16,6 +16,7 @@ namespace OpenMessenger.Client.Monitors
     /// </summary>
     public class MicrophoneAmplitudeMonitor : Monitor
     {
+        private double threshold; 
 
         /// <summary>
         /// Name of this monitor
