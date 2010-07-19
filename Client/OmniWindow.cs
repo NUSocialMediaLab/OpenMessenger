@@ -176,6 +176,20 @@ namespace OpenMessenger.Client
             }
 
             //Note: this assumes that the projector is set up as the secondary screen
+            boundTopLeftX[0] = -8f;
+            boundTopLeftY[0] = -6.625f;
+            boundBottomRightX[0] = 8f;
+            boundBottomRightY[0] = 6.625f;
+
+            if (numMonitors > 1)
+            {
+                boundTopLeftX[1] = -30.75f;
+                boundTopLeftY[1] = -23f;
+                boundBottomRightX[1] = 30.75f;
+                boundBottomRightY[1] = 23f;
+            }
+
+            /* Previous settings
             boundTopLeftX[0] = -8.5f;
             boundTopLeftY[0] = -7f;
             boundBottomRightX[0] = 8.5f;
@@ -188,6 +202,7 @@ namespace OpenMessenger.Client
                 boundBottomRightX[1] = 26f;
                 boundBottomRightY[1] = 15.5f;
             }
+            */
         }
 
         /// <summary>

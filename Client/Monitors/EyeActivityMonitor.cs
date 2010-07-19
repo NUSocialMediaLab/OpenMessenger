@@ -98,7 +98,7 @@ namespace OpenMessenger.Client.Monitors
             //    new EyeActivityEvent(ClientController.GetInstance().Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit));
             
             client.BroadcastEvent(
-               new EyeActivityEvent(client.Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit==null ? "None" : owPos.AvatarHit.Name));
+               new EyeActivityEvent(client.Me.Id, owPos.SceneNum, owPos.XIn, owPos.YIn, owPos.XPx, owPos.YPx, owPos.AvatarHit == null ? "None" : owPos.AvatarHit.Name));
 
         }
 
