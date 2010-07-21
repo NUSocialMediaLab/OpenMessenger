@@ -602,7 +602,8 @@ namespace OpenMessenger.Client
                 this.xIn = xIn;
                 this.yIn = yIn;
 
-                if (sceneNum  == 1)
+                //if (sceneNum  == 1)
+                if(sceneNum != 0)
                 {
                     //Shift by minimum bound values to remove negative values
                     xIn -= ow.BoundTopLeftX[sceneNum - 1];
