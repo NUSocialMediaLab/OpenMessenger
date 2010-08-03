@@ -56,6 +56,7 @@
             this.mnuOmniShow = new System.Windows.Forms.ToolStripMenuItem();
             this.stsStrip = new System.Windows.Forms.StatusStrip();
             this.tabViews = new System.Windows.Forms.TabControl();
+            this.activeWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,13 +85,13 @@
             this.toolStripSeparator2,
             this.mnuClientExit});
             this.mnuClient.Name = "mnuClient";
-            this.mnuClient.Size = new System.Drawing.Size(50, 20);
+            this.mnuClient.Size = new System.Drawing.Size(46, 20);
             this.mnuClient.Text = "Client";
             // 
             // mnuClientConnect
             // 
             this.mnuClientConnect.Name = "mnuClientConnect";
-            this.mnuClientConnect.Size = new System.Drawing.Size(133, 22);
+            this.mnuClientConnect.Size = new System.Drawing.Size(137, 22);
             this.mnuClientConnect.Text = "Connect...";
             this.mnuClientConnect.Click += new System.EventHandler(this.mnuConnect_Click);
             // 
@@ -98,38 +99,38 @@
             // 
             this.mnuClientDisconnect.Enabled = false;
             this.mnuClientDisconnect.Name = "mnuClientDisconnect";
-            this.mnuClientDisconnect.Size = new System.Drawing.Size(133, 22);
+            this.mnuClientDisconnect.Size = new System.Drawing.Size(137, 22);
             this.mnuClientDisconnect.Text = "Disconnect";
             this.mnuClientDisconnect.Click += new System.EventHandler(this.mnuClientDisconnect_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(130, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
             // 
             // mnuClientProfile
             // 
             this.mnuClientProfile.Name = "mnuClientProfile";
-            this.mnuClientProfile.Size = new System.Drawing.Size(133, 22);
+            this.mnuClientProfile.Size = new System.Drawing.Size(137, 22);
             this.mnuClientProfile.Text = "Profile...";
             this.mnuClientProfile.Click += new System.EventHandler(this.mnuClientProfile_Click);
             // 
             // mnuClientSettings
             // 
             this.mnuClientSettings.Name = "mnuClientSettings";
-            this.mnuClientSettings.Size = new System.Drawing.Size(133, 22);
+            this.mnuClientSettings.Size = new System.Drawing.Size(137, 22);
             this.mnuClientSettings.Text = "Settings...";
             this.mnuClientSettings.Click += new System.EventHandler(this.mnuClientSettings_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(130, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(134, 6);
             // 
             // mnuClientExit
             // 
             this.mnuClientExit.Name = "mnuClientExit";
-            this.mnuClientExit.Size = new System.Drawing.Size(133, 22);
+            this.mnuClientExit.Size = new System.Drawing.Size(137, 22);
             this.mnuClientExit.Text = "Exit";
             this.mnuClientExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
@@ -140,16 +141,17 @@
             this.mnuSensorScreen,
             this.mnuSensorWebCam,
             this.mnuSensorEyeTracker,
-            this.mnuSensorKeyboard});
+            this.mnuSensorKeyboard,
+            this.activeWindowToolStripMenuItem});
             this.mnuSensors.Name = "mnuSensors";
-            this.mnuSensors.Size = new System.Drawing.Size(59, 20);
+            this.mnuSensors.Size = new System.Drawing.Size(57, 20);
             this.mnuSensors.Text = "Sensors";
             // 
             // mnuSensorMicrophone
             // 
             this.mnuSensorMicrophone.CheckOnClick = true;
             this.mnuSensorMicrophone.Name = "mnuSensorMicrophone";
-            this.mnuSensorMicrophone.Size = new System.Drawing.Size(152, 22);
+            this.mnuSensorMicrophone.Size = new System.Drawing.Size(156, 22);
             this.mnuSensorMicrophone.Text = "Microphone";
             this.mnuSensorMicrophone.CheckedChanged += new System.EventHandler(this.mnuSensorMicrophone_CheckedChanged);
             // 
@@ -157,7 +159,7 @@
             // 
             this.mnuSensorScreen.CheckOnClick = true;
             this.mnuSensorScreen.Name = "mnuSensorScreen";
-            this.mnuSensorScreen.Size = new System.Drawing.Size(152, 22);
+            this.mnuSensorScreen.Size = new System.Drawing.Size(156, 22);
             this.mnuSensorScreen.Text = "Screen";
             this.mnuSensorScreen.CheckedChanged += new System.EventHandler(this.mnuSensorScreen_CheckedChanged);
             // 
@@ -165,7 +167,7 @@
             // 
             this.mnuSensorWebCam.CheckOnClick = true;
             this.mnuSensorWebCam.Name = "mnuSensorWebCam";
-            this.mnuSensorWebCam.Size = new System.Drawing.Size(152, 22);
+            this.mnuSensorWebCam.Size = new System.Drawing.Size(156, 22);
             this.mnuSensorWebCam.Text = "WebCam";
             this.mnuSensorWebCam.CheckedChanged += new System.EventHandler(this.mnuSensorWebCam_CheckedChanged);
             // 
@@ -173,7 +175,7 @@
             // 
             this.mnuSensorEyeTracker.CheckOnClick = true;
             this.mnuSensorEyeTracker.Name = "mnuSensorEyeTracker";
-            this.mnuSensorEyeTracker.Size = new System.Drawing.Size(152, 22);
+            this.mnuSensorEyeTracker.Size = new System.Drawing.Size(156, 22);
             this.mnuSensorEyeTracker.Text = "Eye Tracker";
             this.mnuSensorEyeTracker.CheckedChanged += new System.EventHandler(this.mnuSensorEyeTracker_CheckedChanged);
             // 
@@ -181,7 +183,7 @@
             // 
             this.mnuSensorKeyboard.CheckOnClick = true;
             this.mnuSensorKeyboard.Name = "mnuSensorKeyboard";
-            this.mnuSensorKeyboard.Size = new System.Drawing.Size(152, 22);
+            this.mnuSensorKeyboard.Size = new System.Drawing.Size(156, 22);
             this.mnuSensorKeyboard.Text = "Keyboard";
             this.mnuSensorKeyboard.CheckedChanged += new System.EventHandler(this.mnuSensorKeyboard_CheckedChanged);
             // 
@@ -192,14 +194,14 @@
             this.mnuViewContactList,
             this.mnuViewEyeTrackerLog});
             this.mnuViews.Name = "mnuViews";
-            this.mnuViews.Size = new System.Drawing.Size(49, 20);
+            this.mnuViews.Size = new System.Drawing.Size(46, 20);
             this.mnuViews.Text = "Views";
             // 
             // mnuViewEventLog
             // 
             this.mnuViewEventLog.CheckOnClick = true;
             this.mnuViewEventLog.Name = "mnuViewEventLog";
-            this.mnuViewEventLog.Size = new System.Drawing.Size(157, 22);
+            this.mnuViewEventLog.Size = new System.Drawing.Size(162, 22);
             this.mnuViewEventLog.Text = "Event Log";
             this.mnuViewEventLog.CheckedChanged += new System.EventHandler(this.mnuViewEventLog_CheckedChanged);
             // 
@@ -207,7 +209,7 @@
             // 
             this.mnuViewContactList.CheckOnClick = true;
             this.mnuViewContactList.Name = "mnuViewContactList";
-            this.mnuViewContactList.Size = new System.Drawing.Size(157, 22);
+            this.mnuViewContactList.Size = new System.Drawing.Size(162, 22);
             this.mnuViewContactList.Text = "Contact List";
             this.mnuViewContactList.CheckedChanged += new System.EventHandler(this.mnuViewContactList_CheckedChanged);
             // 
@@ -215,7 +217,7 @@
             // 
             this.mnuViewEyeTrackerLog.CheckOnClick = true;
             this.mnuViewEyeTrackerLog.Name = "mnuViewEyeTrackerLog";
-            this.mnuViewEyeTrackerLog.Size = new System.Drawing.Size(157, 22);
+            this.mnuViewEyeTrackerLog.Size = new System.Drawing.Size(162, 22);
             this.mnuViewEyeTrackerLog.Text = "Eye Tracker Log";
             this.mnuViewEyeTrackerLog.CheckedChanged += new System.EventHandler(this.mnuViewEyeTrackerLog_CheckedChanged);
             // 
@@ -227,14 +229,14 @@
             this.mnuMonitorEyeActivity,
             this.mnuMonitorKeyboardActivity});
             this.mnuMonitors.Name = "mnuMonitors";
-            this.mnuMonitors.Size = new System.Drawing.Size(67, 20);
+            this.mnuMonitors.Size = new System.Drawing.Size(60, 20);
             this.mnuMonitors.Text = "Monitors";
             // 
             // mnuMonitorMicrophoneAmplitude
             // 
             this.mnuMonitorMicrophoneAmplitude.CheckOnClick = true;
             this.mnuMonitorMicrophoneAmplitude.Name = "mnuMonitorMicrophoneAmplitude";
-            this.mnuMonitorMicrophoneAmplitude.Size = new System.Drawing.Size(198, 22);
+            this.mnuMonitorMicrophoneAmplitude.Size = new System.Drawing.Size(190, 22);
             this.mnuMonitorMicrophoneAmplitude.Text = "Microphone Amplitude";
             this.mnuMonitorMicrophoneAmplitude.CheckedChanged += new System.EventHandler(this.mnuMonitorMicrophoneAmplitude_CheckedChanged);
             // 
@@ -242,7 +244,7 @@
             // 
             this.mnuMonitorScreenActivity.CheckOnClick = true;
             this.mnuMonitorScreenActivity.Name = "mnuMonitorScreenActivity";
-            this.mnuMonitorScreenActivity.Size = new System.Drawing.Size(198, 22);
+            this.mnuMonitorScreenActivity.Size = new System.Drawing.Size(190, 22);
             this.mnuMonitorScreenActivity.Text = "Activity";
             this.mnuMonitorScreenActivity.CheckedChanged += new System.EventHandler(this.mnuMonitorScreenActivity_CheckedChanged);
             // 
@@ -250,7 +252,7 @@
             // 
             this.mnuMonitorEyeActivity.CheckOnClick = true;
             this.mnuMonitorEyeActivity.Name = "mnuMonitorEyeActivity";
-            this.mnuMonitorEyeActivity.Size = new System.Drawing.Size(198, 22);
+            this.mnuMonitorEyeActivity.Size = new System.Drawing.Size(190, 22);
             this.mnuMonitorEyeActivity.Text = "Eye Activity";
             this.mnuMonitorEyeActivity.CheckedChanged += new System.EventHandler(this.mnuMonitorEyeActivity_CheckedChanged);
             // 
@@ -258,7 +260,7 @@
             // 
             this.mnuMonitorKeyboardActivity.CheckOnClick = true;
             this.mnuMonitorKeyboardActivity.Name = "mnuMonitorKeyboardActivity";
-            this.mnuMonitorKeyboardActivity.Size = new System.Drawing.Size(198, 22);
+            this.mnuMonitorKeyboardActivity.Size = new System.Drawing.Size(190, 22);
             this.mnuMonitorKeyboardActivity.Text = "Keyboard Activity";
             this.mnuMonitorKeyboardActivity.CheckedChanged += new System.EventHandler(this.mnuMonitorKeyboardAcitivity_CheckedChanged);
             // 
@@ -267,14 +269,14 @@
             this.mnuOmni.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuOmniShow});
             this.mnuOmni.Name = "mnuOmni";
-            this.mnuOmni.Size = new System.Drawing.Size(49, 20);
+            this.mnuOmni.Size = new System.Drawing.Size(43, 20);
             this.mnuOmni.Text = "Omni";
             // 
             // mnuOmniShow
             // 
             this.mnuOmniShow.CheckOnClick = true;
             this.mnuOmniShow.Name = "mnuOmniShow";
-            this.mnuOmniShow.Size = new System.Drawing.Size(183, 22);
+            this.mnuOmniShow.Size = new System.Drawing.Size(179, 22);
             this.mnuOmniShow.Text = "Show Omni Window";
             this.mnuOmniShow.CheckedChanged += new System.EventHandler(this.mnuOmniShow_CheckedChanged);
             // 
@@ -294,6 +296,14 @@
             this.tabViews.SelectedIndex = 0;
             this.tabViews.Size = new System.Drawing.Size(562, 391);
             this.tabViews.TabIndex = 3;
+            // 
+            // activeWindowToolStripMenuItem
+            // 
+            this.activeWindowToolStripMenuItem.CheckOnClick = true;
+            this.activeWindowToolStripMenuItem.Name = "activeWindowToolStripMenuItem";
+            this.activeWindowToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.activeWindowToolStripMenuItem.Text = "Active Window";
+            this.activeWindowToolStripMenuItem.Click += new System.EventHandler(this.activeWindowToolStripMenuItem_CheckedChanged);
             // 
             // ClientWindow
             // 
@@ -344,5 +354,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorEyeActivity;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorKeyboard;
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorKeyboardActivity;
+        private System.Windows.Forms.ToolStripMenuItem activeWindowToolStripMenuItem;
     }
 }

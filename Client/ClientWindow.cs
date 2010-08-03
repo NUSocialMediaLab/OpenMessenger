@@ -220,9 +220,12 @@ namespace OpenMessenger.Client
             }
         }
 
-        private void eyeTrackerLogToolStripMenuItem_Click(object sender, EventArgs e)
+        private void activeWindowToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (activeWindowToolStripMenuItem.Checked)
+                Sensor.GetInstance<ActiveWindowSensor>().Start();
+            else
+                Sensor.GetInstance<ActiveWindowSensor>().Stop();
         }
     }
 }
