@@ -142,6 +142,7 @@
     <Compile Include="Sensor.cs" />
     <Compile Include="Sensors\MouseSensor.cs" />
     <Compile Include="Sensors\ActiveWindowSensor.cs" />
+    <Compile Include="Sensors\IdleSensor.cs" />
     <Compile Include="Sensors\EyeTrackerSensor.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -9,26 +9,53 @@ using System.Threading;
 
 namespace OpenMessenger.Client.Sensors
 {
+    /// <summary>
+    /// Sensor that captures global keyboard input at intervals specifed
+    /// by updateFrequency
+    /// </summary>
     public class KeyboardSensor : Sensor
     {
+        /// <summary>
+        /// Delegate for the KeyboardUpdate event
+        /// </summary>
+        /// <param name="keys">The list of keys pressed</param>
         public delegate void KeyboardUpdateHandler(Key[] keys);
 
+        /// <summary>
+        /// Triggered when the timer goes off -- sends out the keyboard data
+        /// since the last time the event fired
+        /// </summary>
         public event KeyboardUpdateHandler KeyboardUpdate;
          
         private const int updateFrequency = 5000;
         private System.Timers.Timer captureTimer;
 
         private Device keyboard;
+        /// <summary>
+        /// List of keys pressed
+        /// </summary>
         private List<Key> state;
 
+        /// <summary>
+        /// Event for capturing keyboard data in real time
+        /// </summary>
         private EventWaitHandle waitHandle;
+        /// <summary>
+        /// Thread that handles capturing the data, but not sending it off
+        /// </summary>
         private Thread listeningThread;
 
+        /// <summary>
+        /// Name of this sensor
+        /// </summary>
         public override string Text
         {
             get { return "Keyboard"; }
         }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public KeyboardSensor()
         {
             state = new List<Key>();
@@ -48,6 +75,9 @@ namespace OpenMessenger.Client.Sensors
             keyboard.SetEventNotification(waitHandle);
         }
 
+        /// <summary>
+        /// Method that the listeningThread runs in to capture keyboardInput
+        /// </summary>
         private void ListenToKeyboard()
         {
             while (captureTimer.Enabled)
@@ -62,6 +92,9 @@ namespace OpenMessenger.Client.Sensors
             }
         }
 
+        /// <summary>
+        /// Starts the timer and the thread to capture input
+        /// </summary>
         public override void Start()
         {
             keyboard.Acquire();
@@ -70,6 +103,9 @@ namespace OpenMessenger.Client.Sensors
             listeningThread.Start();
         }
 
+        /// <summary>
+        /// Stops the thread and the timer
+        /// </summary>
         public override void Stop()
         {
             listeningThread.Abort();
@@ -77,6 +113,12 @@ namespace OpenMessenger.Client.Sensors
             keyboard.Unacquire();
         }
 
+        /// <summary>
+        /// Method called when the timer expires, sends out event
+        /// with keyboard data
+        /// </summary>
+        /// <param name="sender">Not used</param>
+        /// <param name="e">Not used</param>
         private void CaptureKeys(object sender, ElapsedEventArgs e)
         {
             lock (state)
@@ -89,6 +131,9 @@ namespace OpenMessenger.Client.Sensors
             }
         }
 
+        /// <summary>
+        /// Tells the operating system we no longer want to listen to the keyboard
+        /// </summary>
         public void Dispose()
         {
             keyboard.Unacquire();

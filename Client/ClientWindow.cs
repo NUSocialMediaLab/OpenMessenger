@@ -239,9 +239,17 @@ namespace OpenMessenger.Client
             }
         }
 
-        private void activeWindowToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        private void mnuSensorIdleTime_CheckedChanged(object sender, EventArgs e)
         {
-            if (activeWindowToolStripMenuItem.Checked)
+            if (mnuSensorIdleTime.Checked)
+                Sensor.GetInstance<IdleSensor>().Start();
+            else
+                Sensor.GetInstance<IdleSensor>().Stop();
+        }
+
+        private void mnuSensorActiveWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuSensorActiveWindow.Checked)
                 Sensor.GetInstance<ActiveWindowSensor>().Start();
             else
                 Sensor.GetInstance<ActiveWindowSensor>().Stop();

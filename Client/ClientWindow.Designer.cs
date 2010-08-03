@@ -44,6 +44,8 @@
             this.mnuSensorEyeTracker = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSensorKeyboard = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSensorMouse = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSensorActiveWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSensorIdleTime = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViews = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewEventLog = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewContactList = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +60,6 @@
             this.mnuOmniShow = new System.Windows.Forms.ToolStripMenuItem();
             this.stsStrip = new System.Windows.Forms.StatusStrip();
             this.tabViews = new System.Windows.Forms.TabControl();
-            this.activeWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,10 +146,9 @@
             this.mnuSensorEyeTracker,
 <<<<<<< .mine
             this.mnuSensorKeyboard,
-            this.mnuSensorMouse});
-=======
-            this.mnuSensorKeyboard,
-            this.activeWindowToolStripMenuItem});
+            this.mnuSensorMouse,
+            this.mnuSensorActiveWindow,
+            this.mnuSensorIdleTime});
 >>>>>>> .r26
             this.mnuSensors.Name = "mnuSensors";
             this.mnuSensors.Size = new System.Drawing.Size(57, 20);
@@ -201,6 +201,22 @@
             this.mnuSensorMouse.Size = new System.Drawing.Size(152, 22);
             this.mnuSensorMouse.Text = "Mouse";
             this.mnuSensorMouse.CheckedChanged += new System.EventHandler(this.mnuSensorMouse_CheckChanged);
+            // 
+            // mnuSensorActiveWindow
+            // 
+            this.mnuSensorActiveWindow.CheckOnClick = true;
+            this.mnuSensorActiveWindow.Name = "mnuSensorActiveWindow";
+            this.mnuSensorActiveWindow.Size = new System.Drawing.Size(156, 22);
+            this.mnuSensorActiveWindow.Text = "Active Window";
+            this.mnuSensorActiveWindow.CheckedChanged += new System.EventHandler(this.mnuSensorActiveWindow_CheckedChanged);
+            // 
+            // mnuSensorIdleTime
+            // 
+            this.mnuSensorIdleTime.CheckOnClick = true;
+            this.mnuSensorIdleTime.Name = "mnuSensorIdleTime";
+            this.mnuSensorIdleTime.Size = new System.Drawing.Size(156, 22);
+            this.mnuSensorIdleTime.Text = "Idle Time";
+            this.mnuSensorIdleTime.CheckedChanged += new System.EventHandler(this.mnuSensorIdleTime_CheckedChanged);
             // 
             // mnuViews
             // 
@@ -321,14 +337,6 @@
             this.tabViews.Size = new System.Drawing.Size(562, 391);
             this.tabViews.TabIndex = 3;
             // 
-            // activeWindowToolStripMenuItem
-            // 
-            this.activeWindowToolStripMenuItem.CheckOnClick = true;
-            this.activeWindowToolStripMenuItem.Name = "activeWindowToolStripMenuItem";
-            this.activeWindowToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.activeWindowToolStripMenuItem.Text = "Active Window";
-            this.activeWindowToolStripMenuItem.Click += new System.EventHandler(this.activeWindowToolStripMenuItem_CheckedChanged);
-            // 
             // ClientWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,6 +388,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorMouseActivity;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorKeyboard;
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorKeyboardActivity;
-        private System.Windows.Forms.ToolStripMenuItem activeWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuSensorActiveWindow;
+        private System.Windows.Forms.ToolStripMenuItem mnuSensorIdleTime;
     }
 }
