@@ -43,6 +43,7 @@
             this.mnuSensorWebCam = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSensorEyeTracker = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSensorKeyboard = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSensorMouse = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViews = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewEventLog = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewContactList = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +53,7 @@
             this.mnuMonitorScreenActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMonitorEyeActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMonitorKeyboardActivity = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMonitorMouseActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOmni = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOmniShow = new System.Windows.Forms.ToolStripMenuItem();
             this.stsStrip = new System.Windows.Forms.StatusStrip();
@@ -141,8 +143,13 @@
             this.mnuSensorScreen,
             this.mnuSensorWebCam,
             this.mnuSensorEyeTracker,
+<<<<<<< .mine
+            this.mnuSensorKeyboard,
+            this.mnuSensorMouse});
+=======
             this.mnuSensorKeyboard,
             this.activeWindowToolStripMenuItem});
+>>>>>>> .r26
             this.mnuSensors.Name = "mnuSensors";
             this.mnuSensors.Size = new System.Drawing.Size(57, 20);
             this.mnuSensors.Text = "Sensors";
@@ -186,6 +193,14 @@
             this.mnuSensorKeyboard.Size = new System.Drawing.Size(156, 22);
             this.mnuSensorKeyboard.Text = "Keyboard";
             this.mnuSensorKeyboard.CheckedChanged += new System.EventHandler(this.mnuSensorKeyboard_CheckedChanged);
+            //
+            // mnSensorMouse
+            //
+            this.mnuSensorMouse.CheckOnClick = true;
+            this.mnuSensorMouse.Name = "mnuSensorMouse";
+            this.mnuSensorMouse.Size = new System.Drawing.Size(152, 22);
+            this.mnuSensorMouse.Text = "Mouse";
+            this.mnuSensorMouse.CheckedChanged += new System.EventHandler(this.mnuSensorMouse_CheckChanged);
             // 
             // mnuViews
             // 
@@ -227,7 +242,8 @@
             this.mnuMonitorMicrophoneAmplitude,
             this.mnuMonitorScreenActivity,
             this.mnuMonitorEyeActivity,
-            this.mnuMonitorKeyboardActivity});
+            this.mnuMonitorKeyboardActivity,
+            this.mnuMonitorMouseActivity});
             this.mnuMonitors.Name = "mnuMonitors";
             this.mnuMonitors.Size = new System.Drawing.Size(60, 20);
             this.mnuMonitors.Text = "Monitors";
@@ -263,6 +279,14 @@
             this.mnuMonitorKeyboardActivity.Size = new System.Drawing.Size(190, 22);
             this.mnuMonitorKeyboardActivity.Text = "Keyboard Activity";
             this.mnuMonitorKeyboardActivity.CheckedChanged += new System.EventHandler(this.mnuMonitorKeyboardAcitivity_CheckedChanged);
+            //
+            // mnuMonitorMouseActivity
+            //
+            this.mnuMonitorMouseActivity.CheckOnClick = true;
+            this.mnuMonitorMouseActivity.Name = "mnuMonitorMouseActivity";
+            this.mnuMonitorMouseActivity.Size = new System.Drawing.Size(198, 22);
+            this.mnuMonitorMouseActivity.Text = "Mouse Activity";
+            this.mnuMonitorMouseActivity.CheckedChanged += new System.EventHandler(this.mnuMonitorMouseActivity_CheckedChanged);
             // 
             // mnuOmni
             // 
@@ -352,6 +376,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuViewEyeTrackerLog;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorEyeTracker;
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorEyeActivity;
+        private System.Windows.Forms.ToolStripMenuItem mnuSensorMouse;
+        private System.Windows.Forms.ToolStripMenuItem mnuMonitorMouseActivity;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorKeyboard;
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorKeyboardActivity;
         private System.Windows.Forms.ToolStripMenuItem activeWindowToolStripMenuItem;

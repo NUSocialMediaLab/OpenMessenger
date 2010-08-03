@@ -129,6 +129,7 @@
     <Compile Include="Dialogs\ProfileDialog.Designer.cs">
       <DependentUpon>ProfileDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Monitors\MouseMonitor.cs" />
     <Compile Include="OmniContactNode.xaml.cs">
       <DependentUpon>OmniContactNode.xaml</DependentUpon>
     </Compile>
@@ -139,6 +140,7 @@
       <DependentUpon>OmniWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Sensor.cs" />
+    <Compile Include="Sensors\MouseSensor.cs" />
     <Compile Include="Sensors\ActiveWindowSensor.cs" />
     <Compile Include="Sensors\EyeTrackerSensor.cs">
       <SubType>Code</SubType>

@@ -210,7 +210,12 @@ namespace OpenMessenger.Client.Sensors
                     Single yIn = (Single)tempItems.GetValue(yPosIndex);
                     //Raise event that the EyeActivityMonitor listens for. It includes the raw readings of
                     //the eye location, without any conversions into screen coordinates
-                    Console.WriteLine("x: " + xIn +" y: " + yIn + " scene: " + sceneNum);
+                    //Console.WriteLine("x: " + xIn +" y: " + yIn + " scene: " + sceneNum);
+                    for (int i = 0; i < tempItems.Length; i++)
+                    {
+                        Console.Write(tempItems.GetValue(i)+" ");
+                    }
+                    Console.WriteLine();
                     EyeTrackerUpdate(sceneNum, xIn, yIn);
                 }
                 

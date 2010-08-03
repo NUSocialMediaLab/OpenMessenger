@@ -300,6 +300,7 @@ namespace Graph
 
         void UInode_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            Console.WriteLine("Clicked");
             if (NodeClicked != null)
             {
                 ContentControl UInode = (ContentControl)sender;

@@ -92,6 +92,14 @@ namespace OpenMessenger.Client
                 Sensor.GetInstance<EyeTrackerSensor>().Stop();
         }
 
+        private void mnuSensorMouse_CheckChanged(object sender, EventArgs e)
+        {
+            if (mnuSensorMouse.Checked)
+                Sensor.GetInstance<MouseSensor>().Start();
+            else
+                Sensor.GetInstance<MouseSensor>().Stop();
+        }
+
         private void mnuMonitorScreenActivity_CheckedChanged(object sender, EventArgs e)
         {
             if (mnuMonitorScreenActivity.Checked)
@@ -108,6 +116,17 @@ namespace OpenMessenger.Client
                 Monitor.GetInstance<KeyboardMonitor>().Stop();
         }
 
+        private void mnuMonitorMouseActivity_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuMonitorMouseActivity.Checked)
+            {
+                MouseMonitor mouseMon = Monitor.GetInstance<MouseMonitor>();
+                mouseMon.Ow = _omni;
+                Monitor.GetInstance<MouseMonitor>().Start();
+            }
+            else
+                Monitor.GetInstance<MouseMonitor>().Stop();
+        }
 
         private void mnuMonitorEyeActivity_CheckedChanged(object sender, EventArgs e)
         {

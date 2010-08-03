@@ -69,6 +69,7 @@
     <Compile Include="Events\KeyboardEvent.cs" />
     <Compile Include="Events\MessageEvent.cs" />
     <Compile Include="Events\ActivityEvent.cs" />
+    <Compile Include="Events\MouseEvent.cs" />
     <Compile Include="IClient.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Pair.cs" />

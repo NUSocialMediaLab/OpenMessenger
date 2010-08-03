@@ -174,7 +174,7 @@ namespace OpenMessenger.Client
                 XRes[i] = System.Windows.Forms.Screen.AllScreens[i].Bounds.Width;
                 YRes[i] = System.Windows.Forms.Screen.AllScreens[i].Bounds.Height;
             }
-
+            
             //Note: this assumes that the projector is set up as the secondary screen
             boundTopLeftX[0] = -8f;
             boundTopLeftY[0] = -6.625f;
@@ -217,10 +217,11 @@ namespace OpenMessenger.Client
 
         public Contact DetectAvatar(OmniWindowPos owPos)
         {
-            Console.WriteLine("Updating focus through eyetracker");
+            Console.WriteLine("Updating focus through eyetracker pm");
             // TODO uncomment this line.
             System.Drawing.Point pt = new System.Drawing.Point(owPos.XPx, owPos.YPx);
-
+            Console.WriteLine(pt.X + "  " + pt.Y);
+            Console.WriteLine(owPos.XPx+" "+ owPos.YPx);
             //TODO USE THE ONE ABOVE...this was only for testing
             //System.Drawing.Point pt = new System.Drawing.Point(Cursor.Position.X, Cursor.Position.Y);
 
@@ -231,6 +232,7 @@ namespace OpenMessenger.Client
                 System.Windows.Threading.DispatcherPriority.Normal,
                 new Action(delegate()
                 {
+                    Console.WriteLine("DetectAvatarCalled");
                     pt = elementHost.PointToClient(pt);
                     elem = canvas.InputHitTest(new Point(pt.X, pt.Y));
                     if (elem != null)
@@ -288,6 +290,7 @@ namespace OpenMessenger.Client
 
         void ShiftFocus(Contact target, double change)
         {
+            Console.WriteLine("Shifting");
             ClientController client = ClientController.GetInstance();
             Guid i = client.Me.Id;
 
@@ -308,6 +311,7 @@ namespace OpenMessenger.Client
 
         void NodeMouseEnter(Graph.Graph.Node node, ContentControl UInode)
         {
+            Console.WriteLine("NodeEntered");
             ClientController client = ClientController.GetInstance();
             currentFocusContact = client.Contacts[(Guid)node.Content];
 
@@ -328,6 +332,7 @@ namespace OpenMessenger.Client
 
         void NodeClicked(Graph.Graph.Node node, ContentControl UInode)
         {
+            Console.WriteLine("CLICK");
             /* doesn't really do anything meaningful...
             if ((Guid)node.Content == ClientController.GetInstance().Me.Id)
             {
@@ -632,6 +637,27 @@ namespace OpenMessenger.Client
                 IsAvatarHitSet = true;
                 Console.WriteLine("xPx " + xPx + "  yPx: " + yPx);
             }
+
+            public OmniWindowPos(OmniWindow ow, Single xPx, Single yPx)
+            {
+                this.ow = ow;
+
+                this.xPx = (int)xPx;
+                this.YPx = (int)yPx;
+                //this.xPx = (int)xPx - (int)ow.Left;
+                //this.yPx = (int)yPx - (int)ow.Top;
+                //Console.WriteLine("xPx: " + xPx + " yPx: " + yPx);
+                //Determine if the current reading matches a location of an avatar on the screen
+                AvatarHit = ow.DetectAvatar(this);
+                IsAvatarHitSet = true;
+                Console.WriteLine(ow.Left);
+       
+
+                Console.WriteLine("xPx " + this.xPx + "  yPx: " + this.yPx);
+                Console.Write(AvatarHit);
+                Console.WriteLine(" was AvHit");
+            }
+
              
         }
 
