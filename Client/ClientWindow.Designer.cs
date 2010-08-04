@@ -146,7 +146,6 @@
             this.mnuSensorEyeTracker,
             this.mnuSensorMouse,
             this.mnuSensorKeyboard,
-=======
             this.mnuSensorActiveWindow,
             this.mnuSensorIdleTime});
             this.mnuSensors.Name = "mnuSensors";
