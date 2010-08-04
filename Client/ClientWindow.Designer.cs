@@ -144,12 +144,11 @@
             this.mnuSensorScreen,
             this.mnuSensorWebCam,
             this.mnuSensorEyeTracker,
-<<<<<<< .mine
-            this.mnuSensorKeyboard,
             this.mnuSensorMouse,
+            this.mnuSensorKeyboard,
+=======
             this.mnuSensorActiveWindow,
             this.mnuSensorIdleTime});
->>>>>>> .r26
             this.mnuSensors.Name = "mnuSensors";
             this.mnuSensors.Size = new System.Drawing.Size(57, 20);
             this.mnuSensors.Text = "Sensors";
