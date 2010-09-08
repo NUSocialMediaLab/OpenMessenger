@@ -259,7 +259,7 @@ namespace OpenMessenger
                 _contacts[contact].Client.UpdateFocus(me, contact, level);
                 UpdateContact(_contacts[contact]);
             }
-//TODO: Uh, make this work!!!!!
+            //TODO: Uh, make this work!!!!!
             //foreach (KeyValuePair<Type, Event> pair in _eventCache[me])
             //{
             //    if (_contacts.GetFocus(me, pair.Value.Sender) >= pair.Value.Level)
@@ -280,6 +280,7 @@ namespace OpenMessenger
 
         void SendEvent(Contact recipient, Event e)
         {
+            //TODO: Determine if there are events that are not getting delivered due to focus level
             if (_contacts.GetFocus(recipient.Id, e.Sender) >= e.Level || e is MessageEvent)
                 // XXX i'm delivering it anyway if it's a chat msg.
                 recipient.Client.DeliverEvent(e);

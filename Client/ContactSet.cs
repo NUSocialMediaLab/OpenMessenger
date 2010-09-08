@@ -133,8 +133,8 @@ namespace OpenMessenger.Client
         /// <param name="contact">Contact to update</param>
         public void Update(Contact contact)
         {
-            if (contact.Equals(ClientController.GetInstance().Me))
-                return;
+            //if (contact.Equals(ClientController.GetInstance().Me))
+                //return;
 
             lock (this)
             {
@@ -198,6 +198,7 @@ namespace OpenMessenger.Client
             //ConsoleWriteLine("Client.ContactSet: UpdateFocus called from "+contactA+" to "+contactB);
             //ConsoleWriteLine("                   MyNode = " + (Guid)MyNode.Content);
 
+            
             lock (this)
             {
                 Graph.Graph.Node from = GetNode(contactA);
