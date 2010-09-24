@@ -59,6 +59,7 @@ namespace OpenMessenger.Client.Sensors
         /// <summary>
         /// Delegate for the CameraFrameUpdate event
         /// </summary>
+        /// 
         /// <param name="frame">Frame bitmap sampeled</param>
         public delegate void CameraFrameUpdateHandler(Bitmap frame);
 

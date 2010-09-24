@@ -39,13 +39,13 @@ namespace OpenMessenger.Client.Sensors
         /// Delegate for IdleTimeUpdate event
         /// </summary>
         /// <param name="seconds">number of seconds since last activity</param>
-        private delegate void IdleTimeUpdateHandler(int seconds);
+        public delegate void IdleTimeUpdateHandler(int seconds);
 
         /// <summary>
         /// Triggered when the timer goes off, sending the number of seconds since
         /// the last keyboard or mouse activity
         /// </summary>
-        private event IdleTimeUpdateHandler IdleTimeUpdate;
+        public event IdleTimeUpdateHandler IdleTimeUpdate;
 
         private const int updateFrequency = 1000;
         private System.Timers.Timer captureTimer;
