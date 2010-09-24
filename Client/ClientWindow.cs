@@ -60,6 +60,14 @@ namespace OpenMessenger.Client
                 Sensor.GetInstance<MicrophoneSensor>().Stop();
         }
 
+        private void mnuMonitorMicrophoneAmplitude_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuMonitorMicrophoneAmplitude.Checked)
+                Monitor.GetInstance<MicrophoneAmplitudeMonitor>().Start();
+            else
+                Monitor.GetInstance<MicrophoneAmplitudeMonitor>().Stop();
+        }
+
         private void mnuSensorKeyboard_CheckedChanged(object sender, EventArgs e)
         {
             if (mnuSensorKeyboard.Checked)
@@ -68,12 +76,12 @@ namespace OpenMessenger.Client
                 Sensor.GetInstance<KeyboardSensor>().Stop();
         }
 
-        private void mnuMonitorMicrophoneAmplitude_CheckedChanged(object sender, EventArgs e)
+        private void mnuMonitorKeyboardAcitivity_CheckedChanged(object sender, EventArgs e)
         {
-            if (mnuMonitorMicrophoneAmplitude.Checked)
-                Monitor.GetInstance<MicrophoneAmplitudeMonitor>().Start();
+            if (mnuMonitorKeyboardActivity.Checked)
+                Monitor.GetInstance<KeyboardMonitor>().Start();
             else
-                Monitor.GetInstance<MicrophoneAmplitudeMonitor>().Stop();
+                Monitor.GetInstance<KeyboardMonitor>().Stop();
         }
 
         private void mnuSensorScreen_CheckedChanged(object sender, EventArgs e)
@@ -84,22 +92,6 @@ namespace OpenMessenger.Client
                 Sensor.GetInstance<ScreenSensor>().Stop();
         }
 
-        private void mnuSensorEyeTracker_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mnuSensorEyeTracker.Checked)
-                Sensor.GetInstance<EyeTrackerSensor>().Start();
-            else
-                Sensor.GetInstance<EyeTrackerSensor>().Stop();
-        }
-
-        private void mnuSensorMouse_CheckChanged(object sender, EventArgs e)
-        {
-            if (mnuSensorMouse.Checked)
-                Sensor.GetInstance<MouseSensor>().Start();
-            else
-                Sensor.GetInstance<MouseSensor>().Stop();
-        }
-
         private void mnuMonitorScreenActivity_CheckedChanged(object sender, EventArgs e)
         {
             if (mnuMonitorScreenActivity.Checked)
@@ -108,12 +100,32 @@ namespace OpenMessenger.Client
                 Monitor.GetInstance<ActivityMonitor>().Stop();
         }
 
-        private void mnuMonitorKeyboardAcitivity_CheckedChanged(object sender, EventArgs e)
+        private void mnuSensorEyeTracker_CheckedChanged(object sender, EventArgs e)
         {
-            if (mnuMonitorKeyboardActivity.Checked)
-                Monitor.GetInstance<KeyboardMonitor>().Start();
+            if (mnuSensorEyeTracker.Checked)
+                Sensor.GetInstance<EyeTrackerSensor>().Start();
             else
-                Monitor.GetInstance<KeyboardMonitor>().Stop();
+                Sensor.GetInstance<EyeTrackerSensor>().Stop();
+        }
+
+        private void mnuMonitorEyeActivity_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuMonitorEyeActivity.Checked)
+            {
+                EyeActivityMonitor eyeMon = Monitor.GetInstance<EyeActivityMonitor>();
+                eyeMon.Ow = _omni;
+                Monitor.GetInstance<EyeActivityMonitor>().Start();
+            }
+            else
+                Monitor.GetInstance<EyeActivityMonitor>().Stop();
+        }
+
+        private void mnuSensorMouse_CheckChanged(object sender, EventArgs e)
+        {
+            if (mnuSensorMouse.Checked)
+                Sensor.GetInstance<MouseSensor>().Start();
+            else
+                Sensor.GetInstance<MouseSensor>().Stop();
         }
 
         private void mnuMonitorMouseActivity_CheckedChanged(object sender, EventArgs e)
@@ -128,17 +140,46 @@ namespace OpenMessenger.Client
                 Monitor.GetInstance<MouseMonitor>().Stop();
         }
 
-        private void mnuMonitorEyeActivity_CheckedChanged(object sender, EventArgs e)
+        private void mnuSensorIdleTime_CheckedChanged(object sender, EventArgs e)
         {
-            if (mnuMonitorEyeActivity.Checked)
-            {
-                EyeActivityMonitor eyeMon = Monitor.GetInstance<EyeActivityMonitor>();
-                eyeMon.Ow = _omni;
-                Monitor.GetInstance<EyeActivityMonitor>().Start();
-            }
+            if (mnuSensorIdleTime.Checked)
+                Sensor.GetInstance<IdleSensor>().Start();
             else
-                Monitor.GetInstance<EyeActivityMonitor>().Stop();
+                Sensor.GetInstance<IdleSensor>().Stop();
         }
+
+        private void mnuMonitorIdleTime_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuMonitorIdleTime.Checked)
+                Monitor.GetInstance<IdleMonitor>().Start();
+            else
+                Monitor.GetInstance<IdleMonitor>().Stop();
+        }
+
+        private void mnuSensorWebCam_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuSensorWebCam.Checked)
+                Sensor.GetInstance<WebcamSensor>().Start();
+            else
+                Sensor.GetInstance<WebcamSensor>().Stop();
+        }
+
+        private void mnuSensorActiveWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuSensorActiveWindow.Checked)
+                Sensor.GetInstance<ActiveWindowSensor>().Start();
+            else
+                Sensor.GetInstance<ActiveWindowSensor>().Stop();
+        }
+
+        private void mnuMonitorActiveWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mnuMonitorActiveWindow.Checked)
+                Monitor.GetInstance<ActiveWindowMonitor>().Start();
+            else
+                Monitor.GetInstance<ActiveWindowMonitor>().Stop();
+        }   
+
 
         private void mnuClientProfile_Click(object sender, EventArgs e)
         {
@@ -220,14 +261,6 @@ namespace OpenMessenger.Client
             }
         }
 
-        private void mnuSensorWebCam_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mnuSensorWebCam.Checked)
-                Sensor.GetInstance<WebcamSensor>().Start();
-            else
-                Sensor.GetInstance<WebcamSensor>().Stop();
-        }
-
         private void mnuClientDisconnect_Click(object sender, EventArgs e)
         {
             if (ClientController.GetInstance().Disconnect())
@@ -237,22 +270,6 @@ namespace OpenMessenger.Client
                 stsStrip.Text = "Disconnected";
                 Text = "OpenMessenger";
             }
-        }
-
-        private void mnuSensorIdleTime_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mnuSensorIdleTime.Checked)
-                Sensor.GetInstance<IdleSensor>().Start();
-            else
-                Sensor.GetInstance<IdleSensor>().Stop();
-        }
-
-        private void mnuSensorActiveWindow_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mnuSensorActiveWindow.Checked)
-                Sensor.GetInstance<ActiveWindowSensor>().Start();
-            else
-                Sensor.GetInstance<ActiveWindowSensor>().Stop();
         }
     }
 }

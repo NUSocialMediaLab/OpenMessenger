@@ -55,6 +55,8 @@
             this.mnuMonitorScreenActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMonitorEyeActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMonitorKeyboardActivity = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMonitorIdleTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMonitorActiveWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMonitorMouseActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOmni = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOmniShow = new System.Windows.Forms.ToolStripMenuItem();
@@ -257,7 +259,9 @@
             this.mnuMonitorScreenActivity,
             this.mnuMonitorEyeActivity,
             this.mnuMonitorKeyboardActivity,
-            this.mnuMonitorMouseActivity});
+            this.mnuMonitorIdleTime,
+            this.mnuMonitorMouseActivity,
+            this.mnuMonitorActiveWindow});
             this.mnuMonitors.Name = "mnuMonitors";
             this.mnuMonitors.Size = new System.Drawing.Size(60, 20);
             this.mnuMonitors.Text = "Monitors";
@@ -301,6 +305,22 @@
             this.mnuMonitorMouseActivity.Size = new System.Drawing.Size(198, 22);
             this.mnuMonitorMouseActivity.Text = "Mouse Activity";
             this.mnuMonitorMouseActivity.CheckedChanged += new System.EventHandler(this.mnuMonitorMouseActivity_CheckedChanged);
+            //
+            // mnuMonitorIdleTime
+            //
+            this.mnuMonitorIdleTime.CheckOnClick = true;
+            this.mnuMonitorIdleTime.Name = "mnuMonitorIdleTime";
+            this.mnuMonitorIdleTime.Size = new System.Drawing.Size(198, 22);
+            this.mnuMonitorIdleTime.Text = "Idle Time";
+            this.mnuMonitorIdleTime.CheckedChanged += new System.EventHandler(this.mnuMonitorIdleTime_CheckedChanged);
+            //
+            // mnuMonitorActiveWindow
+            //
+            this.mnuMonitorActiveWindow.CheckOnClick = true;
+            this.mnuMonitorActiveWindow.Name = "mnuMonitorActiveWindow";
+            this.mnuMonitorActiveWindow.Size = new System.Drawing.Size(190, 22);
+            this.mnuMonitorActiveWindow.Text = "Active Window";
+            this.mnuMonitorActiveWindow.CheckedChanged += new System.EventHandler(this.mnuMonitorActiveWindow_CheckedChanged);
             // 
             // mnuOmni
             // 
@@ -386,6 +406,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorMouseActivity;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorKeyboard;
         private System.Windows.Forms.ToolStripMenuItem mnuMonitorKeyboardActivity;
+        private System.Windows.Forms.ToolStripMenuItem mnuMonitorIdleTime;
+        private System.Windows.Forms.ToolStripMenuItem mnuMonitorActiveWindow;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorActiveWindow;
         private System.Windows.Forms.ToolStripMenuItem mnuSensorIdleTime;
     }

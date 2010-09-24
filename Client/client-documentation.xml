@@ -1,0 +1,1443 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Client</name>
+    </assembly>
+    <members>
+        <member name="T:OpenMessenger.Client.Views.EyeTrackerLogView">
+            <summary>
+            A simple view that shows the readings obtained from the eye tracker and displays whether
+            those readings match an avatar on the OmniWindow
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.View">
+            <summary>
+            Abstract base class for views. Call the static GetInstance method to get a singleton
+            instance for a given view type.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.View.GetInstance``1">
+            <summary>
+            Gets a singleton instance for the view type specified
+            </summary>
+            <typeparam name="ViewType">Type of view to get</typeparam>
+            <returns>Singleton instance of view type</returns>
+        </member>
+        <member name="P:OpenMessenger.Client.View.Text">
+            <summary>
+            Textual representation of the View
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Views.EyeTrackerLogView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EyeTrackerLogView.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EyeTrackerLogView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EyeTrackerLogView.#ctor">
+            <summary>
+            Default constructor - receive all events
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EyeTrackerLogView.EventHandler(OpenMessenger.Event)">
+            <summary>
+            If an event from the eye tracker is received, process it
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EyeTrackerLogView.AddReading(OpenMessenger.Events.EyeActivityEvent)">
+            <summary>
+            Add received data to the listview
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Views.EyeTrackerLogView.Text">
+            <summary>
+            Name of this view
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.OmniContactNode">
+            <summary>
+            XAML control representing a node in the Omni window
+            </summary>
+            <summary>
+            OmniContactNode
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.#ctor(OpenMessenger.Contact)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="contact">Contact to represent for the control</param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.SetBitmapImage(System.Windows.Controls.Image,System.String,System.Int32)">
+            <summary>
+            Sets the image object with given bitmap image source
+            </summary>
+            <param name="img"></param>
+            <param name="imgSrc"></param>
+            <param name="size"></param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.HaloEffect(System.Boolean)">
+            <summary>
+            Enables/disables halo effect based on boolean argument
+            </summary>
+            <param name="b"></param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.ShowInfo(System.Int32)">
+            <summary>
+            Makes the info box visible coressponding to a focus level;
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.UpdateKeyInfo(System.String)">
+            <summary>
+            Updates the keyboard info with the specified content
+            </summary>
+            <param name="inf"></param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.UpdateMicInfo(System.String)">
+            <summary>
+            Updates the mic info with the specified content
+            </summary>
+            <param name="inf"></param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.UpdateEyeInfo(System.String)">
+            <summary>
+            Updates the eye info with the specified content
+            </summary>
+            <param name="inf"></param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.HideInfo">
+            <summary>
+            Hides the info box
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniContactNode.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Monitor">
+            <summary>
+            Abstract base class for monitors. Call the static GetInstance method to get a singleton
+            instance for a given monitor type.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitor.GetInstance``1">
+            <summary>
+            Gets a singleton instance for the monitor of a specified type
+            </summary>
+            <typeparam name="MonitorType">The type of monitor to get</typeparam>
+            <returns>Monitor singleton instance</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitor.Start">
+            <summary>
+            Starts monitoring
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitor.Stop">
+            <summary>
+            Stops monitoring
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitor.Text">
+            <summary>
+            Textual representation for the monitor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Dialogs.ConversationDialog">
+            <summary>
+            Chat window for a contact-contact message conversation
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.ConversationDialog.#ctor(OpenMessenger.Contact)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="contact">Contact to converse with</param>
+        </member>
+        <member name="F:OpenMessenger.Client.Dialogs.ConversationDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.ConversationDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.ConversationDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Monitors.KeyboardMonitor">
+            <summary>
+            Monitor that listens to raw data gathered by the keyboard activity
+            </summary> 
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.KeyboardMonitor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.KeyboardMonitor.Start">
+            <summary>
+            Start the monitor, listening to KeyboardSensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.KeyboardMonitor.Stop">
+            <summary>
+            Stop the monitor, listening to EyeTrackerSensor
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.KeyboardMonitor.Text">
+            <summary>
+            Name of this monitor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Dialogs.SettingsDialog">
+            <summary>
+            Dialog box for editing client settings
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.SettingsDialog.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Dialogs.SettingsDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.SettingsDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.SettingsDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Views.EventLogView">
+            <summary>
+            View logging events for the client
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Views.EventLogView.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EventLogView.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EventLogView.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.EventLogView.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Views.EventLogView.Text">
+            <summary>
+            Name of this view
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.EyeTrackerSensor">
+            <summary>
+            Sensor that connects to the eye tracker and reads eye tracker data periodically. Note that the
+            eye tracker software must be installed in order for the libraries to be linked in correctly.
+            In order to understand this code in detail, it is very helpful to look at the SDK document
+            for the eye tracker.
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensor">
+            <summary>
+            Abstract base class for sensors. Call the static GetInstance method to get a singleton
+            instance for a given sensor type.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensor.GetInstance``1">
+            <summary>
+            Gets a singleton instance for the sensor of a specified type
+            </summary>
+            <typeparam name="SensorType">The type of sensor to get</typeparam>
+            <returns>Sensor singleton instance</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensor.Start">
+            <summary>
+            Starts sensing
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensor.Stop">
+            <summary>
+            Stops sensing
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensor.Text">
+            <summary>
+            Textual representation for the sensor
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.EyeTrackerSensor.SCENE_NUM_FIELD">
+            The three constants below store the names of the fields that we are interested in
+            from the eye tracker
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.EyeTrackerSensor.reader">
+            <summary>
+            The main object responsible for communicating with the eye tracker
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.EyeTrackerSensor.cfgFile">
+            <summary>
+            This configuration file specifies some of the parameters used to communicate with the eye
+            tracker, such as the fields that we are interested in receiving.
+            It is usually generated when you run the SerialOutClient sample application that is provided
+            as a sample of the eye tracker SDK
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.EyeTrackerSensor.itemNames">
+            <summary>
+            After connecting to the eye tracker, this array indicates the names and indices of the
+            values received
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.EyeTrackerSensor.sceneNumIndex">
+            The three constants below store the indices of the fields that we are interested in
+            from the eye tracker
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.EyeTrackerSensor.eyePosReadTimer">
+            <summary>
+            The timer responsible for periodically calling read operations on the eye tracker
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.EyeTrackerSensor.#ctor">
+            <summary>
+            Default constructor - sets up the timer object (but does not start it)
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.EyeTrackerSensor.Start">
+            <summary>
+            Start the sensor, reading data from the eye tracker
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.EyeTrackerSensor.StartEyeTracker">
+            <summary>
+            Logic for setting up the initial connection to the eye tracker. Reading the eye tracker SDK
+            will help better understand this method.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.EyeTrackerSensor.Stop">
+            <summary>
+            Stop the sensor, reading data from the eye tracker
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.EyeTrackerSensor.ReadPosition(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Get readings from the eye tracker. In order for this method to work, StartEyeTracker() must
+            be called first in order to initialize the connection. Reading the eye tracker SDK
+            will help better understand this method.
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.EyeTrackerSensor.EyeTrackerUpdate">
+            <summary>
+            Triggered when new data from the eye tracker is received
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.EyeTrackerSensor.UpdateFreq">
+            <summary>
+            The time period (in ms) for reading data from the eye tracker
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.EyeTrackerSensor.Text">
+            <summary>
+            Name of this sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.EyeTrackerSensor.EyeTrackerUpdateHandler">
+            <summary>
+            Delegate for the EyeTrackerUpdate event
+            </summary>
+            <param name="screenshot"></param>
+        </member>
+        <member name="T:OpenMessenger.Client.OmniWindow">
+            <summary>
+            The Omni window, displaying the focus graph of the contact set. (incomplete)
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.OmniWindow.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.#ctor(OpenMessenger.Client.ClientWindow)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="clientWindow">Parent window</param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.DetectAvatar(OpenMessenger.Client.OmniWindow.OmniWindowPos)">
+            <summary>
+            Detect which avatar is being looked at on the screen
+            Also, increase the focus level of whatever avatar is being looked at
+            
+            </summary>
+            <param name="owPos">The position object that is generated from the eye tracker data</param>
+            <returns>A contact object that represents the avatar being looked at, or null if the location
+            does not contain any avatars</returns>
+            
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.GetParent(System.Windows.DependencyObject)">
+            <summary>
+            This is used primarily for DetectAvatar method. Given a control object such as border or textblock,
+            this recursively looks up the parent until we get OmniContactNode.
+            </summary>
+            <param name="obj"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.OnResize(System.EventArgs)">
+            <summary>
+            Update the graph canvas when the screen is resized
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Update the canvas on repaint. This seemed to fix a bug when the canvas was initially drawn,
+            not sure why or how useful it is.
+            </summary>
+            <param name="e">The base class argument</param>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.Update">
+            <summary>
+            Update/Redraw the Omni window, called in response to changes
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.UpdateContactNode(Graph.Graph.Node,System.Windows.Controls.ContentControl)">
+            <summary>
+            This method gets set to the delegate NodeUpdater of GraphCanvas. All it does is check to see that
+            the correct optional data is displayed on the node.
+            </summary>
+            <param name="node"> Sadly the node needs to be passed in to get the focus level...</param>
+            <param name="UInode"> The UInode to be updated.</param>
+            <returns> The updated OmniContactNode.</returns>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.XRes">
+            <summary>
+            Horizontal resolution of the display that hosts the OmniWindow
+            This is an array to account for multiple monitors.
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.YRes">
+            <summary>
+            Vertical resolution of the display that hosts the OmniWindow
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.BoundTopLeftX">
+            <summary>
+            Horizontal value of the top left corner of the screen used to display the OmniWindow,
+            in eye tracker units
+            
+            The values are taken from from the EyeTrac6000Net application settings and should be
+            updated if the room setup changes
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.BoundTopLeftY">
+            <summary>
+            Vertical value of the top left corner of the screen used to display the OmniWindow,
+            in eye tracker units
+            
+            The values are taken from from the EyeTrac6000Net application settings and should be
+            updated if the room setup changes
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.BoundBottomRightX">
+            <summary>
+            Horizontal value of the bottom right corner of the screen used to display the OmniWindow,
+            in eye tracker units
+            
+            The values are taken from from the EyeTrac6000Net application settings and should be
+            updated if the room setup changes
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.BoundBottomRightY">
+            <summary>
+            Vertical value of the bottom right corner of the screen used to display the OmniWindow,
+            in eye tracker units
+            
+            The values are taken from from the EyeTrac6000Net application settings and should be
+            updated if the room setup changes
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OwSceneNum">
+            <summary>
+            Scene number that corresponds to the screen where the OmniWindow is displayed
+            
+            The values are taken from from the EyeTrac6000Net application settings and should be
+            updated if the room setup changes
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.OmniWindow.OmniWindowPos">
+            <summary>
+            An inner class used to determine the position on the OmniWindow where a user is looking. It
+            takes the raw eye tracker readings and converts them to corresponding pixel coordinates based
+            on the screen bounds and the screen resolution
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.OmniWindow.OmniWindowPos.ow">
+            <summary>
+            A reference to the OmniWindow is necessary since the OmniWindow contains bounds and resolution
+            information
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.OmniWindow.OmniWindowPos.#ctor(OpenMessenger.Client.OmniWindow,System.Byte,System.Single,System.Single)">
+            <summary>
+            Constructor. Takes the raw eye position readings as received from the eye tracker, stores
+            them and converts them to corresponding pixel position
+            </summary>
+            <param name="ow">A reference to the OmniWindow where the user is looking</param>
+            <param name="sceneNum">The scene number of this reading</param>
+            <param name="xIn">The horizontal position of this reading</param>
+            <param name="yIn">The vertical position of this reading</param>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.SceneNum">
+            <summary>
+            Scene number where the user is looking
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.XIn">
+            <summary>
+            The horizontal eye position, in eye tracker units (inches)
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.XPx">
+            <summary>
+            The horizontal eye position, in pixels relative to the screen size of the display that shows
+            the OmniWindow
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.YIn">
+            <summary>
+            The vertical eye position, in eye tracker units (inches)
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.YPx">
+            <summary>
+            The vertical eye position, in pixels relative to the screen size of the display that shows
+            the OmniWindow
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.AvatarHit">
+            <summary>
+            The avatar that was matched on the OmniWindow by this reading, or null
+            if no avatar was matched
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.OmniWindow.OmniWindowPos.IsAvatarHitSet">
+            <summary>
+            A boolean used to distinguish the two possible null values of AvatarHit. If this boolean
+            is set, it indicates that no avatar was matched. Otherwise it simply indicates that the
+            AvatarHit value has not yet been set.
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Views.ContactListView">
+            <summary>
+            A view representing the contact set as a list. Clicking a contact will open a conversation dialog.
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Views.ContactListView.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.ContactListView.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.ContactListView.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Views.ContactListView.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Views.ContactListView.Text">
+            <summary>
+            Name of this view
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.KeyboardSensor">
+            <summary>
+            Sensor that captures global keyboard input at intervals specifed
+            by updateFrequency
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.KeyboardSensor.state">
+            <summary>
+            List of keys pressed
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.KeyboardSensor.waitHandle">
+            <summary>
+            Event for capturing keyboard data in real time
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.KeyboardSensor.listeningThread">
+            <summary>
+            Thread that handles capturing the data, but not sending it off
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.KeyboardSensor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.KeyboardSensor.ListenToKeyboard">
+            <summary>
+            Method that the listeningThread runs in to capture keyboardInput
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.KeyboardSensor.Start">
+            <summary>
+            Starts the timer and the thread to capture input
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.KeyboardSensor.Stop">
+            <summary>
+            Stops the thread and the timer
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.KeyboardSensor.CaptureKeys(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Method called when the timer expires, sends out event
+            with keyboard data
+            </summary>
+            <param name="sender">Not used</param>
+            <param name="e">Not used</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.KeyboardSensor.Dispose">
+            <summary>
+            Tells the operating system we no longer want to listen to the keyboard
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.KeyboardSensor.KeyboardUpdate">
+            <summary>
+            Triggered when the timer goes off -- sends out the keyboard data
+            since the last time the event fired
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.KeyboardSensor.Text">
+            <summary>
+            Name of this sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.KeyboardSensor.KeyboardUpdateHandler">
+            <summary>
+            Delegate for the KeyboardUpdate event
+            </summary>
+            <param name="keys">The list of keys pressed</param>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.ScreenSensor">
+            <summary>
+            Sensor capturing screenshots at regular intervals, specified by _updateFrequency
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ScreenSensor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ScreenSensor.Start">
+            <summary>
+            Start the sensor, capturing screenshots
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ScreenSensor.Stop">
+            <summary>
+            Stop the sensor, capturing screenshots
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.ScreenSensor.ScreenUpdate">
+            <summary>
+            Triggered when a new screenshot has been sampled
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.ScreenSensor.Text">
+            <summary>
+            Name of this sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.ScreenSensor.ScreenUpdateHandler">
+            <summary>
+            Delegate for the ScreenUpdate event
+            </summary>
+            <param name="screenshot"></param>
+        </member>
+        <member name="T:OpenMessenger.Client.ContactSet">
+            <summary>
+            Contact set for clients. Keeps a list of contacts and a graph including the client's contact
+            with edges representing focus levels.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.#ctor(OpenMessenger.Client.ClientController)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="client">Controller for the client</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.Clear">
+            <summary>
+            Clears the contact set
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.Update(OpenMessenger.Contact)">
+            <summary>
+            Updates a contact
+            </summary>
+            <param name="contact">Contact to update</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.Remove(System.Guid)">
+            <summary>
+            Removes a contact
+            </summary>
+            <param name="contactId">ID of contact to remove</param>
+            <returns>Contact removed</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.UpdateFocus(System.Guid,System.Guid,System.Double)">
+            <summary>
+            Update the focus between two contacts
+            </summary>
+            <param name="contactA">ID of contact focusing</param>
+            <param name="contactB">ID of contact being focused on</param>
+            <param name="level">Level of focus</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.GetFocus(System.Guid,System.Guid)">
+            <summary>
+            Get the focus level betwen two contacts
+            </summary>
+            <param name="contactA">ID of focusing contact</param>
+            <param name="contactB">ID of focusee contact</param>
+            <returns>Level of focus</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.Contains(System.Guid)">
+            <summary>
+            Checks if the contact set contains a contact with the given ID
+            </summary>
+            <param name="contactId">ID to check</param>
+            <returns>True if contact exists</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.ContactSet.Contains(OpenMessenger.Contact)">
+            <summary>
+            Checks if the contact set contains the contact instance
+            </summary>
+            <param name="contact">Contact to check</param>
+            <returns>True if contact exists</returns>
+        </member>
+        <member name="E:OpenMessenger.Client.ContactSet.ContactUpdated">
+            <summary>
+            Triggered when a contact was updated by the contact set
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.ContactSet.ContactRemoved">
+            <summary>
+            Triggered when a contact was removed from the contact set
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.ContactSet.FocusUpdated">
+            <summary>
+            Triggered when the focus level between two contacts was updated
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ContactSet.MyNode">
+            <summary>
+            The node representing the client's contact in the focus graph
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ContactSet.Item(System.Guid)">
+            <summary>
+            Indexer retrieving the contact by its ID
+            </summary>
+            <param name="id">ID of contact to retrieve</param>
+            <returns>A contact, or null</returns>
+        </member>
+        <member name="P:OpenMessenger.Client.ContactSet.Item(OpenMessenger.Event)">
+            <summary>
+            Indexes retrieving the contact that is the sender of an event
+            </summary>
+            <param name="e">A received event</param>
+            <returns>Contact that sent the event</returns>
+        </member>
+        <member name="P:OpenMessenger.Client.ContactSet.FocusGraph">
+            <summary>
+            Graph reflecting the focus levels between the contacts
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.ContactSet.ContactUpdatedHandler">
+            <summary>
+            Delegate for the ContactUpdated event
+            </summary>
+            <param name="contact">Contact updated</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ContactSet.ContactRemovedHandler">
+            <summary>
+            Delegate for the ContactRemoved event
+            </summary>
+            <param name="contact">Contact removed</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ContactSet.FocusUpdatedHandler">
+            <summary>
+            Delegate for the FocusUpdated event
+            </summary>
+            <param name="contactA">ID of contact focusing</param>
+            <param name="contactB">ID of contact being focused on</param>
+            <param name="level">Level of focus</param>
+        </member>
+        <member name="T:OpenMessenger.Client.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.WebcamSensor">
+            <summary>
+            Sensor for webcams. Relies on the avicap interface. Samples frames at an interval specified
+            by captureInterval. Triggers the CameraFrameUpdate with the newest frame.
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Sensors.WebcamSensor.wndCapture">
+            We need some kind of window handle to work with AviCap. We need not have
+            it visible though.
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.WebcamSensor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.WebcamSensor.Start">
+            <summary>
+            Starts the sensor, fires up the camera and starts sampling at intervals
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.WebcamSensor.Stop">
+            <summary>
+            Stops this sensor, but doesn't shut down the camera
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.WebcamSensor.CameraFrameUpdate">
+            <summary>
+            Triggered when a new camera frame has been sampled
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.WebcamSensor.Text">
+            <summary>
+            Name of this sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.WebcamSensor.CameraFrameUpdateHandler">
+            <summary>
+            Delegate for the CameraFrameUpdate event
+            </summary>
+            
+            <param name="frame">Frame bitmap sampeled</param>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.MicrophoneSensor">
+            <summary>
+            Sensor for sampling sound data from a microphone. Data is sampled at intervals specified by
+            the _readInterval member and records the sounds in between these intervals. Every interval
+            the SoundQuantum event is triggered with the sampled data.
+            NOTE: The meat of this was taken out to lose the DirectX dependency and is currently incomplete.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.MicrophoneSensor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.MicrophoneSensor.Start">
+            <summary>
+            Start sensor, capture sound
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.MicrophoneSensor.Stop">
+            <summary>
+            Stop sensor, capturing sound
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.MicrophoneSensor.SoundQuantum">
+            <summary>
+            Triggered when new sound data has been sampled from the microphone
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.MicrophoneSensor.Text">
+            <summary>
+            Name of this sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.MicrophoneSensor.SoundQuantumEventHandler">
+            <summary>N
+            Delegate for the SoundQuantum event
+            </summary>
+            <param name="soundData">Sound data captured</param>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.IdleSensor">
+            <summary>
+            Sensor that finds the idle time from the last keyboard or mouse input
+            from the operating system with intervals specifed by updateFrequency
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.IdleSensor.GetLastInputInfo(OpenMessenger.Client.Sensors.IdleSensor.LASTINPUTINFO@)">
+            <summary>
+            Information on getting idle time from Windows gotten from:
+            http://www.pinvoke.net/default.aspx/user32.GetLastInputInfo
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.IdleSensor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.IdleSensor.Start">
+            <summary>
+            Starts the sensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.IdleSensor.Stop">
+            <summary>
+            Stops the sensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.IdleSensor.GetLastInputTime(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Queries the operating system for the amount of time since the last
+            keyboard or mouse activity. Runs everytime the timer fires.
+            </summary>
+            <param name="sender">Not used</param>
+            <param name="e">Not used</param>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.IdleSensor.IdleTimeUpdate">
+            <summary>
+            Triggered when the timer goes off, sending the number of seconds since
+            the last keyboard or mouse activity
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.IdleSensor.Text">
+            <summary>
+            Name of the sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.IdleSensor.LASTINPUTINFO">
+            <summary>
+            Information on getting idle time from Windows gotten from:
+            http://www.pinvoke.net/default.aspx/user32.GetLastInputInfo
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.IdleSensor.IdleTimeUpdateHandler">
+            <summary>
+            Delegate for IdleTimeUpdate event
+            </summary>
+            <param name="seconds">number of seconds since last activity</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientWindow">
+            <summary>
+            Main window for the client
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.ClientWindow.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientWindow.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientWindow.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientWindow.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientWindow.SetOmniVisible(System.Boolean)">
+            <summary>
+            Set the visibility of the Omni window
+            </summary>
+            <param name="visible">True if visible</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientController">
+            <summary>
+            Controller for the client interface. This is the class responsible for incoming/outgoing
+            communication at the client.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.GetInstance">
+            <summary>
+            Gets the singleton instance of the ClientController
+            </summary>
+            <returns>The singleton instance</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.Connect">
+            <summary>
+            Connect to the service
+            </summary>
+            <returns>True if successfully signed in</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.Disconnect">
+            <summary>
+            Disconnects from service
+            </summary>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.BroadcastEvent(OpenMessenger.Event)">
+            <summary>
+            Broadcasts an event to the service.
+            </summary>
+            <param name="e">Event to broadcast</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.SendEvent(System.Guid,OpenMessenger.Event)">
+            <summary>
+            Unicast an event
+            </summary>
+            <param name="recipient">ID of recipient</param>
+            <param name="e">Event to send</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.DeliverEvent(OpenMessenger.Event)">
+            <summary>
+            Receive an event, called by the interface
+            </summary>
+            <param name="e">Event received</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.ShowConversationDialog(System.Guid)">
+            <summary>
+            Displays the conversation dialog with a given contact
+            </summary>
+            <param name="contactId">ID of conversing contact</param>
+        </member>
+        <member name="M:OpenMessenger.Client.ClientController.SetFocus(System.Guid,System.Double)">
+            <summary>
+            Tell service that we want to focus on a contact
+            </summary>
+            <param name="contact">ID of contact to focus on</param>
+            <param name="level">Level of focus</param>
+        </member>
+        <member name="E:OpenMessenger.Client.ClientController.OutgoingEventUnicast">
+            <summary>
+            Triggered on sending an event as unicast
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.ClientController.OutgoingEventMulticast">
+            <summary>
+            Triggered on sending an event as multicast
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.ClientController.OutgoingEventBroadcast">
+            <summary>
+            Triggered on sending an event as broadcast
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.ClientController.Event">
+            <summary>
+            Triggered when a new event is received
+            </summary>
+        </member>
+        <member name="E:OpenMessenger.Client.ClientController.FocusSet">
+            <summary>
+            Triggered when the client notifies the service that it wants to focus on another contact
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ClientController.Me">
+            <summary>
+            The contact representation of this client
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ClientController.Connected">
+            <summary>
+            True if currently connected to service
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ClientController.Contacts">
+            <summary>
+            Set of contacts
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ClientController.Conversations">
+            <summary>
+            Open conversation dialogs with other contacts
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.ClientController.ServiceAddress">
+            <summary>
+            Address of service
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientController.OutgoingEventUnicastHandler">
+            <summary>
+            Delegate for the OutgoingEventUnicast event
+            </summary>
+            <param name="contact">Requested recipient</param>
+            <param name="e">Event sent</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientController.OutgoingEventMulticastHandler">
+            <summary>
+            Delegate for the OutgoingEventMulticast event
+            </summary>
+            <param name="contacts">Requested list of recipients</param>
+            <param name="e">Event sent</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientController.OutgoingEventBroadcastHandler">
+            <summary>
+            Delegate for the OutgoingEventBroadcast event
+            </summary>
+            <param name="e">Event sent</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientController.EventHandler">
+            <summary>
+            Delegate for the Event event
+            </summary>
+            <param name="e">Event received</param>
+        </member>
+        <member name="T:OpenMessenger.Client.ClientController.FocusSetHandler">
+            <summary>
+            Delegate for the FocusSet event
+            </summary>
+            <param name="contactId">Target of focus</param>
+            <param name="level">Level of focus</param>
+        </member>
+        <member name="T:OpenMessenger.Client.Monitors.MouseMonitor">
+            <summary>
+            Monitor that listens to raw data gathered by the EyeTrackingSensor and uses that information
+            to determine if a user is gazing at another avatar on the OmniWindow in order to try to initiate
+            conversation
+            </summary> 
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.MouseMonitor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.MouseMonitor.Start">
+            <summary>
+            Start the monitor, listening to MouseSensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.MouseMonitor.Stop">
+            <summary>
+            Stop the monitor, listening to MouseSensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.MouseMonitor.OnMouseUpdateHandler(System.Byte,System.Single,System.Single)">
+            <summary>
+            Callback method that creates a pixel representation of the mouse tracker readings,
+            checks whether an avatar was hit on the OmniWindow and stores all this information
+            in a queue
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.MouseMonitor.NumReadsToStore">
+            <summary>
+            The number of latest mouse tracker readings (OmniWindow.OmniWindowPos) that are stored in history.
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.MouseMonitor.MouseReadings">
+            <summary>
+            Queue that stores the latest mouse tracker readings (OmniWindow.OmniWindowPos).
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.MouseMonitor.Ow">
+            <summary>
+            A reference to the OmniWindow that is necessary in order to determine the pixel
+            position on the screen where a user is looking at.
+            Note: this property MUST be set immediately after the Monitor is instantiated, and before
+            the monitor is started (before a call to Start() has been made).
+            The reason for doing it this way is that the monitor cannot take parameters in the constructor
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.MouseMonitor.Text">
+            <summary>
+            Name of this monitor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.ActiveWindowSensor">
+            <summary>
+            Sensor that determines the Window that currently has the user's focus at
+            intervals specified by updateFrequency
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ActiveWindowSensor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ActiveWindowSensor.Start">
+            <summary>
+            Starts the sensor, capturing the active window's title
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ActiveWindowSensor.Stop">
+            <summary>
+            Stops the sensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Sensors.ActiveWindowSensor.GetActiveWindowTitle(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Method called by the timer everytime we want to find out what
+            the active window is
+            </summary>
+            <param name="sender">Not used</param>
+            <param name="e">Not used</param>
+        </member>
+        <member name="E:OpenMessenger.Client.Sensors.ActiveWindowSensor.ActiveWindowUpdate">
+            <summary>
+            Triggered when the timer goes off and the window has been determined
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Sensors.ActiveWindowSensor.Text">
+            <summary>
+            Name of this sensor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Sensors.ActiveWindowSensor.ActiveWindowUpdateHandler">
+            <summary>
+            Delegate for the ActiveWindowUpdate event
+            </summary>
+            <param name="title">The title of the currently active window</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.IdleMonitor.Stop">
+            <summary>
+            Stop the monitor, listening to EyeTrackerSensor
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.IdleMonitor.Text">
+            <summary>
+            Name of this monitor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Monitors.MicrophoneAmplitudeMonitor">
+            <summary>
+            Monitor subscribing to events from the microphone sensor, computing the average ampitude. If the
+            amplitude is outside of the specified threshold range, an AmplitudeEvent is broadcast.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.MicrophoneAmplitudeMonitor.Start">
+            <summary>
+            Start the monitor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.MicrophoneAmplitudeMonitor.Stop">
+            <summary>
+            Stop this monitor, listening to sensors
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.MicrophoneAmplitudeMonitor.Text">
+            <summary>
+            Name of this monitor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Dialogs.ProfileDialog">
+            <summary>
+            Dialog box for editing a client contact profile
+            </summary>
+        </member>
+        <member name="F:OpenMessenger.Client.Dialogs.ProfileDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.ProfileDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.ProfileDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Dialogs.ProfileDialog.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Monitors.EyeActivityMonitor">
+            <summary>
+            Monitor that listens to raw data gathered by the EyeTrackingSensor and uses that information
+            to determine if a user is gazing at another avatar on the OmniWindow in order to try to initiate
+            conversation
+            </summary> 
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.EyeActivityMonitor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.EyeActivityMonitor.Start">
+            <summary>
+            Start the monitor, listening to EyeTrackerSensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.EyeActivityMonitor.Stop">
+            <summary>
+            Stop the monitor, listening to EyeTrackerSensor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.EyeActivityMonitor.OnEyeTrackerUpdateHandler(System.Byte,System.Single,System.Single)">
+            <summary>
+            Callback method that creates a pixel representation of the eye tracker readings,
+            checks whether an avatar was hit on the OmniWindow and stores all this information
+            in a queue
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.EyeActivityMonitor.NumReadsToStore">
+            <summary>
+            The number of latest eye tracker readings (OmniWindow.OmniWindowPos) that are stored in history.
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.EyeActivityMonitor.EyeReadings">
+            <summary>
+            Queue that stores the latest eye tracker readings (OmniWindow.OmniWindowPos).
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.EyeActivityMonitor.Ow">
+            <summary>
+            A reference to the OmniWindow that is necessary in order to determine the pixel
+            position on the screen where a user is looking at.
+            Note: this property MUST be set immediately after the Monitor is instantiated, and before
+            the monitor is started (before a call to Start() has been made).
+            The reason for doing it this way is that the monitor cannot take parameters in the constructor
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.EyeActivityMonitor.Text">
+            <summary>
+            Name of this monitor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Tests.Sensors.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Client">
+            <summary>
+            Main class for the client. Keeps track of service communication and contact list. Responsible
+            for handling incomming events.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Client.DeliverEvent(OpenMessenger.Event)">
+            <summary>
+            Called by service (or potentially other clients) to deliver an event to the client
+            </summary>
+            <param name="e">Event to deliver</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Client.UpdateContact(OpenMessenger.Contact)">
+            <summary>
+            Called by the service to notify of an update/addition to/of a contact
+            </summary>
+            <param name="contact">Contact to update</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Client.RemoveContact(System.Guid)">
+            <summary>
+            Called by the service to notify that a contact has signed off
+            </summary>
+            <param name="contactId">ID of contact to remove</param>
+        </member>
+        <member name="M:OpenMessenger.Client.Client.UpdateFocus(System.Guid,System.Guid,System.Double)">
+            <summary>
+            Called by the service to notify that a contact changed its focus level towards another contact
+            </summary>
+            <param name="contactA">ID of contact focusing</param>
+            <param name="contactB">ID of contact being focused on</param>
+            <param name="level">Level of focus</param>
+        </member>
+        <member name="P:OpenMessenger.Client.Client.Controller">
+            <summary>
+            Controller for the client interface (singleton instance)
+            </summary>
+        </member>
+        <member name="T:OpenMessenger.Client.Monitors.ActivityMonitor">
+            <summary>
+            Monitor subscribing to the screen sensor and webcam sensor. Computes the percent difference
+            between previously sampled screenshot or frame. If this difference is above some threshold
+            (_activeDelta), an ActivityEvent is broadcast.
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.ActivityMonitor.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.ActivityMonitor.Start">
+            <summary>
+            Starts the monitor, listening to sensors
+            </summary>
+        </member>
+        <member name="M:OpenMessenger.Client.Monitors.ActivityMonitor.Stop">
+            <summary>
+            Stop this monitor, listening to sensors
+            </summary>
+        </member>
+        <member name="P:OpenMessenger.Client.Monitors.ActivityMonitor.Text">
+            <summary>
+            Name of this monitor
+            </summary>
+        </member>
+    </members>
+</doc>

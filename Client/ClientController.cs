@@ -285,8 +285,26 @@ namespace OpenMessenger.Client
                     UInode.UpdateEyeInfo(e.ToString());
                 }
             }
+            if (e is MouseEvent)
+            {
+                if (_omniNodes.ContainsKey(e.Sender))
+                {
+                    OmniContactNode UInode = _omniNodes[e.Sender];
+                    UInode.UpdateEyeInfo(e.ToString()); //TODO: Decide how mouse will differ from eye
+                }
+            }
             if (e is KeyboardEvent)
             {
+                Console.WriteLine("KeyEvent Recieved");
+                if (_omniNodes.ContainsKey(e.Sender))
+                {
+                    OmniContactNode UInode = _omniNodes[e.Sender];
+                    UInode.UpdateKeyInfo(e.ToString());
+                }
+            }
+            if (e is IdleTimeEvent)
+            {
+                Console.WriteLine("IdleTimeEvent Recieved");
                 if (_omniNodes.ContainsKey(e.Sender))
                 {
                     OmniContactNode UInode = _omniNodes[e.Sender];
