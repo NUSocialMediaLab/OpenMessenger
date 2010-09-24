@@ -40,6 +40,7 @@ namespace OpenMessenger.Client.Monitors
 
         private void OnKeyboardUpdateHandler(Key[] keys)
         {
+            Console.WriteLine("KeyboardUpdate");
             ClientController client = ClientController.GetInstance();
             bool isActive = (keys.Length > 0) ? true : false;
             if(wasActive != isActive)
