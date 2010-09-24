@@ -65,6 +65,7 @@
     <Compile Include="ContactSet.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Events\AmplitudeEvent.cs" />
+    <Compile Include="Events\IdleTimeEvent.cs" />
     <Compile Include="Events\EyeActivityEvent.cs" />
     <Compile Include="Events\KeyboardEvent.cs" />
     <Compile Include="Events\MessageEvent.cs" />

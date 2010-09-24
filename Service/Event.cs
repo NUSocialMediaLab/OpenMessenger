@@ -19,6 +19,7 @@ namespace OpenMessenger
     [KnownType(typeof(AmplitudeEvent))]
     [KnownType(typeof(KeyboardEvent))]
     [KnownType(typeof(MouseEvent))]
+    [KnownType(typeof(IdleTimeEvent))]
     public abstract class Event
     {
         static Guid _serverGuid = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
