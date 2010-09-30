@@ -252,9 +252,10 @@ namespace Graph
 
         void OnNodeAddedDispatched(Graph.Node node)
         {
+            ContentControl UInode = NodeCreator(node);
             if (!_UInodes.ContainsKey(node))
             {
-                ContentControl UInode = NodeCreator(node);
+                
                 UInode.Tag = node;
                 
                 UInode.MouseUp += new MouseButtonEventHandler(UInode_MouseUp);

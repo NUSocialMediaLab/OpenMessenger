@@ -321,7 +321,19 @@ namespace OpenMessenger.Client
             Contact contact = ClientController.GetInstance().Contacts[(Guid)node.Content];
             
             OmniContactNode UInode = new OmniContactNode(contact);
-            _omniNodes.Add(contact.Id, UInode);
+            
+            //TODO: Make this a non-hacky try/catch for when duplicate nodes are added to the OMNI
+            try
+            {
+                _omniNodes.Add(contact.Id, UInode);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("!!! Attempted to add duplicate OMNIContactNode");
+                Console.WriteLine("!!! " + e.Message);
+                Console.WriteLine("!!! " + e.StackTrace);
+                UInode = _omniNodes[contact.Id];
+            }
             return UInode;
         }
         /// <summary>

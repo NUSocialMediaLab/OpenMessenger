@@ -133,8 +133,8 @@ namespace OpenMessenger.Client
         /// <param name="contact">Contact to update</param>
         public void Update(Contact contact)
         {
-            //if (contact.Equals(ClientController.GetInstance().Me))
-                //return;
+            if (contact.Equals(ClientController.GetInstance().Me))
+                return;
 
             lock (this)
             {
