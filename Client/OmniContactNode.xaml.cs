@@ -103,6 +103,8 @@ namespace OpenMessenger.Client
         /// </summary>
         public void ShowInfo(int i)
         {
+            //TODO: Change this to not use hardcoded values for showing focus level
+            //monitor information
             HideInfo();
             infoBox.Height = 0;
             switch (i)
